@@ -49,6 +49,10 @@ module.exports = {
           4: "hsl(var(--chart-4))",
           5: "hsl(var(--chart-5))",
         },
+        customYellow: "#ffb500",
+        customLightYellow: "#ffde59",
+        customGray: "#545454",
+        customLightGray: "#737373",
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -8,8 +8,6 @@ import {
   CurrencyDollarIcon,
   ChartBarIcon,
   LightBulbIcon,
-  ChatBubbleOvalLeftEllipsisIcon,
-  EnvelopeIcon,
   CodeBracketIcon,
 } from "@heroicons/react/24/solid"; // Importing Heroicons
 import { motion } from "framer-motion"; // Importing framer-motion
@@ -19,9 +17,13 @@ const Header = () => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
 
-  // Function to handle dropdown visibility toggle
-  const handleDropdownClick = (dropdownSetter) => {
-    dropdownSetter((prevState) => !prevState);
+  // Handlers for opening and closing dropdowns on hover
+  const handleMouseEnter = (setter) => {
+    setter(true);
+  };
+
+  const handleMouseLeave = (setter) => {
+    setter(false);
   };
 
   return (
@@ -31,88 +33,94 @@ const Header = () => {
       transition={{ duration: 0.8, ease: "easeOut" }} // Animation duration and easing
       className="sticky top-0 bg-white z-50 shadow-md"
     >
-      <div className="container mx-auto flex justify-between items-center py-5 px-20">
-        <Link href="/" className="text-xl font-bold">
-          GDC<span className="text-red-500">DS</span>
+      <div className="container mx-auto flex justify-between items-center py-2 px-20">
+        {/* Logo Section */}
+        <Link href="/" className="flex items-center">
+          <img
+            src="/assets/images/Digital Solution.png" // Replace with the actual path to your logo image
+            alt="GDC Digital Solutions Logo"
+            className="h-20 w-auto" // Adjust the height and width as needed
+          />
         </Link>
+
         <nav className="flex space-x-10 relative">
-          <Link href="#top" className="hover:text-red-500">
+          <Link href="#top" className="hover:text-customYellow">
             Home
           </Link>
 
           {/* Services Dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => handleDropdownClick(setIsServicesOpen)}
-              className="flex items-center hover:text-red-500 focus:outline-none"
-            >
+          <div
+            className="relative"
+            onMouseEnter={() => handleMouseEnter(setIsServicesOpen)}
+            onMouseLeave={() => handleMouseLeave(setIsServicesOpen)}
+          >
+            <button className="flex items-center hover:text-customYellow focus:outline-none">
               Services
               <ChevronDownIcon className="w-4 h-4 ml-1 transition-transform duration-300" />
             </button>
             {isServicesOpen && (
               <div
-                className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-auto bg-white border border-gray-200 rounded shadow-lg flex space-x-4 p-4 z-50"
-                style={{ minWidth: "600px" }} // Ensures the menu is wide enough to appear centered
+                className="absolute left-1/2 transform -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg p-6 flex space-x-6 z-50"
+                style={{ minWidth: "800px" }} // Adjust the width to make it appear centered and spacious
               >
                 <Link
-                  href="#google-ads"
-                  className="flex flex-col items-center text-gray-700 hover:text-red-500"
+                  href="#development"
+                  className="flex flex-col items-center text-center text-gray-700 hover:text-customYellow group"
                 >
-                  <CurrencyDollarIcon className="w-10 h-10 mb-2" />
-                  <span>Google Ads</span>
+                  <CodeBracketIcon className="w-12 h-12 mb-2 text-customYellow group-hover:scale-110 transition-transform duration-300" />
+                  <span className="font-semibold">Website Development</span>
+                  <span className="text-sm text-gray-500 group-hover:text-gray-700">
+                    Build professional and engaging websites.
+                  </span>
+                </Link>
+                <Link
+                  href="#google-ads"
+                  className="flex flex-col items-center text-center text-gray-700 hover:text-customYellow group"
+                >
+                  <CurrencyDollarIcon className="w-12 h-12 mb-2 text-customYellow group-hover:scale-110 transition-transform duration-300" />
+                  <span className="font-semibold">Google Ads</span>
+                  <span className="text-sm text-gray-500 group-hover:text-gray-700">
+                    Optimize your ads to reach the right audience.
+                  </span>
                 </Link>
                 <Link
                   href="#seo"
-                  className="flex flex-col items-center text-gray-700 hover:text-red-500"
+                  className="flex flex-col items-center text-center text-gray-700 hover:text-customYellow group"
                 >
-                  <ChartBarIcon className="w-10 h-10 mb-2" />
-                  <span>Search Engine Optimisation</span>
+                  <ChartBarIcon className="w-12 h-12 mb-2 text-customYellow group-hover:scale-110 transition-transform duration-300" />
+                  <span className="font-semibold">SEO / Copywriting</span>
+                  <span className="text-sm text-gray-500 group-hover:text-gray-700">
+                    Enhance your content for better search rankings.
+                  </span>
                 </Link>
                 <Link
                   href="#strategy"
-                  className="flex flex-col items-center text-gray-700 hover:text-red-500"
+                  className="flex flex-col items-center text-center text-gray-700 hover:text-customYellow group"
                 >
-                  <LightBulbIcon className="w-10 h-10 mb-2" />
-                  <span>Online Strategy</span>
-                </Link>
-                <Link
-                  href="#facebook"
-                  className="flex flex-col items-center text-gray-700 hover:text-red-500"
-                >
-                  <ChatBubbleOvalLeftEllipsisIcon className="w-10 h-10 mb-2" />
-                  <span>Facebook Campaigns</span>
-                </Link>
-                <Link
-                  href="#automation"
-                  className="flex flex-col items-center text-gray-700 hover:text-red-500"
-                >
-                  <EnvelopeIcon className="w-10 h-10 mb-2" />
-                  <span>Email Automation</span>
-                </Link>
-                <Link
-                  href="#development"
-                  className="flex flex-col items-center text-gray-700 hover:text-red-500"
-                >
-                  <CodeBracketIcon className="w-10 h-10 mb-2" />
-                  <span>Website Development</span>
+                  <LightBulbIcon className="w-12 h-12 mb-2 text-customYellow group-hover:scale-110 transition-transform duration-300" />
+                  <span className="font-semibold">NFC Cards</span>
+                  <span className="text-sm text-gray-500 group-hover:text-gray-700">
+                    Innovate with contactless technology.
+                  </span>
                 </Link>
               </div>
             )}
           </div>
 
-          <Link href="#portfolio" className="hover:text-red-500">
+          <Link href="#portfolio" className="hover:text-customYellow">
             Portfolio
           </Link>
-          <Link href="#blog" className="hover:text-red-500">
+          <Link href="#blog" className="hover:text-customYellow">
             Blog
           </Link>
 
           {/* About Us Dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => handleDropdownClick(setIsAboutOpen)}
-              className="flex items-center hover:text-red-500 focus:outline-none"
-            >
+          <div
+            className="relative"
+            onMouseEnter={() => handleMouseEnter(setIsAboutOpen)}
+            onMouseLeave={() => handleMouseLeave(setIsAboutOpen)}
+          >
+            <button className="flex items-center hover:text-customYellow focus:outline-none">
               About Us
               <ChevronDownIcon className="w-4 h-4 ml-1 transition-transform duration-300" />
             </button>
@@ -120,19 +128,19 @@ const Header = () => {
               <div className="absolute left-0 mt-2 w-40 bg-white border border-gray-200 rounded shadow-lg">
                 <Link
                   href="#about-us"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-red-500"
+                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-customYellow"
                 >
                   About Us
                 </Link>
                 <Link
                   href="#vacancies"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-red-500"
+                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-customYellow"
                 >
                   Vacancies
                 </Link>
                 <Link
                   href="#internships"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-red-500"
+                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-customYellow"
                 >
                   Internships
                 </Link>
@@ -140,7 +148,9 @@ const Header = () => {
             )}
           </div>
 
-          <Button className="bg-red-500 text-white">Contact Now</Button>
+          <Button className="bg-customYellow text-white hover:bg-customGray">
+            Contact Now
+          </Button>
         </nav>
       </div>
     </motion.header>

@@ -30,18 +30,18 @@ const Banner = () => {
     >
       {/* Left gradient image */}
       <img
-        src="/assets/images/baner-dec-left.png" // Replace with your actual left gradient path
+        src="/assets/images/1.png" // Replace with your actual left gradient path
         alt="Left Gradient"
         className="absolute left-0 top-0 h-full object-cover z-0"
-        style={{ width: "300px" }} // Adjust width as needed
+        // style={{ width: "300px" }} // Adjust width as needed
       />
 
       {/* Right gradient image */}
       <img
-        src="/assets/images/baner-dec-right.png" // Replace with your actual right gradient path
+        src="/assets/images/2.png" // Replace with your actual right gradient path
         alt="Right Gradient"
         className="absolute right-0 top-0 h-full object-cover z-0"
-        style={{ width: "300px" }} // Adjust width as needed
+        // style={{ width: "300px" }} // Adjust width as needed
       />
 
       {/* Main content */}
@@ -53,7 +53,7 @@ const Banner = () => {
           animate={{ x: 0, opacity: 1 }} // End position
           transition={{ duration: 0.8, delay: 0 }} // Animation duration and no delay
         >
-          <h6 className="text-red-500 font-semibold uppercase mb-2">
+          <h6 className="text-customGray font-semibold uppercase mb-2">
             Welcome to GDC Digital Solutions
           </h6>
           <h2 className="text-4xl md:text-5xl font-bold leading-tight text-gray-800">
@@ -64,27 +64,27 @@ const Banner = () => {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -20, opacity: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-blue-500 inline-block"
+              className="text-customYellow inline-block"
             >
               {services[currentService]}
             </motion.span>{" "}
-            {/* & <span className="text-red-500">Marketing</span> */}
           </h2>
 
-          {/* Form Section */}
-          <form className="mt-6 max-w-lg flex items-center rounded-full overflow-hidden bg-blue-500">
-            <input
-              type="text"
-              placeholder="Your website URL..."
-              className="flex-1 px-4 py-3 text-white bg-blue-500 focus:outline-none placeholder-white"
-            />
+          {/* Button Section */}
+          <div className="mt-6 flex gap-4">
             <button
-              type="submit"
-              className="px-6 py-3 bg-white text-red-500 font-semibold hover:bg-gray-100 transition-colors rounded-full"
+              className="px-6 py-3 bg-customYellow text-white font-semibold hover:bg-customLightGray transition-colors rounded-full"
+              onClick={() => console.log("Analyze Your Site clicked")}
             >
-              Analyze Site
+              Analyze Your Site
             </button>
-          </form>
+            <button
+              className="px-6 py-3 border-2 border-customGray text-customGray font-semibold hover:bg-customLightGray hover:text-white transition-colors rounded-full"
+              onClick={() => console.log("Schedule a Consultation clicked")}
+            >
+              Schedule a Consultation
+            </button>
+          </div>
         </motion.div>
 
         {/* Right image motion */}
