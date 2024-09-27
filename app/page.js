@@ -1,6 +1,7 @@
+
 import Banner from "@/components/home/Banner";
 import AboutUs from "@/components/home/AboutUs";
-import TestimonialSection from "@/components/home/TestimonialSection"
+import TestimonialSection from "@/components/home/TestimonialSection";
 import RecentProjects from "@/components/home/RecentProjects";
 import CallToAction from "@/components/home/CallToAction";
 
