@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import { motion } from "framer-motion"; // Importing Framer Motion for animations
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Image from "next/image";
 
 export default function RecentProjects() {
   const projects = [
@@ -40,7 +41,7 @@ export default function RecentProjects() {
   return (
     <section className="py-10 bg-white">
       <div className="container mx-auto px-4 text-center">
-      <h1 className="text-5xl font-semibold mb-8">
+        <h1 className="text-5xl font-semibold mb-8">
           Our success stories{" "}
           <span className="text-customYellow">& recent projects</span>
         </h1>
@@ -61,10 +62,12 @@ function ProjectCard({ project }) {
       whileHover={{ scale: 1.05 }} // Add a subtle scaling effect on hover
     >
       {/* Background Image */}
-      <img
+      <Image
         src={project.image}
         alt={project.title}
-        className="w-full h-full object-cover rounded-lg"
+        layout="fill" // This ensures the image fills the container
+        objectFit="cover" // Similar to 'object-cover' in CSS
+        className="rounded-lg" // Keep your rounded class here
       />
       {/* Overlay Content - Appears on Hover */}
       <motion.div

@@ -1,5 +1,5 @@
 import Banner from "@/components/home/Banner";
-import AboutUs from "@/components/home/AboutUs";
+import Services from "@/components/home/Services";
 import TestimonialSection from "@/components/home/TestimonialSection";
 import RecentProjects from "@/components/home/RecentProjects";
 import CallToAction from "@/components/home/CallToAction";
@@ -9,9 +9,9 @@ export default function Home() {
     <div>
       <main>
         <Banner />
-        <AboutUs />
+        <Services />
         <TestimonialSection />
-        <RecentProjects />
+        {/* <RecentProjects /> */}
         <CallToAction />
       </main>
     </div>
