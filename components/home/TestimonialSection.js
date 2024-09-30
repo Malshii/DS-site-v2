@@ -1,6 +1,6 @@
-// components/PortfolioSection.js
 "use client";
-import { useState } from "react";
+import { motion } from "framer-motion"; // Importing framer-motion for animations
+import { useInView } from "react-intersection-observer"; // Importing useInView for viewport detection
 
 export default function TestimonialSection() {
   const services = [
@@ -22,30 +22,69 @@ export default function TestimonialSection() {
     },
   ];
 
+  const { ref, inView } = useInView({
+    triggerOnce: false, // Allows the animation to re-trigger every time it comes into view
+    threshold: 0.2, // Defines how much of the section needs to be visible before triggering the animation
+  });
+
+  // Define animations for the service cards
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3, // Stagger the children animations
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 },
+    },
+  };
+
   return (
-    <section className="py-10 bg-white">
+    <section className="py-10 bg-white" ref={ref}> {/* Attach ref here */}
       <div className="container mx-auto px-4 text-center">
-        <h1 className="text-5xl font-semibold mb-8">
-          Our clients say{" "}
-          <span className="text-customYellow">we rock</span>
-        </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <motion.h1
+          className="text-5xl font-semibold mb-8"
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : { opacity: 0 }} // Animate on inView
+          transition={{ duration: 1 }}
+        >
+          Our clients say <span className="text-customYellow">we rock</span>
+        </motion.h1>
+
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"} // Animate on inView
+        >
           {services.map((service, index) => (
             <ServiceCard
               key={index}
               title={service.title}
               description={service.description}
+              variants={cardVariants} // Pass the animation variants
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 }
 
-function ServiceCard({ title, description }) {
+function ServiceCard({ title, description, variants }) {
   return (
-    <div className="relative group w-full h-64 rounded-lg overflow-hidden shadow-lg bg-gray-50">
+    <motion.div
+      className="relative group w-full h-64 rounded-lg overflow-hidden shadow-lg bg-gray-50"
+      variants={variants}
+    >
       {/* Hidden Content - Appears on Hover */}
       <div
         className="absolute inset-0 bg-gradient-to-t from-customLightYellow to-customYellow text-white 
@@ -63,12 +102,11 @@ function ServiceCard({ title, description }) {
         <img
           src="/assets/images/portfolio-image.png" // Ensure the image path is correct
           alt={title}
-          // className="h-32 w-32"
           onError={(e) => {
             e.target.src = "https://via.placeholder.com/150"; // Placeholder if the image fails to load
           }}
         />
       </div>
-    </div>
+    </motion.div>
   );
 }

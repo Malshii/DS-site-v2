@@ -2,14 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion"; // Importing framer-motion
+import Link from "next/link"; // Importing Next.js Link
+import Image from "next/image";
 
 const services = [
-  "Digital Ideas",
-  "SEO Marketing",
-  "Creative Designs",
-  "Brand Development",
-  "Content Strategy",
-]; // Add the services you provide
+  "Website Development",
+  "Google Ads",
+  "SEO / Copywriting",
+  "NFC Cards",
+];
 
 const Banner = () => {
   const [currentService, setCurrentService] = useState(0);
@@ -26,13 +27,15 @@ const Banner = () => {
   return (
     <section
       id="top"
-      className="relative bg-white pt-5 flex items-center overflow-hidden"
+      className="relative bg-white pt-10 flex items-center overflow-hidden"
     >
       {/* SVG Wave as background */}
-      <img
-        src="/assets/svg/wave.svg" // Update this path to where you've saved the SVG
+      <Image
+        src="/assets/svg/wave.svg" // Ensure the path is correct
         alt="Wave Background"
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        layout="fill" // This makes the image fill its container
+        objectFit="cover" // Mimics the behavior of object-cover in CSS
+        className="absolute inset-0 w-full h-full z-0" // Retain your Tailwind CSS classes
       />
 
       {/* Main content */}
@@ -69,12 +72,12 @@ const Banner = () => {
             >
               Analyze Your Site
             </button>
-            <button
+            <Link
+              href="/schedule-consultation"
               className="px-6 py-3 border-2 border-customGray text-customGray font-semibold hover:bg-customLightGray hover:text-white transition-colors rounded-full"
-              onClick={() => console.log("Schedule a Consultation clicked")}
             >
               Schedule a Consultation
-            </button>
+            </Link>
           </div>
         </motion.div>
 
@@ -85,9 +88,11 @@ const Banner = () => {
           animate={{ x: 0, opacity: 1 }} // End position
           transition={{ duration: 0.8, delay: 0.4 }} // Animation duration and delay
         >
-          <img
+          <Image
             src="/assets/images/banner-right-image.png"
             alt="team meeting"
+            width={800} // Replace with the actual width of your image
+            height={600} // Replace with the actual height of your image
             className="max-w-lg"
           />
         </motion.div>

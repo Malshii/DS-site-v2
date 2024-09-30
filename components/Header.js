@@ -11,6 +11,7 @@ import {
   CodeBracketIcon,
 } from "@heroicons/react/24/solid"; // Importing Heroicons
 import { motion } from "framer-motion"; // Importing framer-motion
+import Image from "next/image";
 
 const Header = () => {
   // State to handle dropdown visibility
@@ -36,10 +37,13 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center py-2 px-20">
         {/* Logo Section */}
         <Link href="/" className="flex items-center">
-          <img
+          <Image
             src="/assets/images/Digital Solution.png" // Replace with the actual path to your logo image
             alt="GDC Digital Solutions Logo"
-            className="h-20 w-auto" // Adjust the height and width as needed
+            width={500} // Set a default width, as Next.js requires it (you can adjust as needed)
+            height={500} // Set a default height (you can adjust as needed)
+            className="h-20 w-auto" // Keep your original Tailwind CSS classes
+            priority // Optional: If this image is important for loading, you can add priority
           />
         </Link>
 
@@ -61,10 +65,10 @@ const Header = () => {
             {isServicesOpen && (
               <div
                 className="absolute left-1/2 transform -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg p-6 flex space-x-6 z-50"
-                style={{ minWidth: "800px" }} // Adjust the width to make it appear centered and spacious
+                style={{ minWidth: "800px" }}
               >
                 <Link
-                  href="#development"
+                  href="/services/development"
                   className="flex flex-col items-center text-center text-gray-700 hover:text-customYellow group"
                 >
                   <CodeBracketIcon className="w-12 h-12 mb-2 text-customYellow group-hover:scale-110 transition-transform duration-300" />
@@ -73,8 +77,9 @@ const Header = () => {
                     Build professional and engaging websites.
                   </span>
                 </Link>
+
                 <Link
-                  href="#google-ads"
+                  href="/services/google-ads"
                   className="flex flex-col items-center text-center text-gray-700 hover:text-customYellow group"
                 >
                   <CurrencyDollarIcon className="w-12 h-12 mb-2 text-customYellow group-hover:scale-110 transition-transform duration-300" />
@@ -83,8 +88,9 @@ const Header = () => {
                     Optimize your ads to reach the right audience.
                   </span>
                 </Link>
+
                 <Link
-                  href="#seo"
+                  href="/services/seo"
                   className="flex flex-col items-center text-center text-gray-700 hover:text-customYellow group"
                 >
                   <ChartBarIcon className="w-12 h-12 mb-2 text-customYellow group-hover:scale-110 transition-transform duration-300" />
@@ -93,8 +99,9 @@ const Header = () => {
                     Enhance your content for better search rankings.
                   </span>
                 </Link>
+
                 <Link
-                  href="#strategy"
+                  href="/services/nfc-cards"
                   className="flex flex-col items-center text-center text-gray-700 hover:text-customYellow group"
                 >
                   <LightBulbIcon className="w-12 h-12 mb-2 text-customYellow group-hover:scale-110 transition-transform duration-300" />
@@ -127,22 +134,16 @@ const Header = () => {
             {isAboutOpen && (
               <div className="absolute left-0 mt-2 w-40 bg-white border border-gray-200 rounded shadow-lg">
                 <Link
-                  href="#about-us"
+                  href="/about"
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-customYellow"
                 >
                   About Us
                 </Link>
                 <Link
-                  href="#vacancies"
+                  href="#careers"
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-customYellow"
                 >
-                  Vacancies
-                </Link>
-                <Link
-                  href="#internships"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-customYellow"
-                >
-                  Internships
+                  Careers
                 </Link>
               </div>
             )}

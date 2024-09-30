@@ -1,5 +1,6 @@
 // components/Footer.js
 import { PaperAirplaneIcon } from "@heroicons/react/24/solid"; // Import the Heroicons
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -7,12 +8,16 @@ export default function Footer() {
       <div className="container mx-auto px-20 grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10 py-10">
         {/* Company Info Section */}
         <div className="flex flex-col items-start">
-          <img
-            src="/assets/images/Digital Solution.png"
+          <Image
+            src="/assets/images/Digital Solution.png" // Path to your image file
             alt="GDC DS Logo"
+            width={160} // Corresponds to `w-40` (40 * 4 = 160px)
+            height={160} // Next.js Image component requires width and height, but it can be controlled through CSS as well
             className="w-40 mb-4"
           />
-          <p className="text-gray-600">info@company.com</p>
+          <a href="mailto:hamilton@gdcgroup.co.nz" className="text-gray-600">
+            hamilton@gdcgroup.co.nz
+          </a>
           <div className="flex space-x-4 mt-4">
             {/* Social Media Icons */}
             <a href="#" className="text-blue-500">
