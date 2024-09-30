@@ -26,22 +26,13 @@ const Banner = () => {
   return (
     <section
       id="top"
-      className="relative bg-white py-10 flex items-center overflow-hidden"
+      className="relative bg-white pt-5 flex items-center overflow-hidden"
     >
-      {/* Left gradient image */}
+      {/* SVG Wave as background */}
       <img
-        src="/assets/images/1.png" // Replace with your actual left gradient path
-        alt="Left Gradient"
-        className="absolute left-0 top-0 h-full object-cover z-0"
-        // style={{ width: "300px" }} // Adjust width as needed
-      />
-
-      {/* Right gradient image */}
-      <img
-        src="/assets/images/2.png" // Replace with your actual right gradient path
-        alt="Right Gradient"
-        className="absolute right-0 top-0 h-full object-cover z-0"
-        // style={{ width: "300px" }} // Adjust width as needed
+        src="/assets/svg/wave.svg" // Update this path to where you've saved the SVG
+        alt="Wave Background"
+        className="absolute inset-0 w-full h-full object-cover z-0"
       />
 
       {/* Main content */}
