@@ -107,12 +107,12 @@ const Header = () => {
             )}
           </div>
 
-          <Link href="#portfolio" className="hover:text-customYellow">
+          {/* <Link href="#portfolio" className="hover:text-customYellow">
             Portfolio
           </Link>
           <Link href="#blog" className="hover:text-customYellow">
             Blog
-          </Link>
+          </Link> */}
 
           {/* About Us Dropdown */}
           <div
