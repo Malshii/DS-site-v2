@@ -5,19 +5,15 @@ import { useInView } from "react-intersection-observer"; // Importing useInView 
 export default function TestimonialSection() {
   const services = [
     {
-      title: "SEO Analysis",
       description: "Lorem ipsum dolor sit ameti ctetur aoi adipiscing eto.",
     },
     {
-      title: "Website Reporting",
       description: "Lorem ipsum dolor sit ameti ctetur aoi adipiscing eto.",
     },
     {
-      title: "Performance Tests",
       description: "Lorem ipsum dolor sit ameti ctetur aoi adipiscing eto.",
     },
     {
-      title: "Data Analysis",
       description: "Lorem ipsum dolor sit ameti ctetur aoi adipiscing eto.",
     },
   ];
@@ -68,7 +64,6 @@ export default function TestimonialSection() {
           {services.map((service, index) => (
             <ServiceCard
               key={index}
-              title={service.title}
               description={service.description}
               variants={cardVariants} // Pass the animation variants
             />
