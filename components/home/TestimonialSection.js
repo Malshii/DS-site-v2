@@ -94,13 +94,13 @@ function ServiceCard({ title, description, variants }) {
         className="absolute inset-0 flex justify-center items-center bg-white transition-transform 
         duration-500 ease-in-out transform group-hover:-translate-y-full"
       >
-        <img
+        {/* <img
           src="/assets/images/portfolio-image.png" // Ensure the image path is correct
           alt={title}
           onError={(e) => {
             e.target.src = "https://via.placeholder.com/150"; // Placeholder if the image fails to load
           }}
-        />
+        /> */}
       </div>
     </motion.div>
   );
