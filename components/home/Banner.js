@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion"; // Importing framer-motion
-import Link from "next/link"; // Importing Next.js Link
 import Image from "next/image";
+import Link from "next/link";
 
 const services = [
   "Website Development",
@@ -15,11 +15,10 @@ const services = [
 const Banner = () => {
   const [currentService, setCurrentService] = useState(0);
 
-  // Function to handle vertical text swap effect
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentService((prev) => (prev + 1) % services.length);
-    }, 3000); // Change word every 3 seconds
+    }, 3000); // Change service every 3 seconds
 
     return () => clearInterval(interval);
   }, []);
@@ -27,15 +26,15 @@ const Banner = () => {
   return (
     <section
       id="top"
-      className="relative bg-white pt-10 flex items-center overflow-hidden"
+      className="relative pt-32" // Ensure the banner starts below the header
     >
       {/* SVG Wave as background */}
       <Image
-        src="/assets/svg/wave.svg" // Ensure the path is correct
+        src="/assets/svg/wave.svg"
         alt="Wave Background"
-        layout="fill" // This makes the image fill its container
-        objectFit="cover" // Mimics the behavior of object-cover in CSS
-        className="absolute inset-0 w-full h-full z-0" // Retain your Tailwind CSS classes
+        layout="fill"
+        objectFit="cover"
+        className="absolute inset-0 w-full h-full z-0"
       />
 
       {/* Main content */}
@@ -43,14 +42,14 @@ const Banner = () => {
         {/* Left content motion */}
         <motion.div
           className="lg:w-1/2"
-          initial={{ x: -100, opacity: 0 }} // Start position
-          animate={{ x: 0, opacity: 1 }} // End position
-          transition={{ duration: 0.8, delay: 0 }} // Animation duration and no delay
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
         >
-          <h6 className="text-customGray font-semibold uppercase mb-2">
+          <h5 className="text-lg md:text-xl text-customGray font-semibold uppercase mb-2">
             Welcome to GDC Digital Solutions
-          </h6>
-          <h2 className="text-4xl md:text-5xl font-bold leading-tight text-gray-800">
+          </h5>
+          <h2 className="text-5xl md:text-6xl font-bold leading-tight text-gray-800">
             We Make{" "}
             <motion.span
               key={currentService}
@@ -61,7 +60,7 @@ const Banner = () => {
               className="text-customYellow inline-block"
             >
               {services[currentService]}
-            </motion.span>{" "}
+            </motion.span>
           </h2>
 
           {/* Button Section */}
@@ -84,15 +83,15 @@ const Banner = () => {
         {/* Right image motion */}
         <motion.div
           className="lg:w-1/2 mt-8 lg:mt-0 flex justify-center"
-          initial={{ x: 100, opacity: 0 }} // Start position
-          animate={{ x: 0, opacity: 1 }} // End position
-          transition={{ duration: 0.8, delay: 0.4 }} // Animation duration and delay
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
         >
           <Image
             src="/assets/images/banner-right-image.png"
             alt="team meeting"
-            width={800} // Replace with the actual width of your image
-            height={600} // Replace with the actual height of your image
+            width={800}
+            height={600}
             className="max-w-lg"
           />
         </motion.div>
