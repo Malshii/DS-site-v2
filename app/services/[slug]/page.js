@@ -43,7 +43,7 @@ export default function ServicePage({ params }) {
 
   return (
     <>
-      <section className="relative flex flex-col md:flex-row items-center justify-between px-20 py-6 bg-white">
+      <section className="relative pt-32 flex flex-col md:flex-row items-center justify-between px-20 py-6 bg-white">
         {/* Left Side - Text Content with taller height */}
         <div className="bg-customYellow text-white px-20 rounded-tr-xl rounded-bl-xl relative z-10 min-h-[400px] flex items-center">
           <div className="text-center">
