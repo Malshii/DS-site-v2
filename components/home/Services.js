@@ -47,16 +47,16 @@ const Services = () => {
     <section
       id="about"
       ref={ref} // Attach the ref to the section
-      className="about-us section py-40 bg-cover bg-no-repeat bg-center"
+      className="about-us section py-20 sm:py-40 bg-cover bg-no-repeat bg-center"
       style={{
         backgroundImage: "url('/assets/images/bg.png')", // Update the path to your background image
       }}
     >
-      <div className="container mx-auto px-6 lg:px-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-20">
         <div className="flex flex-col lg:flex-row items-center">
           {/* Left Image Section */}
           <motion.div
-            className="lg:w-1/3 w-full mb-8 lg:mb-0"
+            className="lg:w-1/3 w-full mb-8 lg:mb-0 flex justify-center lg:justify-start"
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }} // Animate only if in view
             transition={{ duration: 1, delay: 0.2 }}
@@ -66,19 +66,19 @@ const Services = () => {
               alt="Person Graphic"
               width={500} // Set a reasonable width (or match the original image dimensions)
               height={500} // Set a reasonable height (or match the original image dimensions)
-              className="rounded-lg" // Keep your existing styling
+              className="rounded-lg w-full sm:w-3/4 lg:w-full" // Responsive width
             />
           </motion.div>
 
           {/* Services Section */}
           <div className="lg:w-2/3 w-full">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {services.map((service, index) => {
                 const IconComponent = service.icon;
                 return (
                   <motion.div
                     key={service.id}
-                    className="flex items-center p-4"
+                    className="flex items-center p-4 rounded-lg"
                     initial={{ opacity: 0, y: 20 }}
                     animate={
                       inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
@@ -92,7 +92,9 @@ const Services = () => {
                       <h4 className="font-bold text-lg text-white">
                         {service.title}
                       </h4>
-                      <p className="text-white">{service.description}</p>
+                      <p className="text-white text-sm sm:text-base">
+                        {service.description}
+                      </p>
                     </div>
                   </motion.div>
                 );
