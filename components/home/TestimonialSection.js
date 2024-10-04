@@ -45,7 +45,8 @@ export default function TestimonialSection() {
   };
 
   return (
-    <section className="py-10 bg-white" ref={ref}> {/* Attach ref here */}
+    <section className="py-10 bg-white" ref={ref}>
+      {/* Attach ref here */}
       <div className="container mx-auto px-4 text-center">
         <motion.h1
           className="text-5xl font-semibold mb-8"
@@ -100,6 +101,7 @@ function ServiceCard({ title, description, variants }) {
           alt={title}
           width={140} // Set width for the image
           height={140} // Set height for the image
+          quality={100} // Increase the image quality (100 means no compression)
           className="object-contain w-full h-auto" // Make the image responsive with object-contain
         />
       </div>

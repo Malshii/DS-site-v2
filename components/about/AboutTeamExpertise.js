@@ -95,7 +95,7 @@ export default function AboutTeamExpertise({ isDropdownOpen }) {
           >
             <Image
               src="/assets/images/about-us.gif" // Ensure the path is correct
-              alt="World Map"
+              alt="About Us"
               width={900} // Adjust size as needed
               height={900}
               className="rounded-lg" // Set z-index to 50 for top-most layer

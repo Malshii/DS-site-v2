@@ -47,7 +47,7 @@ const Services = () => {
     <section
       id="about"
       ref={ref} // Attach the ref to the section
-      className="about-us section py-20 sm:py-40 bg-cover bg-no-repeat bg-center"
+      className="about-us section py-10 sm:py-20 lg:py-40 bg-cover bg-no-repeat bg-center"
       style={{
         backgroundImage: "url('/assets/images/bg.png')", // Update the path to your background image
       }}
@@ -64,21 +64,21 @@ const Services = () => {
             <Image
               src="/assets/images/8.png" // Update the path to your actual image
               alt="Person Graphic"
-              width={800} // Increase the width for larger display
-              height={800} // Increase the height for larger display
-              className="rounded-lg w-full sm:w-4/5 lg:w-3/4" // Update responsive width classes for larger scaling
+              width={600} // Adjust the width for responsiveness
+              height={600} // Adjust the height for responsiveness
+              className="rounded-lg w-full sm:w-4/5 lg:w-3/4" // Update responsive width classes for scaling
             />
           </motion.div>
 
           {/* Services Section */}
-          <div className="lg:w-2/3 w-full">
+          <div className="lg:w-1/2 w-full">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {services.map((service, index) => {
                 const IconComponent = service.icon;
                 return (
                   <motion.div
                     key={service.id}
-                    className="flex items-center p-4 rounded-lg"
+                    className="flex items-center p-4 bg-white bg-opacity-10 rounded-lg shadow-md"
                     initial={{ opacity: 0, y: 20 }}
                     animate={
                       inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
