@@ -1,8 +1,7 @@
 "use client";
 
-import { usePathname } from "next/navigation"; // Import usePathname
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import {
   ChevronDownIcon,
@@ -10,17 +9,21 @@ import {
   ChartBarIcon,
   LightBulbIcon,
   CodeBracketIcon,
+  Bars3Icon,
+  XMarkIcon,
+  MinusIcon,
+  PlusIcon,
 } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { Button } from "./ui/button";
 
-const Header = () => {
+const Header = ({ setIsDropdownOpen }) => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [currentService, setCurrentService] = useState(0);
-
-  // Use usePathname to get the current path
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // For mobile menu toggle
+  const [activeDropdown, setActiveDropdown] = useState(""); // Track mobile dropdown state
   const pathname = usePathname();
 
   const services = [
@@ -30,54 +33,45 @@ const Header = () => {
     "NFC Cards",
   ];
 
-  // Handle dropdown open and close for Services
-  const handleServicesMouseEnter = () => {
-    setIsServicesOpen(true);
-    setIsAboutOpen(false); // Ensure "About Us" dropdown is closed
-  };
-
-  const handleServicesMouseLeave = () => {
-    setIsServicesOpen(false);
-  };
-
-  // Handle dropdown open and close for About Us
-  const handleAboutMouseEnter = () => {
-    setIsAboutOpen(true);
-    setIsServicesOpen(false); // Ensure "Services" dropdown is closed
-  };
-
-  const handleAboutMouseLeave = () => {
-    setIsAboutOpen(false);
-  };
-
-  // Handle scroll to toggle background on header
+  // Scroll behavior to change header background
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  // Handle rotating services text
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentService((prev) => (prev + 1) % services.length);
-    }, 3000);
+  // Toggle the mobile menu
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-    return () => clearInterval(interval);
-  }, []);
+  // Toggle mobile dropdown
+  const handleMobileDropdownToggle = (dropdown) => {
+    setActiveDropdown(activeDropdown === dropdown ? "" : dropdown);
+  };
+
+  // Desktop dropdown handlers for Services and About Us
+  const handleServicesMouseEnter = () => {
+    setIsServicesOpen(true);
+    setIsDropdownOpen(true);
+  };
+  const handleServicesMouseLeave = () => {
+    setIsServicesOpen(false);
+    setIsDropdownOpen(false);
+  };
+  const handleAboutMouseEnter = () => {
+    setIsAboutOpen(true);
+    setIsDropdownOpen(true);
+  };
+  const handleAboutMouseLeave = () => {
+    setIsAboutOpen(false);
+    setIsDropdownOpen(false);
+  };
 
   return (
     <>
-      {/* Header Section */}
       <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -86,30 +80,33 @@ const Header = () => {
           isScrolled ? "bg-white shadow-md" : "bg-transparent"
         }`}
       >
-        <div className="container mx-auto flex justify-between items-center py-4 px-20">
+        <div className="container mx-auto flex justify-between items-center py-4 px-6 lg:px-20">
           {/* Logo Section */}
           <Link href="/" className="flex items-center">
             <Image
               src={
                 pathname === "/"
-                  ? "/assets/images/Digital Solution.png" // Default logo for homepage
+                  ? "/assets/images/Digital Solution.png"
                   : isScrolled
-                  ? "/assets/images/Digital Solution.png" // Same logo on scroll
-                  : "/assets/images/Digital Solution Logo.png" // New logo for other pages before scroll
+                  ? "/assets/images/Digital Solution.png"
+                  : "/assets/images/Digital Solution Logo.png"
               }
               alt="GDC Digital Solutions Logo"
-              width={500}
-              height={500}
-              className="h-20 w-auto"
+              width={200}
+              height={50}
+              className="h-auto w-auto"
               priority
             />
           </Link>
 
-          <nav className="flex space-x-10 relative">
+          {/* Desktop Nav */}
+          <nav className="hidden lg:flex space-x-10">
             <Link
               href="/"
               className={`${
-                pathname === "/" || isScrolled ? "text-customGray" : "text-white"
+                pathname === "/" || isScrolled
+                  ? "text-customGray"
+                  : "text-white"
               } ${
                 isScrolled ? "hover:text-customYellow" : "hover:text-white"
               } text-xl font-bold`}
@@ -125,10 +122,16 @@ const Header = () => {
             >
               <button
                 className={`flex items-center ${
-                  pathname === "/" || isScrolled ? "text-customGray" : "text-white"
+                  pathname === "/" || isScrolled
+                    ? "text-customGray"
+                    : "text-white"
                 } ${
-                  isScrolled ? "hover:text-customYellow" : "hover:text-white"
-                } text-xl font-bold focus:outline-none`}
+                  isScrolled
+                    ? "hover:text-customYellow"
+                    : pathname === "/"
+                    ? "hover:text-white"
+                    : "hover:text-customYellow"
+                } text-xl font-bold`}
               >
                 Services
                 <ChevronDownIcon className="w-4 h-4 ml-1 transition-transform duration-300" />
@@ -140,85 +143,99 @@ const Header = () => {
                   } rounded-xl shadow-xl p-6 flex space-x-6 z-50`}
                   style={{ minWidth: "800px", zIndex: 50 }}
                 >
+                  {/* Add Services Dropdown items */}
                   <Link
                     href="/services/development"
                     className={`flex flex-col items-center text-center ${
-                      pathname === "/" || isScrolled
-                        ? "text-gray-700"
-                        : "text-white"
-                    } hover:text-customYellow group`}
+                      pathname === "/" && !isScrolled
+                        ? "text-customGray hover:text-white"
+                        : isScrolled
+                        ? "text-gray-700 hover:text-customYellow"
+                        : "text-white hover:text-customYellow"
+                    } group`}
                   >
                     <CodeBracketIcon className="w-12 h-12 mb-2 group-hover:scale-110 transition-transform duration-300" />
                     <span className="font-semibold">Website Development</span>
                     <span
                       className={`text-sm ${
-                        pathname === "/" || isScrolled
+                        pathname === "/" && !isScrolled
+                          ? "text-customGray"
+                          : isScrolled
                           ? "text-gray-500"
                           : "text-white"
-                      } group-hover:text-gray-700`}
+                      } group-hover:text-customYellow`}
                     >
                       Build professional and engaging websites.
                     </span>
                   </Link>
-
                   <Link
                     href="/services/google-ads"
                     className={`flex flex-col items-center text-center ${
-                      pathname === "/" || isScrolled
-                        ? "text-gray-700"
-                        : "text-white"
-                    } hover:text-customYellow group`}
+                      pathname === "/" && !isScrolled
+                        ? "text-customGray hover:text-white"
+                        : isScrolled
+                        ? "text-gray-700 hover:text-customYellow"
+                        : "text-white hover:text-customYellow"
+                    } group`}
                   >
                     <CurrencyDollarIcon className="w-12 h-12 mb-2 group-hover:scale-110 transition-transform duration-300" />
                     <span className="font-semibold">Google Ads</span>
                     <span
                       className={`text-sm ${
-                        pathname === "/" || isScrolled
-                          ? "text-gray-500"
-                          : "text-white"
-                      } group-hover:text-gray-700`}
+                        pathname === "/" && !isScrolled
+                          ? "text-customGray"
+                          : isScrolled
+                          ? "text-gray-500 hover:text-customYellow"
+                          : "text-white hover:text-customYellow"
+                      } group-hover:text-customYellow`}
                     >
                       Optimize your ads to reach the right audience.
                     </span>
                   </Link>
-
                   <Link
                     href="/services/seo"
                     className={`flex flex-col items-center text-center ${
-                      pathname === "/" || isScrolled
-                        ? "text-gray-700"
-                        : "text-white"
-                    } hover:text-customYellow group`}
+                      pathname === "/" && !isScrolled
+                        ? "text-customGray hover:text-white"
+                        : isScrolled
+                        ? "text-gray-700 hover:text-customYellow"
+                        : "text-white hover:text-customYellow"
+                    } group`}
                   >
                     <ChartBarIcon className="w-12 h-12 mb-2 group-hover:scale-110 transition-transform duration-300" />
                     <span className="font-semibold">SEO / Copywriting</span>
                     <span
                       className={`text-sm ${
-                        pathname === "/" || isScrolled
+                        pathname === "/" && !isScrolled
+                          ? "text-customGray"
+                          : isScrolled
                           ? "text-gray-500"
                           : "text-white"
-                      } group-hover:text-gray-700`}
+                      } group-hover:text-customYellow`}
                     >
                       Enhance your content for better search rankings.
                     </span>
                   </Link>
-
                   <Link
                     href="/services/nfc-cards"
                     className={`flex flex-col items-center text-center ${
-                      pathname === "/" || isScrolled
-                        ? "text-gray-700"
-                        : "text-white"
-                    } hover:text-customYellow group`}
+                      pathname === "/" && !isScrolled
+                        ? "text-customGray hover:text-white"
+                        : isScrolled
+                        ? "text-gray-700 hover:text-customYellow"
+                        : "text-white hover:text-customYellow"
+                    } group`}
                   >
-                    <LightBulbIcon className="w-12 h-12 mb-2 group-hover:scale-110 transition-transform duration-300" />
+                    <CodeBracketIcon className="w-12 h-12 mb-2 group-hover:scale-110 transition-transform duration-300" />
                     <span className="font-semibold">NFC Cards</span>
                     <span
                       className={`text-sm ${
-                        pathname === "/" || isScrolled
+                        pathname === "/" && !isScrolled
+                          ? "text-customGray"
+                          : isScrolled
                           ? "text-gray-500"
                           : "text-white"
-                      } group-hover:text-gray-700`}
+                      } group-hover:text-customYellow`}
                     >
                       Innovate with contactless technology.
                     </span>
@@ -235,10 +252,16 @@ const Header = () => {
             >
               <button
                 className={`flex items-center ${
-                  pathname === "/" || isScrolled ? "text-customGray" : "text-white"
+                  pathname === "/" || isScrolled
+                    ? "text-customGray"
+                    : "text-white"
                 } ${
-                  isScrolled ? "hover:text-customYellow" : "hover:text-white"
-                } text-xl font-bold focus:outline-none`}
+                  isScrolled
+                    ? "hover:text-customYellow"
+                    : pathname === "/"
+                    ? "hover:text-white"
+                    : "hover:text-customYellow"
+                } text-xl font-bold`}
               >
                 About Us
                 <ChevronDownIcon className="w-4 h-4 ml-1 transition-transform duration-300" />
@@ -252,20 +275,28 @@ const Header = () => {
                   <Link
                     href="/about"
                     className={`block px-4 py-2 ${
-                      pathname === "/" || isScrolled
-                        ? "text-gray-700"
-                        : "text-white"
-                    } hover:text-customYellow`}
+                      pathname === "/"
+                        ? isScrolled
+                          ? "text-customGray hover:text-customYellow"
+                          : "text-customGray hover:text-white"
+                        : isScrolled
+                        ? "text-gray-700 hover:text-customYellow"
+                        : "text-white hover:text-customYellow"
+                    }`}
                   >
                     About Us
                   </Link>
                   <Link
-                    href="#careers"
+                    href="/careers"
                     className={`block px-4 py-2 ${
-                      pathname === "/" || isScrolled
-                        ? "text-gray-700"
-                        : "text-white"
-                    } hover:text-customYellow`}
+                      pathname === "/"
+                        ? isScrolled
+                          ? "text-customGray hover:text-customYellow"
+                          : "text-customGray hover:text-white"
+                        : isScrolled
+                        ? "text-gray-700 hover:text-customYellow"
+                        : "text-white hover:text-customYellow"
+                    }`}
                   >
                     Careers
                   </Link>
@@ -273,107 +304,149 @@ const Header = () => {
               )}
             </div>
 
+            {/* Contact Button */}
             <Button
               className={`border-2 ${
                 pathname === "/" || isScrolled
                   ? "border-customGray"
                   : "border-white"
               } bg-transparent ${
-                pathname === "/" || isScrolled ? "text-customGray" : "text-white"
+                pathname === "/" || isScrolled
+                  ? "text-customGray"
+                  : "text-white"
               } ${
                 isScrolled
                   ? "hover:text-customYellow hover:border-customYellow"
                   : "hover:text-white hover:border-white"
               } px-6 py-2 rounded-full text-xl font-bold transition-colors duration-300`}
-              style={{ backgroundColor: "transparent" }} // Explicitly set background to transparent
             >
               Contact Now
             </Button>
           </nav>
-        </div>
-      </motion.header>
 
-
-      {/* Conditionally render the banner section only on the homepage */}
-      {pathname === "/" && (
-        <section
-          id="top"
-          className="relative pt-32 transition-all duration-300"
-        >
-          <div
-            className={`absolute inset-0 w-full h-full z-0`}
-            style={{
-              backgroundImage: "url('/assets/svg/wave.svg')",
-              backgroundSize: "cover",
-              backgroundPosition: "bottom",
-              backgroundRepeat: "no-repeat",
-            }}
-          ></div>
-          <div
-            className={`relative z-10 ${
-              isServicesOpen || isAboutOpen ? "mt-28" : "" // Add margin-top when any dropdown is open
-            }`}
-          >
-            <div className="container relative z-10 mx-auto flex flex-col lg:flex-row items-center justify-between px-20">
-              <motion.div
-                className="lg:w-1/2 w-full text-center lg:text-left"
-                initial={{ x: -100, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.8 }}
-              >
-                <h5 className="text-md sm:text-lg md:text-xl text-customGray font-semibold uppercase mb-2">
-                  Welcome to GDC Digital Solutions
-                </h5>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-800">
-                  We Make{" "}
-                  <motion.span
-                    key={currentService}
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -20, opacity: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="text-customYellow inline-block"
-                  >
-                    {services[currentService]}
-                  </motion.span>
-                </h2>
-
-                {/* Buttons Section */}
-                <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <button
-                    className="px-6 py-3 bg-customYellow text-white font-semibold hover:bg-customLightGray transition-colors rounded-full"
-                    onClick={() => console.log("Analyze Your Site clicked")}
-                  >
-                    Analyze Your Site
-                  </button>
-                  <Link
-                    href="/schedule-consultation"
-                    className="px-6 py-3 border-2 border-customGray text-customGray font-semibold hover:bg-customLightGray hover:text-white transition-colors rounded-full"
-                  >
-                    Schedule a Consultation
-                  </Link>
-                </div>
-              </motion.div>
-
-              {/* Right Image Section */}
-              <motion.div
-                className="lg:w-1/2 w-full mt-8 lg:mt-0 flex justify-center"
-                initial={{ x: 100, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                <Image
-                  src="/assets/images/banner-right-image.png"
-                  alt="team meeting"
-                  width={800}
-                  height={600}
-                  className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full h-auto"
-                />
-              </motion.div>
-            </div>
+          {/* Mobile Menu Icon */}
+          <div className="flex lg:hidden ml-auto">
+            <button
+              onClick={toggleMenu}
+              aria-label="Toggle Menu"
+              className="transition-transform duration-300 transform hover:scale-110"
+            >
+              {isMenuOpen ? (
+                <XMarkIcon className="w-6 h-6 text-black transition-transform duration-300" />
+              ) : (
+                <Bars3Icon className="w-6 h-6 text-black transition-transform duration-300" />
+              )}
+            </button>
           </div>
-        </section>
-      )}
+        </div>
+
+        {/* Mobile Menu Items */}
+        <ul
+          className={`absolute top-full left-0 w-full bg-white shadow-md lg:hidden transition-all duration-300 ease-in-out ${
+            isMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+          } overflow-hidden`}
+        >
+          <li>
+            <Link
+              href="/"
+              className="block py-2 px-11 font-light text-gray-800"
+            >
+              Home
+            </Link>
+          </li>
+          <li className="relative">
+            <button
+              className="flex justify-between items-center w-full py-2 px-4 text-left font-light text-gray-800"
+              onClick={() => handleMobileDropdownToggle("services")}
+            >
+              <span className="flex items-center">
+                {activeDropdown === "services" ? (
+                  <MinusIcon className="w-5 h-5 mr-2" />
+                ) : (
+                  <PlusIcon className="w-5 h-5 mr-2" />
+                )}
+                Services
+              </span>
+            </button>
+            {activeDropdown === "services" && (
+              <ul className="pl-4 bg-gray-50 border-l border-gray-200">
+                {/* Map through services dropdown */}
+                <li>
+                  <Link
+                    href="/services/development"
+                    className="block py-2 px-11"
+                  >
+                    Website Development
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/services/google-ads"
+                    className="block py-2 px-11"
+                  >
+                    Google Ads
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/services/seo"
+                    className="block py-2 px-11"
+                  >
+                    SEO / Copywriting
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/services/nfc-cards"
+                    className="block py-2 px-11"
+                  >
+                    NFC Cards
+                  </Link>
+                </li>
+              </ul>
+            )}
+          </li>
+
+          <li className="relative">
+            <button
+              className="flex justify-between items-center w-full py-2 px-4 text-left font-light text-gray-800"
+              onClick={() => handleMobileDropdownToggle("about")}
+            >
+              <span className="flex items-center">
+                {activeDropdown === "about" ? (
+                  <MinusIcon className="w-5 h-5 mr-2" />
+                ) : (
+                  <PlusIcon className="w-5 h-5 mr-2" />
+                )}
+                About Us
+              </span>
+            </button>
+            {activeDropdown === "about" && (
+              <ul className="pl-4 bg-gray-50 border-l border-gray-200">
+                <li>
+                  <Link href="/about" className="block py-2 px-11">
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/careers" className="block py-2 px-11">
+                    Careers
+                  </Link>
+                </li>
+              </ul>
+            )}
+          </li>
+
+          <li>
+            <Link
+              href="/contact"
+              className="block py-2 px-11 font-light text-gray-800"
+            >
+              Contact Now
+            </Link>
+          </li>
+        </ul>
+      </motion.header>
     </>
   );
 };
