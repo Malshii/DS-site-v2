@@ -94,7 +94,7 @@ export default function AboutTeamExpertise({ isDropdownOpen }) {
             transition={{ duration: 1, delay: 0.6 }}
           >
             <Image
-              src="/assets/images/about-us.gif" // Ensure the path is correct
+              src="/assets/images/about-us-video.gif" // Ensure the path is correct
               alt="About Us"
               width={900} // Adjust size as needed
               height={900}
