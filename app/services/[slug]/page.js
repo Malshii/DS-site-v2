@@ -15,22 +15,22 @@ const serviceDetails = {
   development: {
     heading: "Website Development",
     description: "Build professional and engaging websites.",
-    image: "/assets/images/web-development.png", // Example image for the service
+    image: "/assets/images/services/6.png", // Example image for the service
   },
   "google-ads": {
     heading: "Google Ads",
     description: "Optimize your ads to reach the right audience.",
-    image: "/assets/images/google-ads.jpg", // Example image for the service
+    image: "/assets/images/services/7.png", // Example image for the service
   },
   seo: {
     heading: "SEO/ Copywriting",
     description: "Enhance your content for better search rankings.",
-    image: "/assets/images/seo.jpg", // Example image for the service
+    image: "/assets/images/services/8.png", // Example image for the service
   },
   "nfc-cards": {
     heading: "NFC Cards",
     description: "Innovate with contactless technology.",
-    image: "/assets/images/nfc-cards.jpg", // Example image for the service
+    image: "/assets/images/services/9.png", // Example image for the service
   },
 };
 
@@ -54,9 +54,9 @@ export default function ServicePage({ params }) {
 
   return (
     <>
-      <section className="relative flex items-center justify-start min-h-[650px] bg-gray-800 text-white px-20">
+      <section className="relative flex items-center justify-center min-h-[600px] bg-gray-800 text-white">
         {/* Gradient Overlay with Image */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-customYellow via-customLightYellow to-transparent"></div>
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-customLightGray via-black to-transparent"></div>
 
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
@@ -70,12 +70,48 @@ export default function ServicePage({ params }) {
           />
         </div>
 
-        {/* Left Side - Text Content */}
-        <div className="relative z-20 max-w-2xl">
+        {/* Centered Text Content */}
+        <div className="container relative z-10 mx-auto px-20 text-center">
+          {/* Animated Heading */}
           <h1 className="text-5xl font-bold mb-4 leading-tight">
-            {service.heading.split(" ")[0]}{" "}
-            <span className="block text-customGray">{service.heading.split(" ")[1]}</span>
+            {service.heading
+              .split(" ")[0]
+              .split("")
+              .map((letter, index) => (
+                <span
+                  key={index}
+                  className="inline-block"
+                  style={{
+                    animation: `fadeIn 0.05s ease forwards`,
+                    animationDelay: `${index * 0.1}s`,
+                    opacity: 0,
+                  }}
+                >
+                  {letter}
+                </span>
+              ))}{" "}
+            <span className="block text-customYellow">
+              {service.heading
+                .split(" ")[1]
+                .split("")
+                .map((letter, index) => (
+                  <span
+                    key={index}
+                    className="inline-block"
+                    style={{
+                      animation: `fadeIn 0.05s ease forwards`,
+                      animationDelay: `${
+                        (index + service.heading.split(" ")[0].length) * 0.1
+                      }s`,
+                      opacity: 0,
+                    }}
+                  >
+                    {letter}
+                  </span>
+                ))}
+            </span>
           </h1>
+
           <p className="text-lg text-white mb-6">{service.description}</p>
 
           {/* Call to Action Button */}
@@ -89,13 +125,27 @@ export default function ServicePage({ params }) {
 
         {/* Down Arrow Icon with Motion */}
         <motion.div
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 cursor-pointer"
+          className="absolute bottom-10 transform -translate-x-1/2 z-20 cursor-pointer"
           animate={{ y: [0, 10, 0] }} // Creates a bounce effect
           transition={{ repeat: Infinity, duration: 1.5 }}
           onClick={handleScrollDown}
         >
           <ChevronDoubleDownIcon className="h-20 w-20 text-white" />
         </motion.div>
+
+        {/* CSS Keyframes for fade-in effect */}
+        <style jsx>{`
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+        `}</style>
       </section>
 
       {/* Render Different Sections Based on Service Heading */}

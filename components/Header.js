@@ -155,7 +155,7 @@ const Header = () => {
                         pathname === "/" || isScrolled
                           ? "text-gray-500"
                           : "text-white"
-                      } group-hover:text-gray-700`}
+                      } group-hover:text-customYellow`}
                     >
                       Build professional and engaging websites.
                     </span>
@@ -176,7 +176,7 @@ const Header = () => {
                         pathname === "/" || isScrolled
                           ? "text-gray-500"
                           : "text-white"
-                      } group-hover:text-gray-700`}
+                      } group-hover:text-customYellow`}
                     >
                       Optimize your ads to reach the right audience.
                     </span>
@@ -197,7 +197,7 @@ const Header = () => {
                         pathname === "/" || isScrolled
                           ? "text-gray-500"
                           : "text-white"
-                      } group-hover:text-gray-700`}
+                      } group-hover:text-customYellow`}
                     >
                       Enhance your content for better search rankings.
                     </span>
@@ -218,7 +218,7 @@ const Header = () => {
                         pathname === "/" || isScrolled
                           ? "text-gray-500"
                           : "text-white"
-                      } group-hover:text-gray-700`}
+                      } group-hover:text-customYellow`}
                     >
                       Innovate with contactless technology.
                     </span>
