@@ -1,8 +1,7 @@
 "use client";
 
-import { usePathname } from "next/navigation"; // Import usePathname
+import { usePathname } from "next/navigation"; // To get current path
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {
   ChevronDownIcon,
@@ -10,45 +9,25 @@ import {
   ChartBarIcon,
   LightBulbIcon,
   CodeBracketIcon,
-} from "@heroicons/react/24/solid";
-import { motion } from "framer-motion";
-import Image from "next/image";
+} from "@heroicons/react/24/solid"; // For dropdown icons
+import { motion } from "framer-motion"; // For animations
+import Image from "next/image"; // For images
+import { Button } from "./ui/button";
 
-const Header = () => {
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [isAboutOpen, setIsAboutOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [currentService, setCurrentService] = useState(0);
+const Header = ({ setIsDropdownOpen }) => {
+  const [isServicesOpen, setIsServicesOpen] = useState(false); // Track Services dropdown state
+  const [isAboutOpen, setIsAboutOpen] = useState(false); // Track About Us dropdown state
+  const [isScrolled, setIsScrolled] = useState(false); // Track if page has been scrolled
+  const [currentService, setCurrentService] = useState(0); // Track current service being displayed in rotation
 
-  // Use usePathname to get the current path
-  const pathname = usePathname();
+  const pathname = usePathname(); // Get current path for conditional styling
 
   const services = [
     "Website Development",
     "Google Ads",
     "SEO / Copywriting",
     "NFC Cards",
-  ];
-
-  // Handle dropdown open and close for Services
-  const handleServicesMouseEnter = () => {
-    setIsServicesOpen(true);
-    setIsAboutOpen(false); // Ensure "About Us" dropdown is closed
-  };
-
-  const handleServicesMouseLeave = () => {
-    setIsServicesOpen(false);
-  };
-
-  // Handle dropdown open and close for About Us
-  const handleAboutMouseEnter = () => {
-    setIsAboutOpen(true);
-    setIsServicesOpen(false); // Ensure "Services" dropdown is closed
-  };
-
-  const handleAboutMouseLeave = () => {
-    setIsAboutOpen(false);
-  };
+  ]; // Services to rotate
 
   // Handle scroll to toggle background on header
   useEffect(() => {
@@ -74,6 +53,27 @@ const Header = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  // Functions to control dropdown state
+  const handleServicesMouseEnter = () => {
+    setIsServicesOpen(true); // Open the dropdown
+    setIsDropdownOpen(true); // Notify parent layout to adjust margin
+  };
+
+  const handleServicesMouseLeave = () => {
+    setIsServicesOpen(false); // Close the dropdown
+    setIsDropdownOpen(false); // Notify parent layout to reset margin
+  };
+
+  const handleAboutMouseEnter = () => {
+    setIsAboutOpen(true); // Open About Us dropdown
+    setIsDropdownOpen(true); // Notify parent layout to adjust margin
+  };
+
+  const handleAboutMouseLeave = () => {
+    setIsAboutOpen(false); // Close About Us dropdown
+    setIsDropdownOpen(false); // Notify parent layout to reset margin
+  };
 
   return (
     <>
@@ -109,7 +109,9 @@ const Header = () => {
             <Link
               href="/"
               className={`${
-                pathname === "/" || isScrolled ? "text-customGray" : "text-white"
+                pathname === "/" || isScrolled
+                  ? "text-customGray"
+                  : "text-white"
               } ${
                 isScrolled ? "hover:text-customYellow" : "hover:text-white"
               } text-xl font-bold`}
@@ -125,9 +127,15 @@ const Header = () => {
             >
               <button
                 className={`flex items-center ${
-                  pathname === "/" || isScrolled ? "text-customGray" : "text-white"
+                  pathname === "/" || isScrolled
+                    ? "text-customGray"
+                    : "text-white"
                 } ${
-                  isScrolled ? "hover:text-customYellow" : "hover:text-white"
+                  isScrolled
+                    ? "hover:text-customYellow"
+                    : pathname === "/"
+                    ? "hover:text-white"
+                    : "hover:text-customYellow"
                 } text-xl font-bold focus:outline-none`}
               >
                 Services
@@ -143,19 +151,23 @@ const Header = () => {
                   <Link
                     href="/services/development"
                     className={`flex flex-col items-center text-center ${
-                      pathname === "/" || isScrolled
-                        ? "text-gray-700"
-                        : "text-white"
-                    } hover:text-customYellow group`}
+                      pathname === "/" && !isScrolled
+                        ? "text-customGray hover:text-white" // On homepage and not scrolled: white hover
+                        : isScrolled
+                        ? "text-gray-700 hover:text-customYellow" // On homepage and scrolled: customYellow hover
+                        : "text-white hover:text-customYellow" // On other pages: customYellow hover
+                    } group`}
                   >
                     <CodeBracketIcon className="w-12 h-12 mb-2 group-hover:scale-110 transition-transform duration-300" />
                     <span className="font-semibold">Website Development</span>
                     <span
                       className={`text-sm ${
-                        pathname === "/" || isScrolled
-                          ? "text-gray-500"
-                          : "text-white"
-                      } group-hover:text-customYellow`}
+                        pathname === "/" && !isScrolled
+                          ? "text-customGray"
+                          : isScrolled
+                          ? "text-gray-500 hover:text-customYellow"
+                          : "text-white hover:text-customYellow"
+                      }`}
                     >
                       Build professional and engaging websites.
                     </span>
@@ -164,19 +176,23 @@ const Header = () => {
                   <Link
                     href="/services/google-ads"
                     className={`flex flex-col items-center text-center ${
-                      pathname === "/" || isScrolled
-                        ? "text-gray-700"
-                        : "text-white"
-                    } hover:text-customYellow group`}
+                      pathname === "/" && !isScrolled
+                        ? "text-customGray hover:text-white"
+                        : isScrolled
+                        ? "text-gray-700 hover:text-customYellow"
+                        : "text-white hover:text-customYellow"
+                    } group`}
                   >
                     <CurrencyDollarIcon className="w-12 h-12 mb-2 group-hover:scale-110 transition-transform duration-300" />
                     <span className="font-semibold">Google Ads</span>
                     <span
                       className={`text-sm ${
-                        pathname === "/" || isScrolled
-                          ? "text-gray-500"
-                          : "text-white"
-                      } group-hover:text-customYellow`}
+                        pathname === "/" && !isScrolled
+                          ? "text-customGray"
+                          : isScrolled
+                          ? "text-gray-500 hover:text-customYellow"
+                          : "text-white hover:text-customYellow"
+                      }`}
                     >
                       Optimize your ads to reach the right audience.
                     </span>
@@ -185,19 +201,23 @@ const Header = () => {
                   <Link
                     href="/services/seo"
                     className={`flex flex-col items-center text-center ${
-                      pathname === "/" || isScrolled
-                        ? "text-gray-700"
-                        : "text-white"
-                    } hover:text-customYellow group`}
+                      pathname === "/" && !isScrolled
+                        ? "text-customGray hover:text-white"
+                        : isScrolled
+                        ? "text-gray-700 hover:text-customYellow"
+                        : "text-white hover:text-customYellow"
+                    } group`}
                   >
                     <ChartBarIcon className="w-12 h-12 mb-2 group-hover:scale-110 transition-transform duration-300" />
                     <span className="font-semibold">SEO / Copywriting</span>
                     <span
                       className={`text-sm ${
-                        pathname === "/" || isScrolled
-                          ? "text-gray-500"
-                          : "text-white"
-                      } group-hover:text-customYellow`}
+                        pathname === "/" && !isScrolled
+                          ? "text-customGray"
+                          : isScrolled
+                          ? "text-gray-500 hover:text-customYellow"
+                          : "text-white hover:text-customYellow"
+                      }`}
                     >
                       Enhance your content for better search rankings.
                     </span>
@@ -206,19 +226,23 @@ const Header = () => {
                   <Link
                     href="/services/nfc-cards"
                     className={`flex flex-col items-center text-center ${
-                      pathname === "/" || isScrolled
-                        ? "text-gray-700"
-                        : "text-white"
-                    } hover:text-customYellow group`}
+                      pathname === "/" && !isScrolled
+                        ? "text-customGray hover:text-white"
+                        : isScrolled
+                        ? "text-gray-700 hover:text-customYellow"
+                        : "text-white hover:text-customYellow"
+                    } group`}
                   >
                     <LightBulbIcon className="w-12 h-12 mb-2 group-hover:scale-110 transition-transform duration-300" />
                     <span className="font-semibold">NFC Cards</span>
                     <span
                       className={`text-sm ${
-                        pathname === "/" || isScrolled
-                          ? "text-gray-500"
-                          : "text-white"
-                      } group-hover:text-customYellow`}
+                        pathname === "/" && !isScrolled
+                          ? "text-customGray"
+                          : isScrolled
+                          ? "text-gray-500 hover:text-customYellow"
+                          : "text-white hover:text-customYellow"
+                      }`}
                     >
                       Innovate with contactless technology.
                     </span>
@@ -235,9 +259,15 @@ const Header = () => {
             >
               <button
                 className={`flex items-center ${
-                  pathname === "/" || isScrolled ? "text-customGray" : "text-white"
+                  pathname === "/" || isScrolled
+                    ? "text-customGray"
+                    : "text-white"
                 } ${
-                  isScrolled ? "hover:text-customYellow" : "hover:text-white"
+                  isScrolled
+                    ? "hover:text-customYellow"
+                    : pathname === "/"
+                    ? "hover:text-white"
+                    : "hover:text-customYellow"
                 } text-xl font-bold focus:outline-none`}
               >
                 About Us
@@ -252,20 +282,28 @@ const Header = () => {
                   <Link
                     href="/about"
                     className={`block px-4 py-2 ${
-                      pathname === "/" || isScrolled
-                        ? "text-gray-700"
-                        : "text-white"
-                    } hover:text-customYellow`}
+                      pathname === "/"
+                        ? isScrolled
+                          ? "text-customGray hover:text-customYellow" // On homepage and scrolled: customYellow hover
+                          : "text-customGray hover:text-white" // On homepage and not scrolled: white hover
+                        : isScrolled
+                        ? "text-gray-700 hover:text-customYellow" // On other pages and scrolled: customYellow hover
+                        : "text-white hover:text-customYellow" // On other pages and not scrolled: customYellow hover
+                    }`}
                   >
                     About Us
                   </Link>
                   <Link
                     href="#careers"
                     className={`block px-4 py-2 ${
-                      pathname === "/" || isScrolled
-                        ? "text-gray-700"
-                        : "text-white"
-                    } hover:text-customYellow`}
+                      pathname === "/"
+                        ? isScrolled
+                          ? "text-customGray hover:text-customYellow" // On homepage and scrolled: customYellow hover
+                          : "text-customGray hover:text-white" // On homepage and not scrolled: white hover
+                        : isScrolled
+                        ? "text-gray-700 hover:text-customYellow" // On other pages and scrolled: customYellow hover
+                        : "text-white hover:text-customYellow" // On other pages and not scrolled: customYellow hover
+                    }`}
                   >
                     Careers
                   </Link>
@@ -273,13 +311,16 @@ const Header = () => {
               )}
             </div>
 
+            {/* Contact Button */}
             <Button
               className={`border-2 ${
                 pathname === "/" || isScrolled
                   ? "border-customGray"
                   : "border-white"
               } bg-transparent ${
-                pathname === "/" || isScrolled ? "text-customGray" : "text-white"
+                pathname === "/" || isScrolled
+                  ? "text-customGray"
+                  : "text-white"
               } ${
                 isScrolled
                   ? "hover:text-customYellow hover:border-customYellow"
@@ -292,88 +333,6 @@ const Header = () => {
           </nav>
         </div>
       </motion.header>
-
-
-      {/* Conditionally render the banner section only on the homepage */}
-      {pathname === "/" && (
-        <section
-          id="top"
-          className="relative pt-32 transition-all duration-300"
-        >
-          <div
-            className={`absolute inset-0 w-full h-full z-0`}
-            style={{
-              backgroundImage: "url('/assets/svg/wave.svg')",
-              backgroundSize: "cover",
-              backgroundPosition: "bottom",
-              backgroundRepeat: "no-repeat",
-            }}
-          ></div>
-          <div
-            className={`relative z-10 ${
-              isServicesOpen || isAboutOpen ? "mt-28" : "" // Add margin-top when any dropdown is open
-            }`}
-          >
-            <div className="container relative z-10 mx-auto flex flex-col lg:flex-row items-center justify-between px-20">
-              <motion.div
-                className="lg:w-1/2 w-full text-center lg:text-left"
-                initial={{ x: -100, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.8 }}
-              >
-                <h5 className="text-md sm:text-lg md:text-xl text-customGray font-semibold uppercase mb-2">
-                  Welcome to GDC Digital Solutions
-                </h5>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-800">
-                  We Make{" "}
-                  <motion.span
-                    key={currentService}
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -20, opacity: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="text-customYellow inline-block"
-                  >
-                    {services[currentService]}
-                  </motion.span>
-                </h2>
-
-                {/* Buttons Section */}
-                <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <button
-                    className="px-6 py-3 bg-customYellow text-white font-semibold hover:bg-customLightGray transition-colors rounded-full"
-                    onClick={() => console.log("Analyze Your Site clicked")}
-                  >
-                    Analyze Your Site
-                  </button>
-                  <Link
-                    href="/schedule-consultation"
-                    className="px-6 py-3 border-2 border-customGray text-customGray font-semibold hover:bg-customLightGray hover:text-white transition-colors rounded-full"
-                  >
-                    Schedule a Consultation
-                  </Link>
-                </div>
-              </motion.div>
-
-              {/* Right Image Section */}
-              <motion.div
-                className="lg:w-1/2 w-full mt-8 lg:mt-0 flex justify-center"
-                initial={{ x: 100, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                <Image
-                  src="/assets/images/banner-right-image.png"
-                  alt="team meeting"
-                  width={800}
-                  height={600}
-                  className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full h-auto"
-                />
-              </motion.div>
-            </div>
-          </div>
-        </section>
-      )}
     </>
   );
 };

@@ -9,6 +9,7 @@ import { ChevronDoubleDownIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 // Define the service details
 const serviceDetails = {
@@ -35,8 +36,9 @@ const serviceDetails = {
 };
 
 // Client-side component receiving the slug as `params`
-export default function ServicePage({ params }) {
+export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
   const { slug } = params; // Access the dynamic segment of the URL
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Dropdown state
 
   // Fetch the service details for the slug
   const service = serviceDetails[slug];
@@ -56,7 +58,7 @@ export default function ServicePage({ params }) {
     <>
       <section className="relative flex items-center justify-center min-h-[600px] bg-gray-800 text-white">
         {/* Gradient Overlay with Image */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-b from-customLightGray via-black to-transparent"></div>
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-customGray via-black to-transparent"></div>
 
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
@@ -70,8 +72,13 @@ export default function ServicePage({ params }) {
           />
         </div>
 
-        {/* Centered Text Content */}
-        <div className="container relative z-10 mx-auto px-20 text-center">
+        {/* Inner content div for margin control */}
+        <div
+          id="move-down"
+          className={`container relative z-10 mx-auto px-20 text-center transition-all duration-300 ${
+            isServicesOpen || isAboutOpen ? "mt-20" : ""
+          }`}
+        >
           {/* Animated Heading */}
           <h1 className="text-5xl font-bold mb-4 leading-tight">
             {service.heading

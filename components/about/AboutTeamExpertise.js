@@ -1,21 +1,20 @@
-// /components/about/AboutTeamExpertise.js
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { useRef, useEffect, useState } from "react";
+import { motion } from "framer-motion"; // Import framer motion for animations
 
-export default function AboutTeamExpertise() {
-  const sectionRef = useRef(null);
-  const [inView, setInView] = useState(false);
+export default function AboutTeamExpertise({ isDropdownOpen }) {
+  const [isInView, setIsInView] = useState(false); // Track if the section is in view
+  const sectionRef = useRef(null); // Reference to the section
 
-  // Custom intersection observer to trigger animation
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setInView(entry.isIntersecting);
+      (entries) => {
+        const entry = entries[0];
+        setIsInView(entry.isIntersecting); // Update state when section comes into view
       },
-      { threshold: 0.3 } // 30% visibility required to trigger
+      { threshold: 0.2 } // Trigger when 20% of the section is visible
     );
 
     if (sectionRef.current) {
@@ -29,32 +28,29 @@ export default function AboutTeamExpertise() {
     };
   }, []);
 
-  const textVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 },
-  };
-
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1 },
-  };
-
   return (
     <section
       ref={sectionRef}
-      className="relative py-10 px-20 text-white bg-black opacity-80"
+      className={`relative py-10 px-20 text-white bg-black opacity-80 transition-all duration-300 ${
+        isDropdownOpen ? "mt-16" : ""
+      }`}
     >
-      <div className="container mx-auto">
+      <div className="container mx-auto relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           {/* Left Column: Content Section */}
           <motion.div
             className="space-y-6"
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            variants={textVariants}
-            transition={{ duration: 1, delay: 0.2 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }} // Only animate when in view
+            transition={{ duration: 1 }}
           >
-            <div className="text-left">
+            {/* Heading Section */}
+            <motion.div
+              className="text-left"
+              initial={{ opacity: 0, y: 50 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            >
               <h2 className="text-3xl md:text-4xl font-bold text-customYellow">
                 We are the experts of Team Communication
               </h2>
@@ -64,10 +60,15 @@ export default function AboutTeamExpertise() {
                 they live in Bookmarksgrove right at the coast of the Semantics,
                 a large language ocean.
               </p>
-            </div>
+            </motion.div>
 
             {/* Stats Section */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center"
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ delay: 0.5, duration: 1 }}
+            >
               <div>
                 <h3 className="text-4xl font-bold text-customYellow">
                   8,560,342
@@ -79,28 +80,25 @@ export default function AboutTeamExpertise() {
                 <p className="mt-2">Services</p>
               </div>
               <div>
-                <h3 className="text-4xl font-bold text-customYellow">
-                  1,500+
-                </h3>
+                <h3 className="text-4xl font-bold text-customYellow">1,500+</h3>
                 <p className="mt-2">Integrated partners</p>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Right Column: Image Section */}
           <motion.div
-            className="flex justify-center"
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            variants={imageVariants}
-            transition={{ duration: 1, delay: 0.4 }}
+            className="flex justify-center relative z-50"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ duration: 1, delay: 0.6 }}
           >
             <Image
-              src="/assets/images/about-left-image.png" // Ensure the path is correct
+              src="/assets/images/about-us.gif" // Ensure the path is correct
               alt="World Map"
-              width={400} // You can adjust based on actual image size
-              height={400}
-              className="rounded-lg"
+              width={900} // Adjust size as needed
+              height={900}
+              className="rounded-lg" // Set z-index to 50 for top-most layer
             />
           </motion.div>
         </div>

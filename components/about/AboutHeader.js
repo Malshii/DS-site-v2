@@ -1,11 +1,9 @@
-// /components/about/AboutHeader.js
-
 "use client";
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-export default function AboutHeader({ isDropdownOpen }) {
+export default function AboutHeader({ isServicesOpen, isAboutOpen }) {
   const [scrollY, setScrollY] = useState(0);
 
   // Parallax effect on background when scrolling
@@ -20,14 +18,17 @@ export default function AboutHeader({ isDropdownOpen }) {
 
   return (
     <div
-      className="relative flex flex-col items-center justify-center text-white text-center px-6"
+      className={`relative flex flex-col items-center justify-center h-[600px] text-white text-center px-6 transition-all duration-300`}
       style={{
-        backgroundPositionY: scrollY * 0.5, // Parallax effect
-        height: isDropdownOpen ? "600px" : "500px", // Dynamically increase height if dropdown is open
-        marginTop: isDropdownOpen ? "50px" : "0px", // Adjust the margin to push content down when dropdown is open
+        backgroundPositionY: scrollY * 0.5, // Parallax effect only affects content
       }}
     >
+      {/* Only move this section down when dropdown is open */}
       <motion.div
+        id="move-down"
+        className={`transition-all duration-300 relative z-10 ${
+          isServicesOpen || isAboutOpen ? "mt-40" : ""
+        }`} // Add margin-top when any dropdown is open
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.5 }}

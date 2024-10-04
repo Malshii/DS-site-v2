@@ -1,13 +1,10 @@
-// /app/layout.js (or wherever your RootLayout is located)
-
 "use client";
 
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { useState } from "react";
-import AboutHeader from "@/components/about/AboutHeader"; // Import your AboutHeader if needed here
+import { useState, useEffect } from "react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -22,19 +19,24 @@ const geistMono = localFont({
 });
 
 export default function RootLayout({ children }) {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Track if dropdown is open
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    // Function to dynamically add margin to <div> elements with a specific id
+    const specificDivs = document.querySelectorAll("#move-down");
+
+    // Apply margin-top to those specific <div> elements only
+    specificDivs.forEach((div) => {
+      div.style.marginTop = isDropdownOpen ? "150px" : "0px";
+      div.style.transition = "margin-top 0.3s ease"; // Smooth transition
+    });
+  }, [isDropdownOpen]);
 
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Header
-          setIsDropdownOpen={setIsDropdownOpen}
-          isDropdownOpen={isDropdownOpen}
-        />
-        {/* Pass the dropdown state to AboutHeader if needed */}
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Header setIsDropdownOpen={setIsDropdownOpen} isDropdownOpen={isDropdownOpen} />
+        <main>{children}</main>
         <Footer />
       </body>
     </html>
