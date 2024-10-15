@@ -104,11 +104,13 @@ const Header = ({ setIsDropdownOpen }) => {
             <Link
               href="/"
               className={`${
-                pathname === "/" || isScrolled
-                  ? "text-customGray"
-                  : "text-white"
-              } ${
-                isScrolled ? "hover:text-customYellow" : "hover:text-white"
+                pathname === "/"
+                  ? isScrolled
+                    ? "text-customGray hover:text-customYellow"
+                    : "text-white hover:text-customGray"
+                  : isScrolled
+                  ? "text-customGray hover:text-customYellow"
+                  : "text-white hover:text-customYellow"
               } text-xl font-bold`}
             >
               Home
@@ -122,20 +124,19 @@ const Header = ({ setIsDropdownOpen }) => {
             >
               <button
                 className={`flex items-center ${
-                  pathname === "/" || isScrolled
-                    ? "text-customGray"
-                    : "text-white"
-                } ${
-                  isScrolled
-                    ? "hover:text-customYellow"
-                    : pathname === "/"
-                    ? "hover:text-white"
-                    : "hover:text-customYellow"
+                  pathname === "/"
+                    ? isScrolled
+                      ? "text-customGray hover:text-customYellow"
+                      : "text-white hover:text-customGray"
+                    : isScrolled
+                    ? "text-customGray hover:text-customYellow"
+                    : "text-white hover:text-customYellow"
                 } text-xl font-bold`}
               >
                 Services
                 <ChevronDownIcon className="w-4 h-4 ml-1 transition-transform duration-300" />
               </button>
+
               {isServicesOpen && (
                 <div
                   className={`absolute left-1/2 transform -translate-x-1/2 mt-2 ${
@@ -252,20 +253,19 @@ const Header = ({ setIsDropdownOpen }) => {
             >
               <button
                 className={`flex items-center ${
-                  pathname === "/" || isScrolled
-                    ? "text-customGray"
-                    : "text-white"
-                } ${
-                  isScrolled
-                    ? "hover:text-customYellow"
-                    : pathname === "/"
-                    ? "hover:text-white"
-                    : "hover:text-customYellow"
+                  pathname === "/"
+                    ? isScrolled
+                      ? "text-customGray hover:text-customYellow"
+                      : "text-white hover:text-customGray"
+                    : isScrolled
+                    ? "text-customGray hover:text-customYellow"
+                    : "text-white hover:text-customYellow"
                 } text-xl font-bold`}
               >
                 About Us
                 <ChevronDownIcon className="w-4 h-4 ml-1 transition-transform duration-300" />
               </button>
+
               {isAboutOpen && (
                 <div
                   className={`absolute left-0 mt-2 w-40 ${
@@ -307,20 +307,16 @@ const Header = ({ setIsDropdownOpen }) => {
             {/* Contact Button */}
             <Button
               className={`border-2 ${
-                pathname === "/" || isScrolled
-                  ? "border-customGray"
-                  : "border-white"
-              } bg-transparent ${
-                pathname === "/" || isScrolled
-                  ? "text-customGray"
-                  : "text-white"
-              } ${
-                isScrolled
-                  ? "hover:text-customYellow hover:border-customYellow"
-                  : "hover:text-white hover:border-white"
-              } px-6 py-2 rounded-full text-xl font-bold transition-colors duration-300`}
+                pathname === "/"
+                  ? isScrolled
+                    ? "border-customGray text-customGray hover:text-customYellow hover:border-customYellow hover:bg-transparent"
+                    : "border-white text-white hover:text-customGray hover:border-customGray hover:bg-transparent"
+                  : isScrolled
+                  ? "border-customGray text-customGray hover:text-customYellow hover:border-customYellow hover:bg-transparent"
+                  : "border-white text-white hover:text-customYellow hover:border-customYellow hover:bg-transparent"
+              } bg-transparent px-6 py-2 rounded-full text-xl font-bold transition-colors duration-300`}
             >
-              Contact Now
+              Contact Us Now
             </Button>
           </nav>
 
@@ -388,18 +384,12 @@ const Header = ({ setIsDropdownOpen }) => {
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/services/seo"
-                    className="block py-2 px-11"
-                  >
+                  <Link href="/services/seo" className="block py-2 px-11">
                     SEO / Copywriting
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/services/nfc-cards"
-                    className="block py-2 px-11"
-                  >
+                  <Link href="/services/nfc-cards" className="block py-2 px-11">
                     NFC Cards
                   </Link>
                 </li>
