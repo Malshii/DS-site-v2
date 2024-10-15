@@ -15,7 +15,7 @@ export default function CustomCodedWebsites() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url('/assets/images/custom-coding.jpg')`, // Path to your background image
+          backgroundImage: `url('/assets/images/services/6.png')`,
         }}
       >
         {/* Overlay */}
@@ -45,7 +45,10 @@ export default function CustomCodedWebsites() {
               className="hexagon-container flex items-center justify-center"
             >
               <div className="hexagon-content text-center">
-                <p>{point}</p>
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
+                  {point}
+                </p>{" "}
+                {/* Responsive font sizes */}
               </div>
             </div>
           ))}

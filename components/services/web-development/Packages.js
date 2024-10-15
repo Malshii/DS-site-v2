@@ -16,9 +16,6 @@ export default function Packages() {
         "Standard Template Design",
         "Choose: WordPress, Static HTML/CSS, or Simple PHP",
       ],
-      price: "$29/mo",
-      yearlyPrice: "$299/year (15% discount)",
-      buttonLabel: "BUY NOW",
       buttonColor: "bg-customYellow hover:bg-customGray",
       lineColor: "bg-customYellow", // Top line color for Starter
       icon: <FaGlobe className="w-12 h-12 text-customLightGray m-4" />, // Globe icon
@@ -34,9 +31,6 @@ export default function Packages() {
         "2 Rounds of Revisions",
         "Basic Analytics Setup",
       ],
-      price: "$49/mo",
-      yearlyPrice: "$499/year (15% discount)",
-      buttonLabel: "BUY NOW",
       buttonColor: "bg-customGray hover:bg-customLightYellow",
       lineColor: "bg-customGray", // Top line color for Business
       icon: <FaChartLine className="w-12 h-12 text-customLightGray m-4" />, // Chart icon
@@ -53,8 +47,6 @@ export default function Packages() {
         "Unlimited Revisions During Development",
         "Full Integration with 3rd-Party Services",
       ],
-      price: "Contact Sales",
-      buttonLabel: "CONTACT SALES",
       buttonColor: "bg-customLightYellow hover:bg-customYellow",
       lineColor: "bg-customLightYellow", // Top line color for Custom
       icon: <FaCode className="w-12 h-12 text-customLightGray m-4" />, // Code icon
@@ -106,16 +98,6 @@ export default function Packages() {
                     </li>
                   ))}
                 </ul>
-
-                {/* Pricing */}
-                <p className="text-4xl font-bold text-gray-900 mb-2 text-center">
-                  {pkg.price}
-                </p>
-                {pkg.yearlyPrice && (
-                  <p className="text-sm text-gray-500 mb-4 text-center">
-                    {pkg.yearlyPrice}
-                  </p>
-                )}
               </div>
 
               {/* Buy/Contact Button */}
@@ -123,7 +105,7 @@ export default function Packages() {
                 <Button
                   className={`w-full py-3 text-white font-bold rounded ${pkg.buttonColor}`}
                 >
-                  {pkg.buttonLabel}
+                  Contact us for pricing
                 </Button>
               </div>
             </div>

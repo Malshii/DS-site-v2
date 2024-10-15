@@ -1,10 +1,10 @@
 "use client"; // This marks the component as a Client Component
 
 import CallToAction from "@/components/home/CallToAction";
-import CustomCodedWebsites from "@/components/services/CustomCodedWebsites";
-import Packages from "@/components/services/Packages";
-import ProcessFlow from "@/components/services/ProcessFlow";
-import WebDevelopmentBenefits from "@/components/services/WebDevelopment";
+import CustomCodedWebsites from "@/components/services/web-development/CustomCodedWebsites";
+import Packages from "@/components/services/web-development/Packages";
+import ProcessFlow from "@/components/services/web-development/ProcessFlow";
+import WebDevelopmentBenefits from "@/components/services/web-development/WebDevelopment";
 import { ChevronDoubleDownIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { notFound } from "next/navigation";
