@@ -47,7 +47,7 @@ const Services = () => {
     <section
       id="about"
       ref={ref} // Attach the ref to the section
-      className="about-us section py-20 sm:py-40 bg-cover bg-no-repeat bg-center"
+      className="about-us section py-10 sm:py-20 lg:py-40 bg-cover bg-no-repeat bg-center"
       style={{
         backgroundImage: "url('/assets/images/bg.png')", // Update the path to your background image
       }}
@@ -56,29 +56,29 @@ const Services = () => {
         <div className="flex flex-col lg:flex-row items-center">
           {/* Left Image Section */}
           <motion.div
-            className="lg:w-1/3 w-full mb-8 lg:mb-0 flex justify-center lg:justify-start"
+            className="lg:w-1/2 w-full mb-8 lg:mb-0 flex justify-center lg:justify-start"
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }} // Animate only if in view
             transition={{ duration: 1, delay: 0.2 }}
           >
             <Image
-              src="/assets/images/about-left-image.png" // Update the path to your actual image
+              src="/assets/images/8.png" // Update the path to your actual image
               alt="Person Graphic"
-              width={500} // Set a reasonable width (or match the original image dimensions)
-              height={500} // Set a reasonable height (or match the original image dimensions)
-              className="rounded-lg w-full sm:w-3/4 lg:w-full" // Responsive width
+              width={600} // Adjust the width for responsiveness
+              height={600} // Adjust the height for responsiveness
+              className="rounded-lg w-full sm:w-4/5 lg:w-3/4" // Update responsive width classes for scaling
             />
           </motion.div>
 
           {/* Services Section */}
-          <div className="lg:w-2/3 w-full">
+          <div className="lg:w-1/2 w-full">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {services.map((service, index) => {
                 const IconComponent = service.icon;
                 return (
                   <motion.div
                     key={service.id}
-                    className="flex items-center p-4 rounded-lg"
+                    className="flex items-center p-4 bg-white bg-opacity-10 rounded-lg shadow-md"
                     initial={{ opacity: 0, y: 20 }}
                     animate={
                       inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }

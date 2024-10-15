@@ -83,18 +83,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 200px;
-  height: 200px;
+  width: 120px;
+  height: 120px;
   position: relative;
   background-color: #ffb500;
-  clip-path: polygon(
-    50% 0%,
-    93% 25%,
-    93% 75%,
-    50% 100%,
-    7% 75%,
-    7% 25%
-  );  
+  clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
   text-align: center;
   transition: all 0.3s ease;
 }
@@ -108,8 +101,58 @@
 }
 
 .hexagon-content p {
-  font-size: 15px;
   line-height: 1.2;
   color: white;
-  padding: 20px;  
+  padding: 10px;
+  margin: 0;
+  font-size: 14px; /* Default font size for small screens */
+}
+
+/* Small screens (min-width: 640px) */
+@media (min-width: 640px) {
+  .hexagon-container {
+    width: 150px;
+    height: 150px;
+  }
+
+  .hexagon-content p {
+    font-size: 16px; /* Increase font size */
+    padding: 15px;
+  }
+}
+
+/* Medium screens (min-width: 768px) */
+@media (min-width: 768px) {
+  .hexagon-container {
+    width: 180px;
+    height: 180px;
+  }
+
+  .hexagon-content p {
+    font-size: 18px; /* Further increase font size */
+  }
+}
+
+/* Large screens (min-width: 1024px) */
+@media (min-width: 1024px) {
+  .hexagon-container {
+    width: 200px;
+    height: 200px;
+  }
+
+  .hexagon-content p {
+    font-size: 20px; /* Larger font for large screens */
+    padding: 20px;
+  }
+}
+
+.embla__slide-inner {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  opacity: 0.5;
+  transform: scale(0.8); /* Make non-active slides smaller */
+}
+
+.embla__slide--center {
+  opacity: 1;
+  transform: scale(1); /* Scale the center slide to full size */
 }

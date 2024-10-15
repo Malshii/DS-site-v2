@@ -11,7 +11,7 @@ export default function GuestForm({
       onSubmit={handleGuestFormSubmit}
       className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg"
     >
-      <h2 className="text-xl font-bold mb-6">Client Information</h2>
+      <h2 className="text-xl text-customYellow font-bold mb-6">Client Information</h2>
 
       <div className="mb-4">
         <label htmlFor="name" className="block text-gray-700">

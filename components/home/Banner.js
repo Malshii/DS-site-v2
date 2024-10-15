@@ -30,15 +30,18 @@ const Banner = ({ isServicesOpen, isAboutOpen }) => {
         className={`absolute inset-0 w-full h-full z-0`}
         style={{
           backgroundImage: "url('/assets/svg/wave.svg')",
-          backgroundSize: "cover", // You can try "contain" if it fits better
+          backgroundSize: "cover",
           backgroundPosition: "bottom",
           backgroundRepeat: "no-repeat",
         }}
       ></div>
+
+      {/* Main content affected by the dropdown */}
       <div
         className={`relative z-10 ${
-          isServicesOpen || isAboutOpen ? "mt-28" : "" // Add margin-top when any dropdown is open
-        }`}
+          isServicesOpen || isAboutOpen ? "mt-20" : ""
+        }`} // Add margin-top when any dropdown is open
+        id="move-down" // Adding the ID here to control this content with dropdown state
       >
         <div className="container relative z-10 mx-auto flex flex-col lg:flex-row items-center justify-between px-20">
           <motion.div
