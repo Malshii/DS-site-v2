@@ -7,7 +7,6 @@ import {
   ChevronDownIcon,
   CurrencyDollarIcon,
   ChartBarIcon,
-  LightBulbIcon,
   CodeBracketIcon,
   Bars3Icon,
   XMarkIcon,
@@ -305,7 +304,8 @@ const Header = ({ setIsDropdownOpen }) => {
             </div>
 
             {/* Contact Button */}
-            <Button
+            <Link
+              href="/contact-us"
               className={`border-2 ${
                 pathname === "/"
                   ? isScrolled
@@ -317,7 +317,7 @@ const Header = ({ setIsDropdownOpen }) => {
               } bg-transparent px-6 py-2 rounded-full text-xl font-bold transition-colors duration-300`}
             >
               Contact Us Now
-            </Button>
+            </Link>
           </nav>
 
           {/* Mobile Menu Icon */}

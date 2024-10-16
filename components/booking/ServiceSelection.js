@@ -109,11 +109,11 @@ export default function ServiceSelection({ service, setService }) {
           <div
             key={item.value}
             onClick={() => handleSelectService(item.value)}
-            className={`cursor-pointer w-64 h-64 bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1
-              ${service === item.value ? "border-2 border-yellow-500" : ""}`}
+            className={`cursor-pointer w-64 h-64 bg-white bg-opacity-20 rounded-lg shadow-md p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1
+              ${service === item.value ? "border-2 border-customYellow" : ""}`}
           >
             <div className="flex flex-col justify-center items-center h-full">
-              <div className="text-6xl text-yellow-500 mb-4">{item.icon}</div>
+              <div className="text-6xl text-white mb-4">{item.icon}</div>
               <h3 className="font-bold text-customYellow text-2xl">
                 {item.label}
               </h3>
@@ -180,9 +180,9 @@ export default function ServiceSelection({ service, setService }) {
               {/* Success Image */}
               <div className="flex justify-center mb-6">
                 <img
-                  src="/assets/images/finish-consultant.webp" // Make sure to have this image in your project
+                  src="/assets/images/finish-consultant.png" // Make sure to have this image in your project
                   alt="Success"
-                  className="w-52 h-52" // Adjust the size as necessary
+                  className="w-60 h-60" // Adjust the size as necessary
                 />
               </div>
 

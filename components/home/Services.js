@@ -62,7 +62,7 @@ const Services = () => {
             transition={{ duration: 1, delay: 0.2 }}
           >
             <Image
-              src="/assets/images/8.png" // Update the path to your actual image
+              src="/assets/images/services.png" // Update the path to your actual image
               alt="Person Graphic"
               width={600} // Adjust the width for responsiveness
               height={600} // Adjust the height for responsiveness
@@ -78,7 +78,7 @@ const Services = () => {
                 return (
                   <motion.div
                     key={service.id}
-                    className="flex items-center p-4 bg-white bg-opacity-10 rounded-lg shadow-md"
+                    className="flex items-center"
                     initial={{ opacity: 0, y: 20 }}
                     animate={
                       inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
