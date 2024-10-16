@@ -94,15 +94,16 @@ function ServiceCard({ title, description, variants }) {
       {/* Visible Content - Hidden on Hover */}
       <div
         className="absolute inset-0 flex justify-center items-center bg-white transition-transform 
-        duration-500 ease-in-out transform group-hover:-translate-y-full"
+  duration-500 ease-in-out transform group-hover:-translate-y-full"
       >
         <Image
-          src="/assets/images/9.png" // Ensure the image path is correct
+          src="/assets/images/feedback.png" // Ensure the image path is correct and high-quality
           alt={title}
-          width={140} // Set width for the image
-          height={140} // Set height for the image
-          quality={100} // Increase the image quality (100 means no compression)
-          className="object-contain w-full h-auto" // Make the image responsive with object-contain
+          width={120} // Set width for the image
+          height={120} // Set height for the image
+          quality={95} // Adjust quality to 95 for better clarity without excessive size
+          layout="intrinsic" // Use 'intrinsic' layout to ensure the image scales appropriately
+          className="object-contain max-w-[150px] h-auto" // Removed w-full to avoid stretching
         />
       </div>
     </motion.div>
