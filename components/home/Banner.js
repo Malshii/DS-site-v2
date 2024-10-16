@@ -92,7 +92,7 @@ const Banner = ({ isServicesOpen, isAboutOpen }) => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <Image
-              src="/assets/images/2.png"
+              src="/assets/images/hero-bg.png"
               alt="team meeting"
               width={900}
               height={600}
