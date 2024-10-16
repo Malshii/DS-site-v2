@@ -1,6 +1,6 @@
 // Calendar Component
 export default function CalendarComponent({
-  availableDates,
+  availableDates = [], // Default value to prevent undefined issues
   selectedDate,
   setSelectedDate,
   currentMonth,
@@ -12,7 +12,12 @@ export default function CalendarComponent({
   return (
     <div
       className="calendar-container mb-4 p-4 bg-white rounded-lg shadow-lg"
-      style={{ maxWidth: "800px", margin: "0 auto", maxHeight: "500px", overflowY: "auto" }} // Max width for better visibility
+      style={{
+        maxWidth: "800px",
+        margin: "0 auto",
+        maxHeight: "500px",
+        overflowY: "auto",
+      }} // Max width for better visibility
     >
       {/* Month Navigation */}
       <div className="flex justify-between items-center mb-4">
@@ -20,15 +25,15 @@ export default function CalendarComponent({
           onClick={handlePrevMonth}
           className="bg-gray-300 px-4 py-2 rounded-lg hover:bg-gray-400"
           disabled={
-            currentMonth.getMonth() === today.getMonth() &&
-            currentMonth.getFullYear() === today.getFullYear()
+            currentMonth?.getMonth() === today.getMonth() &&
+            currentMonth?.getFullYear() === today.getFullYear()
           }
           aria-label="Previous Month"
         >
           Prev
         </button>
         <h2 className="font-bold text-lg text-gray-800">
-          {currentMonth.toLocaleString("default", {
+          {currentMonth?.toLocaleString("default", {
             month: "long",
             year: "numeric",
           })}
