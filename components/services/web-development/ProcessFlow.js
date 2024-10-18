@@ -32,14 +32,19 @@ export default function ProcessFlow() {
     <section className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title */}
-        <div className="text-center mb-12">
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
           <h2 className="text-3xl font-bold text-customGray">
             A Snapshot of the Process We Use for Building Websites
           </h2>
           <p className="text-gray-600 mt-4">
             We follow a structured approach to deliver high-quality websites.
           </p>
-        </div>
+        </motion.div>
 
         {/* Process Flow */}
         <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 md:space-x-8 relative">
@@ -49,7 +54,8 @@ export default function ProcessFlow() {
               <motion.div
                 className="flex flex-col items-center text-center max-w-xs"
                 initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
                 transition={{ delay: index * 0.5, duration: 0.8 }}
               >
                 {/* Icon */}
@@ -69,7 +75,8 @@ export default function ProcessFlow() {
                 <motion.div
                   className="hidden md:flex items-center justify-center"
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: false, amount: 0.2 }}
                   transition={{ delay: index * 0.5 + 0.5, duration: 0.5 }}
                 >
                   <FaArrowRight className="text-gray-400 text-3xl" />
