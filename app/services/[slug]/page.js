@@ -10,6 +10,8 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import GoogleAdsBenefits from "@/components/services/google-ads/GoogleAds";
+import GoogleAdsCaseStudyCard from "@/components/services/google-ads/GoogleAdsCaseStudyCard";
 
 // Define the service details
 const serviceDetails = {
@@ -58,7 +60,7 @@ export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
     <>
       <section className="relative flex items-center justify-center min-h-[600px] bg-gray-800 text-white">
         {/* Gradient Overlay with Image */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-b from-customGray via-black to-transparent"></div>
+        <div className="absolute inset-0 z-10 bg-gradient-to-l from-gray-600 via-customGray to-transparent"></div>
 
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
@@ -166,16 +168,9 @@ export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
       )}
 
       {service.heading === "Google Ads" && (
-        <section id="next-section" className="py-12 bg-blue-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-gray-900">
-              Maximize Your Reach with Google Ads
-            </h2>
-            <p className="text-lg text-gray-600 mt-4 text-center">
-              We optimize your campaigns to target the right audience, driving
-              conversions.
-            </p>
-          </div>
+        <section id="next-section">
+          <GoogleAdsBenefits /> 
+          <GoogleAdsCaseStudyCard />
         </section>
       )}
 
