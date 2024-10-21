@@ -1,125 +1,103 @@
-import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
+import React from "react";
+import {
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+  FaEnvelope,
+  FaFacebookF,
+  FaTwitter,
+  FaLinkedinIn,
+} from "react-icons/fa";
 
-export default function ContactUs() {
+const ContactUs = () => {
   return (
-    <section className="relative py-16 px-8 bg-[#0b1026] text-white">
-      {/* Heading */}
-      <h1 className="text-4xl font-bold mb-10 text-center">Let’s get in touch!</h1>
-
-      {/* Floating Contact Information Section */}
-      <div className="flex flex-col md:flex-row gap-8 mb-12 justify-center">
-        {/* Phone Card */}
-        <div className="flex items-center p-6 rounded-lg bg-[#131933] shadow-md space-x-4 w-64">
-          <FaPhoneAlt className="text-[#ff6b6b] text-3xl" />
-          <div>
-            <p className="font-bold">Phone</p>
-            <a href="tel:+1236788429" className="text-white hover:underline">
-              +61 236-788-429
-            </a>
-          </div>
-        </div>
-
-        {/* Email Card */}
-        <div className="flex items-center p-6 rounded-lg bg-[#131933] shadow-md space-x-4 w-64">
-          <FaEnvelope className="text-[#ff6b6b] text-3xl" />
-          <div>
-            <p className="font-bold">Email</p>
-            <a href="mailto:support@wavenet.com" className="text-white hover:underline">
-              support@wavenet.com
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Map and Overlay Form Section */}
-      <div className="relative w-full h-[500px] max-w-[1000px] mx-auto rounded-lg shadow-lg overflow-hidden">
-        {/* Map Section */}
-        <div className="absolute inset-0">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6310.095669650209!2d175.23072!3d-37.742022!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d6d231d7dddfbe9%3A0xd8873cbdb5f08674!2s89%20Church%20Road%2C%20Pukete%2C%20Hamilton%203200%2C%20New%20Zealand!5e0!3m2!1sen!2slk!4v1729068332065!5m2!1sen!2slk"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen=""
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="rounded-lg"
-          ></iframe>
-        </div>
-
-        {/* Contact Form Overlay */}
-        <div className="absolute right-8 bottom-8 bg-[#28b3d3] p-8 rounded-lg shadow-xl max-w-md w-[90%] md:w-[450px]">
-          <div className="mb-6">
-            <h2 className="text-2xl font-bold text-[#0b1026] mb-4 text-center">Send Us Message</h2>
-            <p className="text-[#0b1026] text-center">
-              Have any questions regarding our services? Send us your message.
+    <section
+      className="flex justify-center items-center min-h-screen p-6 relative bg-cover bg-center"
+      style={{ backgroundImage: "url('/assets/images/contact-bg.png')" }} // Replace with the actual path
+    >
+      <div id="move-down" className="py-20">
+        <div className="bg-opacity-90 backdrop-blur-md rounded-lg shadow-xl p-8 w-full max-w-5xl flex flex-col md:flex-row relative overflow-hidden">
+          {/* Form Section */}
+          <div className="flex-1 md:pr-8 z-10">
+            <h2 className="text-2xl font-bold text-center text-white mb-4">
+              Get In Touch
+            </h2>
+            <p className="text-customYellow text-center mb-6">
+              We are here for you! How can we help?
             </p>
+            <form>
+              <input
+                type="text"
+                placeholder="Enter your name"
+                className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-customYellow"
+              />
+              <input
+                type="email"
+                placeholder="Enter your email address"
+                className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-customYellow"
+              />
+              <textarea
+                placeholder="Go ahead, we’re listening..."
+                className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-customYellow h-32 resize-none"
+              />
+              <button
+                type="submit"
+                className="w-full py-3 bg-customYellow text-white rounded-lg font-semibold hover:bg-customGray transition duration-300"
+              >
+                Submit
+              </button>
+            </form>
           </div>
 
-          {/* Form Fields */}
-          <form className="space-y-6">
-            {/* Name Input */}
-            <div>
-              <label htmlFor="name" className="block text-[#0b1026] mb-1">
-                Name
-              </label>
-              <input
-                id="name"
-                type="text"
-                placeholder="Enter Your Name..."
-                className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0b1026]"
+          {/* Right Image & Contact Info Section */}
+          <div className="flex-1 flex flex-col items-center justify-between mt-8 md:mt-0 md:pl-6 relative">
+            <div className="flex flex-col items-center">
+              <img
+                src="/assets/images/contact-form-image.png" // Replace with actual image path
+                alt="Contact Illustration"
+                className="w-3/4 h-auto mb-4"
               />
+              <div className="text-gray-700 text-center mb-6">
+                <div className="flex items-center mb-4">
+                  <FaMapMarkerAlt className="text-customYellow text-lg mr-2" />
+                  <span>674 Washington Avenue</span>
+                </div>
+                <div className="flex items-center mb-4">
+                  <FaPhoneAlt className="text-customYellow text-lg mr-2" />
+                  <span>602-296-4143</span>
+                </div>
+                <div className="flex items-center mb-4">
+                  <FaEnvelope className="text-customYellow text-lg mr-2" />
+                  <span>johncontact123@gmail.com</span>
+                </div>
+              </div>
             </div>
 
-            {/* Email Input */}
-            <div>
-              <label htmlFor="email" className="block text-[#0b1026] mb-1">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                placeholder="Enter Your Email Address..."
-                className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0b1026]"
-              />
+            {/* Social Media Icons */}
+            <div className="flex space-x-4 mt-4">
+              <a
+                href="#"
+                className="bg-customYellow text-white p-3 rounded-full hover:bg-customGray transition duration-300"
+              >
+                <FaFacebookF />
+              </a>
+              <a
+                href="#"
+                className="bg-customYellow text-white p-3 rounded-full hover:bg-customGray transition duration-300"
+              >
+                <FaTwitter />
+              </a>
+              <a
+                href="#"
+                className="bg-customYellow text-white p-3 rounded-full hover:bg-customGray transition duration-300"
+              >
+                <FaLinkedinIn />
+              </a>
             </div>
-
-            {/* Message Textarea */}
-            <div>
-              <label htmlFor="message" className="block text-[#0b1026] mb-1">
-                Message
-              </label>
-              <textarea
-                id="message"
-                placeholder="Enter Your Message..."
-                className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0b1026]"
-                rows={4}
-              />
-            </div>
-
-            {/* Consent Checkbox */}
-            <div className="flex items-start space-x-2">
-              <input
-                type="checkbox"
-                id="subscribe"
-                className="mt-1 focus:ring-[#0b1026] focus:outline-none rounded"
-              />
-              <label htmlFor="subscribe" className="text-[#0b1026]">
-                By clicking this, I am consenting to be sent monthly articles and promotional
-                emails by Wavenet services.
-              </label>
-            </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="w-full bg-[#0b1026] text-white font-bold py-3 rounded-lg hover:bg-[#2a2f4f] transition duration-300 shadow-md"
-            >
-              Submit
-            </button>
-          </form>
+          </div>
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default ContactUs;
