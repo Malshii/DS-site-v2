@@ -15,25 +15,29 @@ const services = [
     id: 1,
     icon: ChartBarIcon,
     title: "Website Development",
-    description: "Lorem ipsum dolor sit amet, ctetur aoi adipiscing eliter",
+    description:
+      "Create stunning, user-friendly websites to enhance your brand’s online presence and drive growth.",
   },
   {
     id: 2,
     icon: PresentationChartLineIcon,
     title: "Google Ads",
-    description: "Lorem ipsum dolor sit amet, ctetur aoi adipiscing eliter",
+    description:
+      "Boost your business with targeted Google Ads that convert clicks into loyal customers.",
   },
   {
     id: 3,
     icon: GlobeAltIcon,
     title: "SEO / Copywriting",
-    description: "Lorem ipsum dolor sit amet, ctetur aoi adipiscing eliter",
+    description:
+      "Increase visibility with compelling, SEO-friendly content that drives meaningful traffic.",
   },
   {
     id: 4,
     icon: MagnifyingGlassIcon,
     title: "NFC Cards",
-    description: "Lorem ipsum dolor sit amet, ctetur aoi adipiscing eliter",
+    description:
+      "Modern, eco-friendly NFC cards for seamless networking and lasting connections.",
   },
 ];
 
@@ -52,7 +56,7 @@ const Services = () => {
         backgroundImage: "url('/assets/images/bg.png')", // Update the path to your background image
       }}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-10">
         <div className="flex flex-col lg:flex-row items-center">
           {/* Left Image Section */}
           <motion.div
