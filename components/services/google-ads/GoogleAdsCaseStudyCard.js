@@ -1,7 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 const GoogleAdsCaseStudyCard = () => {
+  const router = useRouter();
+  
+  const handleButtonClick = () => {
+    router.push("/case-studies/google-ads");
+  };
+
   return (
     <motion.div
       className="py-16 flex justify-center items-center"
@@ -10,7 +17,7 @@ const GoogleAdsCaseStudyCard = () => {
       transition={{ duration: 1 }}
     >
       <motion.div
-        className="container max-w-6xl mx-auto border border-customYellow rounded-xl shadow-xl p-10 flex flex-col md:flex-row items-center relative"
+        className="container max-w-6xl mx-auto border border-customYellow rounded-xl shadow-xl p-10 flex flex-col md:flex-row items-center md:gap-x-10 relative"
         style={{
           backgroundImage: "url(/assets/images/google-ads-bg.png)",
           backgroundSize: "cover",
@@ -22,8 +29,9 @@ const GoogleAdsCaseStudyCard = () => {
         }}
         transition={{ duration: 0.5 }}
       >
+        {/* Left Content with Width Adjustment */}
         <motion.div
-          className="flex-1 md:pr-8 mb-6 md:mb-0 z-10"
+          className="flex-1 md:pr-8 mb-6 md:mb-0 z-10 max-w-md" // Set max width here
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -31,18 +39,20 @@ const GoogleAdsCaseStudyCard = () => {
           <h2 className="text-3xl font-bold text-gray-800 mb-2">
             GDC CONSULTANTS
           </h2>
-          <p className="text-7xl font-extrabold text-customYellow mb-4">200%</p>
+          <p className="text-7xl font-extrabold text-customYellow mb-4">91.6%</p>
           <p className="text-lg font-medium text-gray-700 mb-6">
-            Increase in Leads from Digital Marketing Campaigns
+            Website traffic increased from August to September after the implementation of Google Ads.
           </p>
           <motion.button
             className="text-customYellow hover:text-white border border-customYellow hover:bg-customGray hover:border-none rounded-full px-8 py-3 font-semibold transition duration-300"
             whileHover={{ scale: 1.1 }}
+            onClick={handleButtonClick}
           >
             View Success Story
           </motion.button>
         </motion.div>
 
+        {/* Right Image Section */}
         <motion.div
           className="flex-1"
           initial={{ opacity: 0, x: 50 }}
@@ -51,7 +61,7 @@ const GoogleAdsCaseStudyCard = () => {
         >
           <img
             src="/assets/images/google-ads/gdc-ads.png"
-            alt="Tilers Tools Google Ads Success Screenshot"
+            alt="Google Ads Success Screenshot"
             className="w-full max-w-[400px] mx-auto transform hover:scale-105 transition duration-300"
           />
         </motion.div>
