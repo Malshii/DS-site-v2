@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const GallerySection = () => {
   const section1 = [
@@ -108,9 +109,11 @@ const GallerySection = () => {
               whileInView="visible"
               viewport={{ once: false, amount: 0.2 }}
             >
-              <img
+              <Image
                 src={image.src}
                 alt={image.alt}
+                width={500} // Adjust the width based on your layout needs
+                height={300} // Adjust the height based on your layout needs
                 className="w-full h-auto object-cover transform hover:scale-105 transition duration-300"
               />
             </motion.div>
@@ -184,9 +187,11 @@ const GallerySection = () => {
               whileInView="visible"
               viewport={{ once: false, amount: 0.2 }}
             >
-              <img
+              <Image
                 src={image.src}
                 alt={image.alt}
+                width={500} // Adjust the width based on your layout needs
+                height={300} // Adjust the height based on your layout needs
                 className="w-full h-auto object-cover transform hover:scale-105 transition duration-300"
               />
             </motion.div>

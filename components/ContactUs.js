@@ -7,6 +7,7 @@ import {
   FaTwitter,
   FaLinkedinIn,
 } from "react-icons/fa";
+import Image from "next/image";
 
 const ContactUs = () => {
   return (
@@ -51,11 +52,15 @@ const ContactUs = () => {
           {/* Right Image & Contact Info Section */}
           <div className="flex-1 flex flex-col items-center justify-between mt-8 md:mt-0 md:pl-6 relative">
             <div className="flex flex-col items-center">
-              <img
+              <Image
                 src="/assets/images/contact-form-image.png" // Replace with actual image path
                 alt="Contact Illustration"
+                width={0}
+                height={0}
+                sizes="75vw" // Adjust based on your design's responsiveness
                 className="w-3/4 h-auto mb-4"
               />
+
               <div className="text-gray-700 text-center mb-6">
                 <div className="flex items-center mb-4">
                   <FaMapMarkerAlt className="text-customYellow text-lg mr-2" />
