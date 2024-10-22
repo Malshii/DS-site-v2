@@ -14,6 +14,8 @@ import GoogleAdsBenefits from "@/components/services/google-ads/GoogleAds";
 import GoogleAdsCaseStudyCard from "@/components/services/google-ads/GoogleAdsCaseStudyCard";
 import OnePageWebsite from "@/components/services/web-development/OnePageWebsite";
 import SeoOverview from "@/components/services/seo/SeoOverview";
+import NFCBenefits from "@/components/services/nfc-cards/NFCBenefits";
+import NFCIntroductionSection from "@/components/services/nfc-cards/NFCIntroductionSection";
 
 // Define the service details
 const serviceDetails = {
@@ -184,16 +186,9 @@ export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
       )}
 
       {service.heading === "NFC Cards" && (
-        <section id="next-section" className="py-12 bg-red-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-gray-900">
-              Innovate with NFC Cards
-            </h2>
-            <p className="text-lg text-gray-600 mt-4 text-center">
-              We offer NFC cards that provide a seamless, contactless
-              experience.
-            </p>
-          </div>
+        <section id="next-section">
+          <NFCIntroductionSection />
+          <NFCBenefits />
         </section>
       )}
 
