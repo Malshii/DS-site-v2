@@ -1,10 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const GoogleAdsCaseStudyCard = () => {
   const router = useRouter();
-  
+
   const handleButtonClick = () => {
     router.push("/case-studies/google-ads");
   };
@@ -39,9 +40,12 @@ const GoogleAdsCaseStudyCard = () => {
           <h2 className="text-3xl font-bold text-gray-800 mb-2">
             GDC CONSULTANTS
           </h2>
-          <p className="text-7xl font-extrabold text-customYellow mb-4">91.6%</p>
+          <p className="text-7xl font-extrabold text-customYellow mb-4">
+            91.6%
+          </p>
           <p className="text-lg font-medium text-gray-700 mb-6">
-            Website traffic increased from August to September after the implementation of Google Ads.
+            Website traffic increased from August to September after the
+            implementation of Google Ads.
           </p>
           <motion.button
             className="text-customYellow hover:text-white border border-customYellow hover:bg-customGray hover:border-none rounded-full px-8 py-3 font-semibold transition duration-300"
@@ -59,9 +63,11 @@ const GoogleAdsCaseStudyCard = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <img
+          <Image
             src="/assets/images/google-ads/gdc-ads.png"
             alt="Google Ads Success Screenshot"
+            width={400} // Adjust to match the desired layout
+            height={400} // Adjust to match the desired layout
             className="w-full max-w-[400px] mx-auto transform hover:scale-105 transition duration-300"
           />
         </motion.div>

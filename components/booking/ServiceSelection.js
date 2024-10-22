@@ -9,6 +9,7 @@ import {
   FaBullhorn,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function ServiceSelection({ service, setService }) {
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal
@@ -164,7 +165,7 @@ export default function ServiceSelection({ service, setService }) {
               }}
             />
           </>
-        )}        
+        )}
         {stage === 3 && (
           <>
             {/* Wrapper with Background Image */}
@@ -179,10 +180,12 @@ export default function ServiceSelection({ service, setService }) {
             >
               {/* Success Image */}
               <div className="flex justify-center mb-6">
-                <img
+                <Image
                   src="/assets/images/finish-consultant.png" // Make sure to have this image in your project
                   alt="Success"
-                  className="w-60 h-60" // Adjust the size as necessary
+                  width={240} // 240px corresponds to w-60
+                  height={240} // 240px corresponds to h-60
+                  className="w-60 h-60" // Retain the same styling
                 />
               </div>
 
