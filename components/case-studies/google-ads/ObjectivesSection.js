@@ -18,28 +18,28 @@ const ObjectivesSection = () => {
       title: "Increase Website Traffic",
       description:
         "Drive more relevant visitors to the GDC website through Google Ads.",
-      bgColor: "bg-customYellow", // Yellow background
+      bgColor: "bg-customYellow",
     },
     {
       icon: <FaUserCheck size={40} className="text-customYellow" />,
       title: "Lead Generation",
       description:
         "Attract qualified leads for their engineering consultancy services.",
-      bgColor: "bg-white", // White background
+      bgColor: "bg-white",
     },
     {
       icon: <FaBullseye size={40} className="text-customGray" />,
       title: "Optimize Cost Efficiency",
       description:
         "Lower the average cost per click (CPC) and cost per acquisition (CPA).",
-      bgColor: "bg-customYellow", // Yellow background
+      bgColor: "bg-customYellow",
     },
     {
       icon: <FaGlobe size={40} className="text-customYellow" />,
       title: "Brand Awareness",
       description:
         "Reach a wider audience with Display Ads to reinforce brand presence in key locations.",
-      bgColor: "bg-white", // White background
+      bgColor: "bg-white",
     },
   ];
 
@@ -49,21 +49,21 @@ const ObjectivesSection = () => {
       title: "Increase CTR",
       description:
         "Increase click-through rate (CTR) on search and display campaigns.",
-      bgColor: "bg-customYellow", // Yellow background
+      bgColor: "bg-customYellow",
     },
     {
       icon: <FaMoneyBillWave size={40} className="text-customYellow" />,
       title: "Lower CPC & CPA",
       description:
         "Lower the cost-per-click (CPC) and cost-per-acquisition (CPA).",
-      bgColor: "bg-white", // White background
+      bgColor: "bg-white",
     },
     {
       icon: <FaArrowUp size={40} className="text-customGray" />,
       title: "Improve Conversion Rates",
       description:
         "Improve overall conversion rates by targeting relevant audiences in engineering, construction, and architectural services.",
-      bgColor: "bg-customYellow", // Yellow background
+      bgColor: "bg-customYellow",
     },
   ];
 
@@ -174,7 +174,7 @@ const ObjectivesSection = () => {
           variants={textVariants}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          The primary goal of GDC Consultant's Google Ads campaigns was to
+          The primary goal of GDC Consultant&apos;s Google Ads campaigns was to
           increase website traffic, improve lead generation through search and
           display ads, and ensure that every advertising dollar spent resulted
           in meaningful customer interactions.
