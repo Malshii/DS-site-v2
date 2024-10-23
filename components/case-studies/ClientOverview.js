@@ -106,7 +106,7 @@ const ClientOverview = () => {
           CLIENT OVERVIEW
         </h2>
         <p>
-          <span className="font-semibold">Company:</span> GDC Consultants Pvt
+          <span className="font-semibold">Company:</span> GDC Consultants Ltd
         </p>
         <p>
           <span className="font-semibold">Industry:</span> Engineering
