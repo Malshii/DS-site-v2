@@ -20,17 +20,11 @@ import { Button } from "./ui/button";
 const Header = ({ setIsDropdownOpen }) => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isCaseStudiesOpen, setIsCaseStudiesOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false); // For mobile menu toggle
   const [activeDropdown, setActiveDropdown] = useState(""); // Track mobile dropdown state
   const pathname = usePathname();
-
-  const services = [
-    "Website Development",
-    "Google Ads",
-    "SEO / Copywriting",
-    "NFC Cards",
-  ];
 
   // Scroll behavior to change header background
   useEffect(() => {
@@ -66,6 +60,14 @@ const Header = ({ setIsDropdownOpen }) => {
   };
   const handleAboutMouseLeave = () => {
     setIsAboutOpen(false);
+    setIsDropdownOpen(false);
+  };
+  const handleCaseStudiesMouseEnter = () => {
+    setIsCaseStudiesOpen(true);
+    setIsDropdownOpen(true);
+  };
+  const handleCaseStudiesMouseLeave = () => {
+    setIsCaseStudiesOpen(false);
     setIsDropdownOpen(false);
   };
 
@@ -303,6 +305,93 @@ const Header = ({ setIsDropdownOpen }) => {
               )}
             </div>
 
+            {/* Case Studies Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={handleCaseStudiesMouseEnter}
+              onMouseLeave={handleCaseStudiesMouseLeave}
+            >
+              <button
+                className={`flex items-center ${
+                  pathname === "/"
+                    ? isScrolled
+                      ? "text-customGray hover:text-customYellow"
+                      : "text-white hover:text-customGray"
+                    : isScrolled
+                    ? "text-customGray hover:text-customYellow"
+                    : "text-white hover:text-customYellow"
+                } text-xl font-bold`}
+              >
+                Case Studies
+                <ChevronDownIcon className="w-4 h-4 ml-1 transition-transform duration-300" />
+              </button>
+
+              {isCaseStudiesOpen && (
+                <div
+                  className={`absolute left-0 mt-2 w-60 ${
+                    isScrolled ? "bg-white" : "bg-transparent"
+                  } rounded-xl shadow-xl z-50`}
+                >
+                  <Link
+                    href="/case-studies/website-development"
+                    className={`block px-4 py-2 ${
+                      pathname === "/"
+                        ? isScrolled
+                          ? "text-customGray hover:text-customYellow"
+                          : "text-customGray hover:text-white"
+                        : isScrolled
+                        ? "text-gray-700 hover:text-customYellow"
+                        : "text-white hover:text-customYellow"
+                    }`}
+                  >
+                    Website Development
+                  </Link>
+                  <Link
+                    href="/case-studies/google-ads"
+                    className={`block px-4 py-2 ${
+                      pathname === "/"
+                        ? isScrolled
+                          ? "text-customGray hover:text-customYellow"
+                          : "text-customGray hover:text-white"
+                        : isScrolled
+                        ? "text-gray-700 hover:text-customYellow"
+                        : "text-white hover:text-customYellow"
+                    }`}
+                  >
+                    Google Ads
+                  </Link>
+                  <Link
+                    href="/case-studies/seo-copywriting"
+                    className={`block px-4 py-2 ${
+                      pathname === "/"
+                        ? isScrolled
+                          ? "text-customGray hover:text-customYellow"
+                          : "text-customGray hover:text-white"
+                        : isScrolled
+                        ? "text-gray-700 hover:text-customYellow"
+                        : "text-white hover:text-customYellow"
+                    }`}
+                  >
+                    SEO/ Copywriting
+                  </Link>
+                  <Link
+                    href="/case-studies/nfc-cards"
+                    className={`block px-4 py-2 ${
+                      pathname === "/"
+                        ? isScrolled
+                          ? "text-customGray hover:text-customYellow"
+                          : "text-customGray hover:text-white"
+                        : isScrolled
+                        ? "text-gray-700 hover:text-customYellow"
+                        : "text-white hover:text-customYellow"
+                    }`}
+                  >
+                    NFC Cards
+                  </Link>
+                </div>
+              )}
+            </div>
+
             {/* Contact Button */}
             <Link
               href="/contact-us"
@@ -320,13 +409,10 @@ const Header = ({ setIsDropdownOpen }) => {
             </Link>
           </nav>
 
-          {/* Mobile Menu Icon */}
+          {/* Hamburger Menu Icon for Mobile on the Right */}
           <div className="flex lg:hidden ml-auto">
-            <button
-              onClick={toggleMenu}
-              aria-label="Toggle Menu"
-              className="transition-transform duration-300 transform hover:scale-110"
-            >
+            {/* Mobile Menu Toggle Button */}
+            <button onClick={toggleMenu} className="lg:hidden">
               {isMenuOpen ? (
                 <XMarkIcon className="w-6 h-6 text-black transition-transform duration-300" />
               ) : (
@@ -339,8 +425,11 @@ const Header = ({ setIsDropdownOpen }) => {
         {/* Mobile Menu Items */}
         <ul
           className={`absolute top-full left-0 w-full bg-white shadow-md lg:hidden transition-all duration-300 ease-in-out ${
-            isMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
-          } overflow-hidden`}
+            isMenuOpen
+              ? "max-h-[75vh] opacity-100 overflow-y-auto"
+              : "max-h-0 hidden"
+          }`}
+          style={{ zIndex: 100 }}
         >
           <li>
             <Link
@@ -421,6 +510,58 @@ const Header = ({ setIsDropdownOpen }) => {
                 <li>
                   <Link href="/careers" className="block py-2 px-11">
                     Careers
+                  </Link>
+                </li>
+              </ul>
+            )}
+          </li>
+
+          <li className="relative">
+            <button
+              className="flex justify-between items-center w-full py-2 px-4 text-left font-light text-gray-800"
+              onClick={() => handleMobileDropdownToggle("case-studies")}
+            >
+              <span className="flex items-center">
+                {activeDropdown === "case-studies" ? (
+                  <MinusIcon className="w-5 h-5 mr-2" />
+                ) : (
+                  <PlusIcon className="w-5 h-5 mr-2" />
+                )}
+                Case Studies
+              </span>
+            </button>
+            {activeDropdown === "case-studies" && (
+              <ul className="pl-4 bg-gray-50 border-l border-gray-200">
+                <li>
+                  <Link
+                    href="/case-studies/website-development"
+                    className="block py-2 px-11"
+                  >
+                    Website Development
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/case-studies/google-ads"
+                    className="block py-2 px-11"
+                  >
+                    Google Ads
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/case-studies/seo-copywriting"
+                    className="block py-2 px-11"
+                  >
+                    SEO/ Copywriting
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/case-studies/nfc-cards"
+                    className="block py-2 px-11"
+                  >
+                    NFC Cards
                   </Link>
                 </li>
               </ul>

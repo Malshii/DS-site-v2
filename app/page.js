@@ -10,7 +10,7 @@ export default function Home() {
       <main>
         <Banner />
         <Services />
-        <TestimonialSection />
+        {/* <TestimonialSection /> */}
         {/* <RecentProjects /> */}
         <CallToAction />
       </main>

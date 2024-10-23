@@ -40,7 +40,7 @@ const OnePageWebsite = () => {
           className="absolute inset-0 bg-contain bg-right bg-no-repeat"
           style={{
             backgroundImage:
-              "url('/assets/images/website-dev/one-page-site-2.gif')", // Replace with actual image path
+              "url('/assets/images/website-dev/one-page-site.gif')", // Replace with actual image path
           }}
         ></div>
       </div>

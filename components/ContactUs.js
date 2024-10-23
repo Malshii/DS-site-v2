@@ -1,15 +1,83 @@
-import React from "react";
+"use client";
+
+import { React, useState } from "react";
 import {
   FaMapMarkerAlt,
   FaPhoneAlt,
   FaEnvelope,
   FaFacebookF,
-  FaTwitter,
   FaLinkedinIn,
+  FaInstagram,
 } from "react-icons/fa";
 import Image from "next/image";
 
 const ContactUs = () => {
+  const [formData, setFormData] = useState({
+    firstname: "",
+    email: "",
+    message: "",
+  });
+  const [formStatus, setFormStatus] = useState("idle"); // 'idle', 'success', 'error'
+  const [formMessage, setFormMessage] = useState(""); // Message to display
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const endpoint =
+      "https://api.hsforms.com/submissions/v3/integration/submit/6187835/c9e0a8dc-5c29-43c1-9667-0f826c715d77";
+
+    const payload = {
+      fields: [
+        {
+          name: "firstname",
+          value: formData.firstname,
+        },
+        {
+          name: "email",
+          value: formData.email,
+        },
+        {
+          name: "message",
+          value: formData.message,
+        },
+      ],
+    };
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        setFormStatus("success");
+        setFormMessage("Thank you! Your message has been successfully submitted.");
+        setFormData({
+          firstname: "",
+          email: "",
+          message: "",
+        }); // Clear the form after submission
+      } else {
+        setFormStatus("error");
+        setFormMessage("There was an issue with your submission. Please try again.");
+      }
+    } catch (error) {
+      setFormStatus("error");
+      setFormMessage("There was an error submitting the form. Please check your internet connection and try again.");
+    }
+  };
+
   return (
     <section
       className="flex justify-center items-center min-h-screen p-6 relative bg-cover bg-center"
@@ -25,18 +93,27 @@ const ContactUs = () => {
             <p className="text-customYellow text-center mb-6">
               We are here for you! How can we help?
             </p>
-            <form>
+            <form onSubmit={handleSubmit}>
               <input
                 type="text"
+                name="firstname"
+                value={formData.firstname}
+                onChange={handleChange}
                 placeholder="Enter your name"
                 className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-customYellow"
               />
               <input
                 type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="Enter your email address"
                 className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-customYellow"
               />
               <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
                 placeholder="Go ahead, we’re listening..."
                 className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-customYellow h-32 resize-none"
               />
@@ -47,6 +124,18 @@ const ContactUs = () => {
                 Submit
               </button>
             </form>
+            
+            {/* Success/Error Message */}
+            {formStatus === "success" && (
+              <p className="mt-4 text-green-600 font-semibold text-center">
+                {formMessage}
+              </p>
+            )}
+            {formStatus === "error" && (
+              <p className="mt-4 text-red-600 font-semibold text-center">
+                {formMessage}
+              </p>
+            )}
           </div>
 
           {/* Right Image & Contact Info Section */}
@@ -64,15 +153,25 @@ const ContactUs = () => {
               <div className="text-gray-700 text-center mb-6">
                 <div className="flex items-center mb-4">
                   <FaMapMarkerAlt className="text-customYellow text-lg mr-2" />
-                  <span>674 Washington Avenue</span>
+                  <span>89 Church Road, Pukete, Hamilton 3200</span>
                 </div>
                 <div className="flex items-center mb-4">
                   <FaPhoneAlt className="text-customYellow text-lg mr-2" />
-                  <span>602-296-4143</span>
+                  <a
+                    href="tel:+6478380090"
+                    className="hover:text-customYellow transition-colors"
+                  >
+                    +64 7 838 0090
+                  </a>
                 </div>
                 <div className="flex items-center mb-4">
                   <FaEnvelope className="text-customYellow text-lg mr-2" />
-                  <span>johncontact123@gmail.com</span>
+                  <a
+                    href="mailto:info@gdcgroup.co.nz"
+                    className="hover:text-customYellow transition-colors"
+                  >
+                    info@gdcgroup.co.nz
+                  </a>
                 </div>
               </div>
             </div>
@@ -80,22 +179,22 @@ const ContactUs = () => {
             {/* Social Media Icons */}
             <div className="flex space-x-4 mt-4">
               <a
-                href="#"
+                href="https://www.facebook.com/GdcConsultantsLtd/"
                 className="bg-customYellow text-white p-3 rounded-full hover:bg-customGray transition duration-300"
               >
                 <FaFacebookF />
               </a>
               <a
-                href="#"
-                className="bg-customYellow text-white p-3 rounded-full hover:bg-customGray transition duration-300"
-              >
-                <FaTwitter />
-              </a>
-              <a
-                href="#"
+                href="https://nz.linkedin.com/company/gdcconsultants"
                 className="bg-customYellow text-white p-3 rounded-full hover:bg-customGray transition duration-300"
               >
                 <FaLinkedinIn />
+              </a>
+              <a
+                href="https://www.instagram.com/gdc_consultants/"
+                className="bg-customYellow text-white p-3 rounded-full hover:bg-customGray transition duration-300"
+              >
+                <FaInstagram />
               </a>
             </div>
           </div>

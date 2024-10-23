@@ -1,9 +1,10 @@
-import CaseStudiesHero from './google-ads/CaseStudiesHero';
+import CaseStudiesHero from '@/components/case-studies/google-ads/CaseStudiesHero';
 import ObjectivesSection from './google-ads/ObjectivesSection';
 import ChallengesSection from './google-ads/ChallengesSection';
 import KeyAchievements from './google-ads/KeyAchievements ';
 import GallerySection from './google-ads/GallerySection';
-import ClientOverview from './google-ads/ClientOverview';
+import CampaignStrategySection from './google-ads/CampaignStrategySection';
+import ClientOverview from './ClientOverview';
 
 const GoogleAdsCaseStudy = () => {
   return (
@@ -15,6 +16,7 @@ const GoogleAdsCaseStudy = () => {
       <ClientOverview />
       <ObjectivesSection />
       <ChallengesSection />
+      <CampaignStrategySection />
       <GallerySection />
       <KeyAchievements />  
     </section>

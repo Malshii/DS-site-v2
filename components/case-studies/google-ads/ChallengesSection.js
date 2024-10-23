@@ -61,7 +61,7 @@ const ChallengesSection = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           Before the September campaign launch,{" "}
-          <span className="font-semibold">GDC Consultants Pvt</span> faced
+          <span className="font-semibold">GDC Consultants Ltd</span> faced
           challenges with underperformance in certain ad groups and audience
           segments. Previous campaigns were not performing well and not properly
           optimized in terms of keywords and audiences. The engineering and
