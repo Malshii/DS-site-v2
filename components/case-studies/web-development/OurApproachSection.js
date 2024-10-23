@@ -9,7 +9,7 @@ import {
   FaServer, // Added FaServer for a placeholder for HostGator icon
 } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { SiNextdotjs, SiHubspot, SiGithub } from "react-icons/si"; 
+import { SiNextdotjs, SiHubspot, SiGithub } from "react-icons/si";
 
 const OurApproachSection = () => {
   const technicalObjectives = [
@@ -42,7 +42,6 @@ const OurApproachSection = () => {
       bgColor: "bg-white",
     },
   ];
-  
 
   // Updated key objectives for Design Overview based on the document
   const designObjectives = [
@@ -50,7 +49,7 @@ const OurApproachSection = () => {
       icon: <FaUsers size={40} className="text-customGray" />,
       title: "User-Centered Design",
       description:
-        "Created a visually appealing website layout that highlights GDC's core services, expertise, and portfolio in a way that resonates with the target audience.",
+        "Created a visually appealing website layout that highlights GDC&apos;s core services, expertise, and portfolio in a way that resonates with the target audience.",
       bgColor: "bg-customYellow",
     },
     {
@@ -141,7 +140,7 @@ const OurApproachSection = () => {
             transition={{ duration: 0.1, delay: "APPROACH".length * 0.1 }}
           >
             &nbsp;
-          </motion.span>             
+          </motion.span>
         </motion.h2>
 
         {/* Introduction Paragraph */}
@@ -154,7 +153,7 @@ const OurApproachSection = () => {
           and development, focusing on both aesthetics and functionality to
           create a seamless user experience for GDC Consultants. Our goal was to
           enhance the digital presence, improve engagement, and provide a
-          user-centered design that highlights GDC's core services and
+          user-centered design that highlights GDC&apos;s core services and
           expertise.
         </motion.p>
 
