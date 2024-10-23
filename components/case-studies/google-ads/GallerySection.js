@@ -9,6 +9,8 @@ const GallerySection = () => {
     { src: "/assets/images/google-ads/section1/2.png", alt: "Ad Overview 2" },
     { src: "/assets/images/google-ads/section1/3.png", alt: "Ad Overview 3" },
     { src: "/assets/images/google-ads/section1/4.png", alt: "Ad Overview 4" },
+    { src: "/assets/images/google-ads/section1/5.png", alt: "Ad Overview 5" },
+    { src: "/assets/images/google-ads/section1/6.png", alt: "Ad Overview 6" },
   ];
 
   const section2 = [
