@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function Footer() {
   return (
     <footer className="bg-white py-10 border-t border-gray-200 relative overflow-hidden">
-      <div className="container mx-auto px-20 grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10 py-10">
+      <div className="container mx-auto px-20 grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10 py-10">
         {/* Company Info Section */}
         <div className="flex flex-col items-start">
           <Image
@@ -15,8 +15,8 @@ export default function Footer() {
             height={160} // Next.js Image component requires width and height, but it can be controlled through CSS as well
             className="w-40 mb-4"
           />
-          <a href="mailto:hamilton@gdcgroup.co.nz" className="text-gray-600">
-            hamilton@gdcgroup.co.nz
+          <a href="mailto:digital@gdcgroup.co.nz" className="text-gray-600">
+            digital@gdcgroup.co.nz
           </a>
           <div className="flex space-x-4 mt-4">
             {/* Social Media Icons */}
@@ -39,15 +39,15 @@ export default function Footer() {
         <div>
           <h3 className="font-semibold mb-4">Services</h3>
           <ul className="text-gray-600 space-y-2">
-            <li>SEO Development</li>
-            <li>Business Growth</li>
-            <li>Social Media Management</li>
-            <li>Website Optimization</li>
+            <li>Website Development</li>
+            <li>Google Ads</li>
+            <li>SEO/ Copywriting</li>
+            <li>NFC Cards</li>
           </ul>
         </div>
 
         {/* Community Section */}
-        <div>
+        {/* <div>
           <h3 className="font-semibold mb-4">Community</h3>
           <ul className="text-gray-600 space-y-2">
             <li>Digital Marketing</li>
@@ -55,7 +55,7 @@ export default function Footer() {
             <li>Website Checkup</li>
             <li>Page Speed Test</li>
           </ul>
-        </div>
+        </div> */}
 
         {/* Newsletter Subscription */}
         <div>

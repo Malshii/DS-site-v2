@@ -31,7 +31,7 @@ export default function AboutTeamExpertise({ isDropdownOpen }) {
   return (
     <section
       ref={sectionRef}
-      className={`relative py-10 px-20 text-white bg-black opacity-80 transition-all duration-300 ${
+      className={`relative py-10 px-20 text-white bg-white transition-all duration-300 ${
         isDropdownOpen ? "mt-16" : ""
       }`}
     >
@@ -54,7 +54,7 @@ export default function AboutTeamExpertise({ isDropdownOpen }) {
               <h2 className="text-3xl md:text-4xl font-bold text-customYellow">
                 We are the experts of Team Communication
               </h2>
-              <p className="mt-4">
+              <p className="mt-4 text-customGray">
                 Far far away, behind the word mountains, far from the countries
                 Vokalia and Consonantia, there live the blind texts. Separated
                 they live in Bookmarksgrove right at the coast of the Semantics,
@@ -73,15 +73,15 @@ export default function AboutTeamExpertise({ isDropdownOpen }) {
                 <h3 className="text-4xl font-bold text-customYellow">
                   8,560,342
                 </h3>
-                <p className="mt-2">Projects</p>
+                <p className="mt-2 text-customGray">Projects</p>
               </div>
               <div>
                 <h3 className="text-4xl font-bold text-customYellow">4</h3>
-                <p className="mt-2">Services</p>
+                <p className="mt-2 text-customGray">Services</p>
               </div>
               <div>
                 <h3 className="text-4xl font-bold text-customYellow">1,500+</h3>
-                <p className="mt-2">Integrated partners</p>
+                <p className="mt-2 text-customGray">Integrated partners</p>
               </div>
             </motion.div>
           </motion.div>

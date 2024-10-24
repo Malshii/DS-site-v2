@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion"; // Importing framer-motion for animations
 import { useInView } from "react-intersection-observer"; // Importing useInView to trigger animations on view
 import {
@@ -42,10 +43,29 @@ const services = [
 ];
 
 const Services = () => {
+  const [isSingleColumn, setIsSingleColumn] = useState(false);
+
   const { ref, inView } = useInView({
     triggerOnce: false, // Animation will re-trigger every time the section comes into view
     threshold: 0.2, // The percentage of the component that needs to be visible to trigger the animation
   });
+
+  // Check the screen size and set the state
+  useEffect(() => {
+    const handleResize = () => {
+      // Check if the screen size matches the single-column layout
+      setIsSingleColumn(window.innerWidth < 640); // Tailwind's 'sm:' breakpoint is at 640px
+    };
+
+    // Initial check
+    handleResize();
+
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <section
@@ -82,7 +102,9 @@ const Services = () => {
                 return (
                   <motion.div
                     key={service.id}
-                    className="flex items-center"
+                    className={`flex items-center ${
+                      isSingleColumn ? "bg-customYellow rounded-lg p-4" : ""
+                    }`} // Conditionally add background color
                     initial={{ opacity: 0, y: 20 }}
                     animate={
                       inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }

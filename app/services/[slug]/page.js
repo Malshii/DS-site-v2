@@ -15,6 +15,7 @@ import SeoOverview from "@/components/services/seo/SeoOverview";
 import NFCBenefits from "@/components/services/nfc-cards/NFCBenefits";
 import NFCIntroductionSection from "@/components/services/nfc-cards/NFCIntroductionSection";
 import CaseStudyCard from "@/components/services/case-study/CaseStudyCard";
+import GoogleAdsProcessFlow from "@/components/services/google-ads/GoogleAdsProcessFlow";
 
 // Define or import serviceDetails at the top
 const serviceDetails = {
@@ -219,6 +220,7 @@ export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
       {service.heading === "Google Ads" && (
         <section id="next-section">
           <GoogleAdsBenefits />
+          <GoogleAdsProcessFlow />
           <CaseStudyCard
             heading={caseStudy.heading}
             statistic={caseStudy.statistic}

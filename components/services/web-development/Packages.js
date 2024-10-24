@@ -1,4 +1,4 @@
-import { FaGlobe, FaChartLine, FaCode } from "react-icons/fa"; // Importing the necessary icons
+import { FaGlobe, FaChartLine, FaCode, FaLaptop } from "react-icons/fa"; // Importing the necessary icons
 import { Button } from "@/components/ui/button"; // Assuming you're using shadcn Button
 import { GiCheckMark } from "react-icons/gi";
 import { motion } from "framer-motion";
@@ -6,6 +6,22 @@ import { motion } from "framer-motion";
 export default function Packages() {
   // Package data array
   const packages = [
+    {
+      title: "One Page Website",
+      features: [
+        "Single Scrollable Page",
+        "Essential SEO Setup",
+        "Fully Mobile Responsive Design",
+        "Custom Contact Form",
+        "1 Revision Round",
+        "Choose from: WordPress, HTML/CSS",
+      ],
+      description:
+        "Ideal for small businesses, startups, or personal projects looking for a quick and professional online presence. This package offers a sleek, single-scroll website that captures essential information and is fully optimized for mobile.",
+      buttonColor: "bg-yellow-400 hover:bg-gray-400",
+      lineColor: "bg-yellow-400", // Top line color for Starter
+      icon: <FaLaptop className="w-12 h-12 text-customLightGray m-4" />,
+    },
     {
       title: "Starter",
       features: [
@@ -77,7 +93,7 @@ export default function Packages() {
 
         {/* Packages Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: false, amount: 0.2 }}
@@ -91,7 +107,10 @@ export default function Packages() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.2 }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              whileHover={{ scale: 1.05, boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.15)" }}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.15)",
+              }}
             >
               {/* Top Color Line */}
               <div className={`w-full h-2 ${pkg.lineColor} rounded-t-lg`} />

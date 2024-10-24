@@ -6,14 +6,12 @@ import {
   FaPhoneAlt,
   FaEnvelope,
   FaFacebookF,
-  FaLinkedinIn,
-  FaInstagram,
 } from "react-icons/fa";
 import Image from "next/image";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
-    firstname: "",
+    full_name: "",
     email: "",
     message: "",
   });
@@ -37,8 +35,8 @@ const ContactUs = () => {
     const payload = {
       fields: [
         {
-          name: "firstname",
-          value: formData.firstname,
+          name: "full_name",
+          value: formData.full_name,
         },
         {
           name: "email",
@@ -62,19 +60,25 @@ const ContactUs = () => {
 
       if (response.ok) {
         setFormStatus("success");
-        setFormMessage("Thank you! Your message has been successfully submitted.");
+        setFormMessage(
+          "Thank you! Your message has been successfully submitted."
+        );
         setFormData({
-          firstname: "",
+          full_name: "",
           email: "",
           message: "",
         }); // Clear the form after submission
       } else {
         setFormStatus("error");
-        setFormMessage("There was an issue with your submission. Please try again.");
+        setFormMessage(
+          "There was an issue with your submission. Please try again."
+        );
       }
     } catch (error) {
       setFormStatus("error");
-      setFormMessage("There was an error submitting the form. Please check your internet connection and try again.");
+      setFormMessage(
+        "There was an error submitting the form. Please check your internet connection and try again."
+      );
     }
   };
 
@@ -96,10 +100,10 @@ const ContactUs = () => {
             <form onSubmit={handleSubmit}>
               <input
                 type="text"
-                name="firstname"
-                value={formData.firstname}
+                name="full_name"
+                value={formData.full_name}
                 onChange={handleChange}
-                placeholder="Enter your name"
+                placeholder="Enter your full name"
                 className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-customYellow"
               />
               <input
@@ -124,7 +128,7 @@ const ContactUs = () => {
                 Submit
               </button>
             </form>
-            
+
             {/* Success/Error Message */}
             {formStatus === "success" && (
               <p className="mt-4 text-green-600 font-semibold text-center">
@@ -150,7 +154,7 @@ const ContactUs = () => {
                 className="w-3/4 h-auto mb-4"
               />
 
-              <div className="text-gray-700 text-center mb-6">
+              <div className="text-customGray text-center font-bold mb-6">
                 <div className="flex items-center mb-4">
                   <FaMapMarkerAlt className="text-customYellow text-lg mr-2" />
                   <span>89 Church Road, Pukete, Hamilton 3200</span>
@@ -167,34 +171,26 @@ const ContactUs = () => {
                 <div className="flex items-center mb-4">
                   <FaEnvelope className="text-customYellow text-lg mr-2" />
                   <a
-                    href="mailto:info@gdcgroup.co.nz"
+                    href="mailto:digital@gdcgroup.co.nz"
                     className="hover:text-customYellow transition-colors"
                   >
-                    info@gdcgroup.co.nz
+                    digital@gdcgroup.co.nz
                   </a>
                 </div>
               </div>
             </div>
 
             {/* Social Media Icons */}
-            <div className="flex space-x-4 mt-4">
+            <div className="flex items-center space-x-2 mt-4">
+              {/* Follow Us Text */}
+              <span className="text-customGray text-lg font-semibold">Follow us on:</span>
+
+              {/* Icon Container */}
               <a
-                href="https://www.facebook.com/GdcConsultantsLtd/"
+                href="https://www.facebook.com/profile.php?id=61567398772169&mibextid=ZbWKwL"
                 className="bg-customYellow text-white p-3 rounded-full hover:bg-customGray transition duration-300"
               >
                 <FaFacebookF />
-              </a>
-              <a
-                href="https://nz.linkedin.com/company/gdcconsultants"
-                className="bg-customYellow text-white p-3 rounded-full hover:bg-customGray transition duration-300"
-              >
-                <FaLinkedinIn />
-              </a>
-              <a
-                href="https://www.instagram.com/gdc_consultants/"
-                className="bg-customYellow text-white p-3 rounded-full hover:bg-customGray transition duration-300"
-              >
-                <FaInstagram />
               </a>
             </div>
           </div>

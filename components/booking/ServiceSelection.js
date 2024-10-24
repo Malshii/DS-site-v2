@@ -2,21 +2,17 @@ import { useState, useEffect } from "react";
 import Modal from "./Modal";
 import CalendarComponent from "./CalendarComponent";
 import GuestForm from "./GuestForm";
-import {
-  FaLaptopCode,
-  FaSearch,
-  FaPaintBrush,
-  FaBullhorn,
-} from "react-icons/fa";
+import { FaLaptopCode, FaSearch, FaPaintBrush, FaBullhorn } from "react-icons/fa";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function ServiceSelection({ service, setService }) {
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal
-  const [stage, setStage] = useState(1); // Track the stage (1 = calendar, 2 = form, 3 = success)
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [stage, setStage] = useState(1);
   const [selectedDate, setSelectedDate] = useState("");
   const [availableDates, setAvailableDates] = useState([]);
-  const [currentMonth, setCurrentMonth] = useState(new Date()); // Set current month
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [bookedSlots, setBookedSlots] = useState({});
   const [guestInfo, setGuestInfo] = useState({
     name: "",
     email: "",
@@ -35,34 +31,57 @@ export default function ServiceSelection({ service, setService }) {
       value: "Website Development",
       label: "Website Development",
       icon: <FaLaptopCode />,
+      meetingLink: "https://meetings.hubspot.com/malshi-website-dev", // Example unique link per service
     },
-    { value: "Google Ads", label: "Google Ads", icon: <FaBullhorn /> },
+    {
+      value: "Google Ads",
+      label: "Google Ads",
+      icon: <FaBullhorn />,
+      meetingLink: "https://meetings.hubspot.com/malshi-google-ads",
+    },
     {
       value: "SEO / Copywriting",
       label: "SEO / Copywriting",
       icon: <FaSearch />,
+      meetingLink: "https://meetings.hubspot.com/malshi-seo-copywriting",
     },
-    { value: "NFC Cards", label: "NFC Cards", icon: <FaPaintBrush /> },
+    {
+      value: "NFC Cards",
+      label: "NFC Cards",
+      icon: <FaPaintBrush />,
+      meetingLink: "https://meetings.hubspot.com/malshi-nfc-cards",
+    },
   ];
 
   const handleSelectService = (selectedService) => {
     setService(selectedService);
-    setIsModalOpen(true); // Open modal on service select
+    setIsModalOpen(true);
   };
 
   const handleNextStage = () => {
     if (stage === 1 && selectedDate) {
-      setStage(2); // Move to form stage
+      // Check if the selected slot is already booked
+      if (bookedSlots[selectedDate]) {
+        alert("This date and time are already booked. Please select another slot.");
+        return;
+      }
+      setStage(2);
     } else if (stage === 2) {
-      setStage(3); // Move to success stage
+      setStage(3);
     }
   };
 
   const handleFinish = () => {
-    setIsModalOpen(false); // Close modal on finish
-    setStage(1); // Reset stage
-    setGuestInfo({ name: "", email: "", phone: "" }); // Clear form
-    setSelectedDate(""); // Clear selected date
+    // Mark the selected date as booked for the specific service
+    setBookedSlots((prev) => ({
+      ...prev,
+      [selectedDate]: true,
+    }));
+
+    setIsModalOpen(false);
+    setStage(1);
+    setGuestInfo({ name: "", email: "", phone: "" });
+    setSelectedDate("");
   };
 
   const handlePrevMonth = () => {
@@ -96,7 +115,7 @@ export default function ServiceSelection({ service, setService }) {
       const formattedDate = d.toISOString().split("T")[0];
       dates.push({
         date: formattedDate,
-        isUnavailable: unavailableDates.includes(formattedDate),
+        isUnavailable: unavailableDates.includes(formattedDate) || bookedSlots[formattedDate],
         isPast: d < today,
       });
     }
@@ -161,7 +180,7 @@ export default function ServiceSelection({ service, setService }) {
               selectedService={service}
               handleGuestFormSubmit={(e) => {
                 e.preventDefault();
-                handleNextStage(); // Move to success stage after form submission
+                handleNextStage();
               }}
             />
           </>
@@ -172,7 +191,7 @@ export default function ServiceSelection({ service, setService }) {
             <div
               className="relative p-10 rounded-lg"
               style={{
-                backgroundImage: "url('/assets/images/success-background.gif')", // Replace with your gif path
+                backgroundImage: "url('/assets/images/success-background.gif')",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -181,11 +200,11 @@ export default function ServiceSelection({ service, setService }) {
               {/* Success Image */}
               <div className="flex justify-center mb-6">
                 <Image
-                  src="/assets/images/finish-consultant.png" // Make sure to have this image in your project
+                  src="/assets/images/finish-consultant.png"
                   alt="Success"
-                  width={240} // 240px corresponds to w-60
-                  height={240} // 240px corresponds to h-60
-                  className="w-60 h-60" // Retain the same styling
+                  width={240}
+                  height={240}
+                  className="w-60 h-60"
                 />
               </div>
 
@@ -202,8 +221,7 @@ export default function ServiceSelection({ service, setService }) {
               </motion.div>
 
               <p className="text-center text-customGray mb-6">
-                Your booking for {guestInfo.name} on {selectedDate} is
-                confirmed.
+                Your booking for {guestInfo.name} on {selectedDate} is confirmed.
               </p>
 
               <button

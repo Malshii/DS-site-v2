@@ -1,5 +1,6 @@
 import AboutHeader from "@/components/about/AboutHeader";
 import AboutTeamExpertise from "@/components/about/AboutTeamExpertise";
+import TeamPage from "@/components/about/TeamPage";
 import CallToAction from "@/components/home/CallToAction";
 
 export default function AboutUs({ isDropdownOpen }) {
@@ -20,6 +21,7 @@ export default function AboutUs({ isDropdownOpen }) {
         {/* Pass isDropdownOpen to AboutHeader */}
         <AboutHeader isDropdownOpen={isDropdownOpen} />
         <AboutTeamExpertise />
+        <TeamPage />
         <CallToAction />
       </div>
     </section>

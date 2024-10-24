@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-const CaseStudiesHero = () => {
+const CaseStudiesHero = ({isServicesOpen}) => {
   const leftContentVariants = {
     hidden: { opacity: 0, x: -50 },
     visible: {
@@ -40,7 +40,9 @@ const CaseStudiesHero = () => {
       {/* Content */}
       <div
         id="move-down"
-        className="relative z-10 w-full container mx-auto flex flex-col md:flex-row items-center justify-between gap-10 pt-20 px-4 sm:px-8 md:px-16"
+        className={`relative z-10 w-full container mx-auto flex flex-col md:flex-row items-center justify-between gap-10 pt-20 px-4 sm:px-8 md:px-16 ${
+          isServicesOpen ? "mt-40" : ""
+        }`}
       >
         {/* Left Content */}
         <motion.div
