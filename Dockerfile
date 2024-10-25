@@ -1,23 +1,26 @@
-# Use the official Node.js image as the base
+# Base image
 FROM node:18-alpine
 
-# Set the working directory
+# Update Alpine and install curl and bash
+RUN apk update && apk add --no-cache curl bash
+
+# Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy the rest of the application to the container
+# Copy the rest of the application
 COPY . .
 
 # Build the Next.js app
 RUN npm run build
 
-# Expose the necessary port (3000 by default for Next.js)
+# Expose necessary port
 EXPOSE 3000
 
-# Set the command to run the application
+# Start the application
 CMD ["npm", "run", "start"]
