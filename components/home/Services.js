@@ -73,7 +73,7 @@ const Services = () => {
       ref={ref} // Attach the ref to the section
       className="about-us section py-10 sm:py-20 lg:py-40 bg-cover bg-no-repeat bg-center"
       style={{
-        backgroundImage: "url('/assets/images/bg.png')", // Update the path to your background image
+        backgroundImage: "url('/assets/images/bg.webp')", // Update the path to your background image
       }}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-10">
@@ -86,7 +86,7 @@ const Services = () => {
             transition={{ duration: 1, delay: 0.2 }}
           >
             <Image
-              src="/assets/images/services.png" // Update the path to your actual image
+              src="/assets/images/services.webp" // Update the path to your actual image
               alt="Person Graphic"
               width={600} // Adjust the width for responsiveness
               height={600} // Adjust the height for responsiveness

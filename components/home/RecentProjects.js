@@ -12,17 +12,17 @@ export default function RecentProjects() {
     {
       title: "Project One",
       description: "Branding & Design",
-      image: "/assets/images/project-1.jpeg",
+      image: "/assets/images/project-1.webp",
     },
     {
       title: "Project Two",
       description: "SEO & Marketing",
-      image: "/assets/images/project-1.jpeg",
+      image: "/assets/images/project-1.webp",
     },
     {
       title: "Project Three",
       description: "Web Development",
-      image: "/assets/images/project-1.jpeg",
+      image: "/assets/images/project-1.webp",
     },
   ];
 

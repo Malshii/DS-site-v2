@@ -8,7 +8,7 @@ export default function AboutUs({ isDropdownOpen }) {
     <section
       className="relative bg-cover bg-center bg-no-repeat min-h-screen"
       style={{
-        backgroundImage: "url('/assets/images/global-bg.jpg')",
+        backgroundImage: "url('/assets/images/global-bg.webp')",
         backgroundAttachment: "fixed", // Keeps background fixed
       }}
     >

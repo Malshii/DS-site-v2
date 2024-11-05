@@ -85,7 +85,7 @@ const ContactUs = () => {
   return (
     <section
       className="flex justify-center items-center min-h-screen p-6 relative bg-cover bg-center"
-      style={{ backgroundImage: "url('/assets/images/contact-bg.png')" }} // Replace with the actual path
+      style={{ backgroundImage: "url('/assets/images/contact-bg.webp')" }} // Replace with the actual path
     >
       <div id="move-down" className="py-20">
         <div className="bg-opacity-90 backdrop-blur-md rounded-lg shadow-xl p-8 w-full max-w-5xl flex flex-col md:flex-row relative overflow-hidden">
@@ -146,7 +146,7 @@ const ContactUs = () => {
           <div className="flex-1 flex flex-col items-center justify-between mt-8 md:mt-0 md:pl-6 relative">
             <div className="flex flex-col items-center">
               <Image
-                src="/assets/images/contact-form-image.png" // Replace with actual image path
+                src="/assets/images/contact-form-image.webp" // Replace with actual image path
                 alt="Contact Illustration"
                 width={0}
                 height={0}

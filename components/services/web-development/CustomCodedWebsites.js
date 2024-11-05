@@ -23,7 +23,7 @@ export default function CustomCodedWebsites() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url('/assets/images/services/6.png')`,
+          backgroundImage: `url('/assets/images/services/6.webp')`,
         }}
       >
         {/* Overlay */}

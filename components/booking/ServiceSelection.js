@@ -200,7 +200,7 @@ export default function ServiceSelection({ service, setService }) {
               {/* Success Image */}
               <div className="flex justify-center mb-6">
                 <Image
-                  src="/assets/images/finish-consultant.png"
+                  src="/assets/images/finish-consultant.webp"
                   alt="Success"
                   width={240}
                   height={240}

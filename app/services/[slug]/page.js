@@ -22,22 +22,22 @@ const serviceDetails = {
   development: {
     heading: "Website Development",
     description: "Build professional and engaging websites.",
-    image: "/assets/images/services/6.png",
+    image: "/assets/images/services/6.webp",
   },
   "google-ads": {
     heading: "Google Ads",
     description: "Optimize your ads to reach the right audience.",
-    image: "/assets/images/services/7.png",
+    image: "/assets/images/services/7.webp",
   },
   seo: {
     heading: "SEO/ Copywriting",
     description: "Enhance your content for better search rankings.",
-    image: "/assets/images/services/8.png",
+    image: "/assets/images/services/8.webp",
   },
   "nfc-cards": {
     heading: "NFC Cards",
     description: "Innovate with contactless technology.",
-    image: "/assets/images/services/9.png",
+    image: "/assets/images/services/9.webp",
   },
 };
 
@@ -48,7 +48,7 @@ const serviceCaseStudies = {
     description:
       "The newly redesigned website brought a modern, user-centered design that significantly improved navigation, mobile responsiveness, and lead generation capabilities. GDC Consultants now experience enhanced visibility and increase in user engagement thanks to clear calls-to-action and optimized user flow.",
     buttonLabel: "View Success Story",
-    imagePath: "/assets/images/website-dev/gdc-consultants.png",
+    imagePath: "/assets/images/website-dev/gdc-consultants.webp",
     caseStudyPath: "/case-studies/web-development",
   },
   "google-ads": {
@@ -57,7 +57,7 @@ const serviceCaseStudies = {
     description:
       "Website traffic increased from August to September after the implementation of Google Ads.",
     buttonLabel: "View Success Story",
-    imagePath: "/assets/images/google-ads/gdc-ads.png",
+    imagePath: "/assets/images/google-ads/gdc-ads.webp",
     caseStudyPath: "/case-studies/google-ads",
   },
   seo: {
@@ -66,7 +66,7 @@ const serviceCaseStudies = {
     description:
       "Client’s content consistently ranks in the top 5 of search engines.",
     buttonLabel: "See the Results",
-    imagePath: "/assets/images/seo-case-study.png",
+    imagePath: "/assets/images/seo-case-study.webp",
     caseStudyPath: "/case-studies/seo",
   },
   "nfc-cards": {
@@ -75,7 +75,7 @@ const serviceCaseStudies = {
     description:
       "Engaged over 150 customers with NFC technology in the first month.",
     buttonLabel: "Explore More",
-    imagePath: "/assets/images/nfc-case-study.png",
+    imagePath: "/assets/images/nfc-case-study.webp",
     caseStudyPath: "/case-studies/nfc",
   },
 };
@@ -167,7 +167,7 @@ export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
 
           {/* Call to Action Button */}
           <a
-            href="#contact"
+            href="/contact-us"
             className="border-2 text-white px-6 py-3 rounded-full transition-all"
           >
             Contact Now
@@ -176,7 +176,7 @@ export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
 
         {/* Down Arrow Icon with Motion */}
         <motion.div
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 cursor-pointer"
+          className="absolute bottom-10 transform -translate-x-1/2 z-20 cursor-pointer"
           animate={{ y: [0, 10, 0] }} // Creates a bounce effect
           transition={{ repeat: Infinity, duration: 1.5 }}
           onClick={handleScrollDown}

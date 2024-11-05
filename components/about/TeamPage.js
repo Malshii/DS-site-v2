@@ -3,73 +3,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import Head from "next/head";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 // Define the teamMembers array
 const teamMembers = [
   {
-    image: "/assets/images/team/Clement-Fernando-1.webp",
-    name: "Clement Fernando",
-    position: "Managing Director",
-    qualifications: "MSc (Eng), CPEng, IntPE(NZ), CMEngNZ, APEC Engineer",
-  },
-  {
-    image: "/assets/images/team/Alin-Poanta-1.webp",
-    name: "Alin Poanta",
-    position: "Senior Associate - Lead Structural Engineer",
-    qualifications: "BE(Civil) CPEng, CMEngNZ, IntPE(NZ)",
-  },
-  {
-    image: "/assets/images/team/Yi-Su-1.webp",
-    name: "Yi Su",
-    position: "Senior Associate - Principal Structural Engineer",
-    qualifications:
-      "BE(Hons), MEngSt(Hons), CPEng, CMEngNZ, IntPE(NZ)/APEC Engineer",
-  },
-  {
-    image: "/assets/images/team/Janine-Barrett.webp",
-    name: "Janine Barrett",
-    position: "Group Manager: Finance & Administration (Hamilton)",
-    qualifications:
-      "Bachelor of Communications, Post Grad diploma in Management Studies",
-  },
-];
-
-// Define the subTeamMembers array
-const subTeamMembers = [
-  {
-    image: "/images/team/Tom-Fox.webp",
-    name: "Tom Fox",
-    position: "Architectural Manager",
-    qualifications: "NDIP (Architectural), NDIP (Building Control Surveying)",
-  },
-  {
-    image: "/images/team/Joel-Bishop.webp",
-    name: "Joel Bishop",
-    position: "Planning Manager",
-    qualifications:
-      "Bachelor of Environmental Planning (University of Waikato)",
-  },
-  {
-    image: "/images/team/Maurice-Bellantoni.webp",
-    name: "Maurice Bellantoni",
-    position: "Senior Architectural Designer",
-    qualifications:
-      "Bachelor & PhD in Architecture, Master in Urban Planning, Residential Design & Project Management",
-  },
-  {
-    image: "/images/team/John-Kim-1.webp",
-    name: "John Kim",
-    position: "Geotechnical Manager",
-    qualifications: "MEngNZ, MEngSt (University of Canterbury)",
-  },
-  {
     image: "/assets/images/team/Danyon-Fernando.webp",
     name: "Danyon Fernando",
-    position: "Director of Operations",
+    position: "Business Analyst",
     qualifications:
       "Bachelor of Arts with Honours (Criminology) - Victoria University of Wellington",
   },
@@ -81,23 +22,19 @@ const subTeamMembers = [
       "Bachelor of Commerce (BCom) - Victoria University of Wellington",
   },
   {
-    image: "/assets/images/team/Bethany-Rutter.webp",
-    name: "Bethany Rutter",
-    position: "Marketing Executive",
-    qualifications: "Bachelor of Applied Management (BAM)",
+    image: "/assets/images/team/Ruwani.webp",
+    name: "Ruwani Kokawala",
+    position: "Google Ads Specialist/ SEO",
+    qualifications:
+      "Master of Science Technology Management - Southeast Missouri State University, USA",
   },
   {
-    image: "/assets/images/team/Kasia-Irvine.webp",
-    name: "Kasia Irvine",
-    position: "Office Manager (Thames & Whitianga)",
-    qualifications: "",
-  },
-  {
-    image: "/assets/images/team/Dion Herniman.webp",
-    name: "Dion Herniman",
-    position: "Rotorua Branch Manager",
-    qualifications: "University of Waikato ,BE Civil(Hons)",
-  },
+    image: "/assets/images/team/Malshi.webp",
+    name: "Malshi Kulasinghe",
+    position: "Web Developer/ App Development",
+    qualifications:
+      "Bachelor of Science (Hons) Information Technology & Management - University of Moratuwa, Sri Lanka",
+  }
 ];
 
 const TeamPage = () => {
@@ -183,7 +120,7 @@ const TeamPage = () => {
       <div className="min-h-screen">
         <header className="pt-8">
           <div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-10">
-            <h1 className="text-6xl font-bold text-center text-customYellow">
+            <h1 className="text-6xl font-bold text-center text-white">
               Our Core Team
             </h1>
           </div>
@@ -195,13 +132,13 @@ const TeamPage = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-4 gap-8"
+            className="max-w-screen-2xl mx-auto px-4 md:px-6 lg:px-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-4 gap-10"
           >
             {teamMembers.map((member, index) => (
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.05 }}
-                className="relative group overflow-hidden shadow-md cursor-pointer rounded-lg"
+                className="relative group overflow-hidden shadow-lg cursor-pointer rounded-xl"
                 onMouseEnter={() => toggleOverlay(index)} // For desktop hover
                 onMouseLeave={() => toggleOverlay(null)} // For desktop hover leave
                 onTouchStart={(e) => handleTouchEvent(e, index)} // For touch devices
@@ -209,12 +146,12 @@ const TeamPage = () => {
                 <Image
                   src={member.image}
                   alt={member.name}
-                  width={400}
-                  height={400}
-                  className="object-cover w-full h-full transition-transform duration-500"
+                  width={600}
+                  height={600}
+                  className="object-cover w-full h-[400px] transition-transform duration-500"
                 />
                 {/* Text container with overlay, hide on hover */}
-                <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-60 py-4 px-4 z-10 group-hover:opacity-0 transition-opacity duration-300 h-20 flex flex-col justify-center">
+                <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-60 py-4 px-4 z-10 group-hover:opacity-0 transition-opacity duration-300 h-28 flex flex-col justify-center">
                   <h4 className="text-white text-center text-xl font-semibold">
                     {member.name}
                   </h4>
@@ -224,7 +161,7 @@ const TeamPage = () => {
                 </div>
                 {/* Full overlay on hover */}
                 <motion.div
-                  className={`absolute inset-0 bg-customYellow bg-opacity-80 flex items-center justify-center rounded-lg transition-opacity duration-300 ${
+                  className={`absolute inset-0 bg-customYellow bg-opacity-80 flex items-center justify-center rounded-xl transition-opacity duration-300 ${
                     activeCoreIndex === index ? "opacity-100" : "opacity-0"
                   }`}
                 >
@@ -236,102 +173,6 @@ const TeamPage = () => {
                 </motion.div>
               </motion.div>
             ))}
-          </motion.div>
-        </section>
-
-        {/* Sub Team Section */}
-        <section className="relative py-8">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="max-w-screen-lg mx-auto px-4 md:px-6 lg:px-10"
-          >
-            <div className="relative">
-              {/* Left Arrow */}
-              <button
-                onClick={() => scrollSubTeamSlider("left")}
-                className="absolute -left-10 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full shadow-lg p-2"
-              >
-                <FiChevronLeft className="h-6 w-6 text-customGray" />
-              </button>
-
-              {/* Right Arrow */}
-              <button
-                onClick={() => scrollSubTeamSlider("right")}
-                className="absolute -right-10 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full shadow-lg p-2"
-              >
-                <FiChevronRight className="h-6 w-6 text-customGray" />
-              </button>
-
-              <div
-                ref={subTeamSliderRef}
-                className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide py-4"
-                style={{ scrollSnapType: "x mandatory" }}
-              >
-                {subTeamMembers.map((member, index) => (
-                  <motion.div
-                    key={index}
-                    onMouseEnter={() => toggleOverlay(index)} // For desktop hover
-                    onMouseLeave={() => toggleOverlay(null)} // For desktop hover leave
-                    onTouchStart={(e) => handleTouchEvent(e, index)} // For touch devices
-                    whileHover={{ scale: 1.05 }}
-                    className="relative group overflow-hidden cursor-pointer w-full md:w-[260px] flex-shrink-0"
-                    style={{ scrollSnapAlign: "start" }}
-                  >
-                    <div className="w-full h-auto aspect-w-4 aspect-h-3 overflow-hidden">
-                      <Image
-                        src={member.image}
-                        alt={member.name}
-                        width={320}
-                        height={320}
-                        className="object-cover w-full h-full rounded-lg transition-transform duration-500"
-                      />
-                    </div>
-
-                    {/* Background Overlay for Better Readability */}
-                    <div
-                      className={`absolute bottom-0 left-0 right-0 w-full p-2 flex flex-col justify-center items-center h-20 md:h-24 transition-opacity duration-300 ${
-                        activeSubIndex === index
-                          ? "opacity-100"
-                          : "opacity-100 group-hover:opacity-0"
-                      }`}
-                    >
-                      {/* Semi-transparent Overlay */}
-                      <div className="absolute inset-0 bg-black bg-opacity-50 rounded-lg z-0"></div>
-
-                      <div className="relative z-10">
-                        <h4 className="text-white text-center text-md md:text-lg font-bold">
-                          {member.name}
-                        </h4>
-                        <p className="text-customYellow text-center text-xs md:text-sm">
-                          {member.position}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Full overlay on hover */}
-                    <motion.div
-                      className={`absolute inset-0 bg-customYellow bg-opacity-70 flex items-center justify-center rounded-lg transition-opacity duration-300 ${
-                        activeSubIndex === index
-                          ? "opacity-100"
-                          : "opacity-0 group-hover:opacity-100"
-                      }`}
-                    >
-                      <div className="text-white text-center px-4 w-full">
-                        <h4 className="text-lg md:text-xl font-bold">
-                          {member.name}
-                        </h4>
-                        <p className="text-sm md:text-md">{member.position}</p>
-                        <p className="text-xs md:text-sm mt-2">
-                          {member.qualifications}
-                        </p>
-                      </div>
-                    </motion.div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
           </motion.div>
         </section>
       </div>

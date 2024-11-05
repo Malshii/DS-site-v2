@@ -50,9 +50,6 @@ const Banner = ({ isServicesOpen, isAboutOpen }) => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <h5 className="text-md sm:text-lg md:text-xl text-customGray font-semibold uppercase mb-2">
-              Welcome to GDC Digital Solutions
-            </h5>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-800">
               We Make{" "}
               <motion.span
@@ -69,12 +66,6 @@ const Banner = ({ isServicesOpen, isAboutOpen }) => {
 
             {/* Buttons Section */}
             <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button
-                className="px-6 py-3 bg-customYellow text-white font-semibold hover:bg-customLightGray transition-colors rounded-full"
-                onClick={() => console.log("Analyze Your Site clicked")}
-              >
-                Analyze Your Site
-              </button>
               <Link
                 href="/schedule-consultation"
                 className="px-6 py-3 border-2 border-customGray text-customGray font-semibold hover:bg-customLightGray hover:text-white transition-colors rounded-full"
@@ -92,7 +83,7 @@ const Banner = ({ isServicesOpen, isAboutOpen }) => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <Image
-              src="/assets/images/hero-bg.png"
+              src="/assets/images/hero-bg.webp"
               alt="team meeting"
               width={900}
               height={600}

@@ -9,7 +9,7 @@ export default function Footer() {
         {/* Company Info Section */}
         <div className="flex flex-col items-start">
           <Image
-            src="/assets/images/Digital Solution.png" // Path to your image file
+            src="/assets/images/Digital Solution.webp" // Path to your image file
             alt="GDC DS Logo"
             width={160} // Corresponds to `w-40` (40 * 4 = 160px)
             height={160} // Next.js Image component requires width and height, but it can be controlled through CSS as well

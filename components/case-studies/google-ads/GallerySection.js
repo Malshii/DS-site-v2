@@ -5,21 +5,21 @@ import Image from "next/image";
 
 const GallerySection = () => {
   const section1 = [
-    { src: "/assets/images/google-ads/section1/1.png", alt: "Ad Overview 1" },
-    { src: "/assets/images/google-ads/section1/2.png", alt: "Ad Overview 2" },
-    { src: "/assets/images/google-ads/section1/3.png", alt: "Ad Overview 3" },
-    { src: "/assets/images/google-ads/section1/4.png", alt: "Ad Overview 4" },
-    { src: "/assets/images/google-ads/section1/5.png", alt: "Ad Overview 5" },
-    { src: "/assets/images/google-ads/section1/6.png", alt: "Ad Overview 6" },
+    { src: "/assets/images/google-ads/section1/1.webp", alt: "Ad Overview 1" },
+    { src: "/assets/images/google-ads/section1/2.webp", alt: "Ad Overview 2" },
+    { src: "/assets/images/google-ads/section1/3.webp", alt: "Ad Overview 3" },
+    { src: "/assets/images/google-ads/section1/4.webp", alt: "Ad Overview 4" },
+    { src: "/assets/images/google-ads/section1/5.webp", alt: "Ad Overview 5" },
+    { src: "/assets/images/google-ads/section1/6.webp", alt: "Ad Overview 6" },
   ];
 
   const section2 = [
-    { src: "/assets/images/google-ads/section2/1.png", alt: "Ad Overview 1" },
-    { src: "/assets/images/google-ads/section2/2.png", alt: "Ad Overview 2" },
-    { src: "/assets/images/google-ads/section2/3.png", alt: "Ad Overview 3" },
-    { src: "/assets/images/google-ads/section2/4.png", alt: "Ad Overview 4" },
-    { src: "/assets/images/google-ads/section2/5.png", alt: "Ad Overview 5" },
-    { src: "/assets/images/google-ads/section2/6.png", alt: "Ad Overview 6" },
+    { src: "/assets/images/google-ads/section2/1.webp", alt: "Ad Overview 1" },
+    { src: "/assets/images/google-ads/section2/2.webp", alt: "Ad Overview 2" },
+    { src: "/assets/images/google-ads/section2/3.webp", alt: "Ad Overview 3" },
+    { src: "/assets/images/google-ads/section2/4.webp", alt: "Ad Overview 4" },
+    { src: "/assets/images/google-ads/section2/5.webp", alt: "Ad Overview 5" },
+    { src: "/assets/images/google-ads/section2/6.webp", alt: "Ad Overview 6" },
   ];
 
   // Animation variants

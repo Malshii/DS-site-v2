@@ -97,7 +97,7 @@ function ServiceCard({ title, description, variants }) {
   duration-500 ease-in-out transform group-hover:-translate-y-full"
       >
         <Image
-          src="/assets/images/feedback.png" // Ensure the image path is correct and high-quality
+          src="/assets/images/feedback.webp" // Ensure the image path is correct and high-quality
           alt={title}
           width={120} // Set width for the image
           height={120} // Set height for the image

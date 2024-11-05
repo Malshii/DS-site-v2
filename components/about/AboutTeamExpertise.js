@@ -52,18 +52,18 @@ export default function AboutTeamExpertise({ isDropdownOpen }) {
               transition={{ delay: 0.3, duration: 0.8 }}
             >
               <h2 className="text-3xl md:text-4xl font-bold text-customYellow">
-                We are the experts of Team Communication
+                We are the experts in driving digital growth through innovative
+                solutions
               </h2>
               <p className="mt-4 text-customGray">
-                Far far away, behind the word mountains, far from the countries
-                Vokalia and Consonantia, there live the blind texts. Separated
-                they live in Bookmarksgrove right at the coast of the Semantics,
-                a large language ocean.
+                From web development and SEO to targeted ad campaigns and
+                cutting-edge technology, our team excels at crafting strategies
+                that empower businesses to thrive in the digital landscape.
               </p>
             </motion.div>
 
             {/* Stats Section */}
-            <motion.div
+            {/* <motion.div
               className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center"
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : { opacity: 0 }}
@@ -83,18 +83,20 @@ export default function AboutTeamExpertise({ isDropdownOpen }) {
                 <h3 className="text-4xl font-bold text-customYellow">1,500+</h3>
                 <p className="mt-2 text-customGray">Integrated partners</p>
               </div>
-            </motion.div>
+            </motion.div> */}
           </motion.div>
 
           {/* Right Column: Image Section */}
           <motion.div
             className="flex justify-center relative z-50"
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            animate={
+              isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
+            }
             transition={{ duration: 1, delay: 0.6 }}
           >
             <Image
-              src="/assets/images/about-us-video.gif" // Ensure the path is correct
+              src="/assets/images/who-we-are.webp" // Ensure the path is correct
               alt="About Us"
               width={900} // Adjust size as needed
               height={900}

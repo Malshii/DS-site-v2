@@ -6,11 +6,7 @@ import Link from "next/link";
 import {
   CodeBracketIcon,
   CurrencyDollarIcon,
-  GlobeAltIcon,
-  ChartBarIcon,
-  ShareIcon,
   DevicePhoneMobileIcon,
-  LightBulbIcon,
   PresentationChartLineIcon,
   ChevronDownIcon,
   Bars3Icon,
@@ -23,7 +19,6 @@ import Image from "next/image";
 
 const Header = ({ setIsDropdownOpen }) => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isCaseStudiesOpen, setIsCaseStudiesOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false); // For mobile menu toggle
@@ -83,10 +78,10 @@ const Header = ({ setIsDropdownOpen }) => {
             <Image
               src={
                 pathname === "/"
-                  ? "/assets/images/Digital Solution.png"
+                  ? "/assets/images/Digital Solution.webp"
                   : isScrolled
-                  ? "/assets/images/Digital Solution.png"
-                  : "/assets/images/Digital Solution Logo.png"
+                  ? "/assets/images/Digital Solution.webp"
+                  : "/assets/images/Digital Solution Logo.webp"
               }
               alt="GDC Digital Solutions Logo"
               width={200}
@@ -272,7 +267,7 @@ const Header = ({ setIsDropdownOpen }) => {
                   pathname === "/"
                     ? isScrolled
                       ? "text-customGray hover:text-customYellow"
-                      : "text-white hover:text-customGray"
+                      : "text-customGray hover:text-customYellow"
                     : isScrolled
                     ? "text-customGray hover:text-customYellow"
                     : "text-white hover:text-customYellow"

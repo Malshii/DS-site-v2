@@ -73,7 +73,7 @@ const NFCIntroductionSection = () => {
             transition={{ duration: 0.8 }}
           >
             <Image
-              src="/assets/images/nfc/nfc-bg.png" // Replace with the actual image path
+              src="/assets/images/nfc/nfc-bg.webp" // Replace with the actual image path
               alt="NFC Card Illustration"
               width={500} // Adjust width as needed
               height={400} // Adjust height as needed

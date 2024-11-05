@@ -5,9 +5,9 @@ import Image from "next/image";
 
 const GallerySection = () => {
   const section = [
-    { src: "/assets/images/website-dev/gallery/1.png", alt: "Web Overview 1" },
-    { src: "/assets/images/website-dev/gallery/2.png", alt: "Web Overview 2" },
-    { src: "/assets/images/website-dev/gallery/3.png", alt: "Web Overview 3" },
+    { src: "/assets/images/website-dev/gallery/1.webp", alt: "Web Overview 1" },
+    { src: "/assets/images/website-dev/gallery/2.webp", alt: "Web Overview 2" },
+    { src: "/assets/images/website-dev/gallery/3.webp", alt: "Web Overview 3" },
   ];
 
   // Animation variants
