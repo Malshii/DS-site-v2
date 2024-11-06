@@ -20,6 +20,7 @@ const geistMono = localFont({
 });
 
 const hubspotPortalId = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
+const hubspotChatflowId = process.env.NEXT_PUBLIC_TICKET_BOT_ID; 
 
 export default function RootLayout({ children }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -34,7 +35,6 @@ export default function RootLayout({ children }) {
       div.style.transition = "margin-top 0.3s ease"; // Smooth transition
     });
 
-    // Dynamically load HubSpot script if it doesn't exist already
     const existingScript = document.getElementById("hs-script-loader");
     if (!existingScript) {
       const script = document.createElement("script");
@@ -42,6 +42,13 @@ export default function RootLayout({ children }) {
       script.id = "hs-script-loader";
       script.async = true;
       script.defer = true;
+      script.onload = () => {
+        // Initialize chatflow with the specific bot ID
+        window.HubSpotConversations?.widget.load({
+          chatflowId: hubspotChatflowId,
+          portalId: hubspotPortalId,
+        });
+      };
       document.body.appendChild(script);
     }
   }, [isDropdownOpen]);
