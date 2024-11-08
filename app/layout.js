@@ -1,7 +1,5 @@
 "use client";
 import localFont from "next/font/local";
-import Head from "next/head";
-import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -51,11 +49,12 @@ export default function RootLayout({ children }) {
       chatbotScript.async = true;
       chatbotScript.defer = true;
       chatbotScript.onload = () => {
-        // Initialize chatflow with the specific bot ID
-        window.HubSpotConversations?.widget.load({
-          chatflowId: hubspotChatflowId,
-          portalId: hubspotPortalId,
-        });
+        setTimeout(() => {
+          window.HubSpotConversations?.widget.load({
+            chatflowId: hubspotChatflowId,
+            portalId: hubspotPortalId,
+          });
+        }, 2000); // Add a 1-second delay
       };
       document.body.appendChild(chatbotScript);
     }
