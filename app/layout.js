@@ -1,7 +1,7 @@
 "use client";
 import localFont from "next/font/local";
-import Head from "next/head"; // Import the Head component
-import Script from "next/script"; // Import the Script component from next/script
+import Head from "next/head";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -20,7 +20,7 @@ const geistMono = localFont({
 });
 
 const hubspotPortalId = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
-const hubspotChatflowId = process.env.NEXT_PUBLIC_TICKET_BOT_ID; 
+const hubspotChatflowId = process.env.NEXT_PUBLIC_TICKET_BOT_ID;
 
 export default function RootLayout({ children }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -28,28 +28,36 @@ export default function RootLayout({ children }) {
   useEffect(() => {
     // Function to dynamically add margin to <div> elements with a specific id
     const specificDivs = document.querySelectorAll("#move-down");
-
-    // Apply margin-top to those specific <div> elements only
     specificDivs.forEach((div) => {
       div.style.marginTop = isDropdownOpen ? "150px" : "0px";
-      div.style.transition = "margin-top 0.3s ease"; // Smooth transition
+      div.style.transition = "margin-top 0.3s ease";
     });
 
-    const existingScript = document.getElementById("hs-script-loader");
-    if (!existingScript) {
-      const script = document.createElement("script");
-      script.src = `https://js.hs-scripts.com/${hubspotPortalId}.js`;
-      script.id = "hs-script-loader";
-      script.async = true;
-      script.defer = true;
-      script.onload = () => {
+    const trackingScriptId = "hs-tracking-code";
+    if (!document.getElementById(trackingScriptId)) {
+      const trackingScript = document.createElement("script");
+      trackingScript.src = `https://js.hs-scripts.com/${hubspotPortalId}.js`;
+      trackingScript.id = trackingScriptId;
+      trackingScript.async = true;
+      trackingScript.defer = true;
+      document.head.appendChild(trackingScript);
+    }
+
+    const chatbotScriptId = "hs-chatbot-loader";
+    if (!document.getElementById(chatbotScriptId)) {
+      const chatbotScript = document.createElement("script");
+      chatbotScript.src = `https://js.hs-scripts.com/${hubspotPortalId}.js`;
+      chatbotScript.id = chatbotScriptId;
+      chatbotScript.async = true;
+      chatbotScript.defer = true;
+      chatbotScript.onload = () => {
         // Initialize chatflow with the specific bot ID
         window.HubSpotConversations?.widget.load({
           chatflowId: hubspotChatflowId,
           portalId: hubspotPortalId,
         });
       };
-      document.body.appendChild(script);
+      document.body.appendChild(chatbotScript);
     }
   }, [isDropdownOpen]);
 
@@ -57,10 +65,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <title>GDC Digital Solutions</title>
-        <meta
-          name="description"
-          content="Your Blueprint for Digital Success" // Add a relevant description here
-        />
+        <meta name="description" content="Your Blueprint for Digital Success" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
