@@ -162,10 +162,10 @@ const ContactUs = () => {
                 <div className="flex items-center mb-4">
                   <FaPhoneAlt className="text-customYellow text-lg mr-2" />
                   <a
-                    href="tel:+6478380090"
+                    href="tel:021 246 3988"
                     className="hover:text-customYellow transition-colors"
                   >
-                    +64 7 838 0090
+                    021 246 3988
                   </a>
                 </div>
                 <div className="flex items-center mb-4">
