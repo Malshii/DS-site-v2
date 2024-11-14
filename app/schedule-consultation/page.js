@@ -15,7 +15,10 @@ export default function ScheduleConsultation() {
       {/* Flex Centering Wrapper with Added Padding for Spacing */}
       <div className="relative z-20 flex items-center justify-center min-h-screen px-6 pt-24 pb-4">
         {/* Card Container */}
-        <div className="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-2xl p-10 w-full max-w-6xl mx-auto">
+        <div
+          id="move-down"
+          className="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-2xl p-10 w-full max-w-6xl mx-auto"
+        >
           {/* Title Centered in the Card */}
           <div className="flex items-center justify-center mb-10">
             <h1 className="text-4xl text-white font-bold text-center">
@@ -35,10 +38,7 @@ export default function ScheduleConsultation() {
             </div>
 
             {/* Right Column - HubSpot Meeting */}
-            <div
-              id="move-down"
-              className="flex flex-col items-center justify-center text-center px-6 md:col-span-2"
-            >
+            <div className="flex flex-col items-center justify-center text-center px-6 md:col-span-2">
               {/* HubSpot Meeting Integration */}
               <div className="w-full">
                 <HubSpotMeeting />
