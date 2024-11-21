@@ -59,11 +59,7 @@ export default function RootLayout({ children }) {
   }, [isDropdownOpen]);
 
   return (
-    <html lang="en">
-      <head>
-        <title>GDC Digital Solutions</title>
-        <meta name="description" content="Your Blueprint for Digital Success" />
-      </head>
+    <html lang="en">      
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

@@ -80,6 +80,34 @@ const serviceCaseStudies = {
   },
 };
 
+// Define SEO metadata for each service
+const serviceSEOData = {
+  development: {
+    title: "Professional Web Development Services | GDC Digital Solutions",
+    description: "Get professional web development services with GDC Digital Solutions. We build responsive, SEO-friendly websites tailored to boost your business growth online.",
+    keywords: "web development services, custom websites, responsive design, website development NZ, professional web developers, business websites, SEO-friendly development",
+    canonical: "https://gdcdigital.net/services/development"
+  },
+  "google-ads": {
+    title: "Google Ads Management Services | Boost ROI with GDC Digital Solutions",
+    description: "Boost your business with GDC Digital Solutions' expert Google Ads services. Drive traffic, generate leads, and increase ROI with targeted campaigns in New Zealand.",
+    keywords: "Google Ads management, PPC advertising, paid search marketing, Google Ads agency NZ, ROI optimization, lead generation, targeted advertising",
+    canonical: "https://gdcdigital.net/services/google-ads"
+  },
+  seo: {
+    title: "SEO Services New Zealand | Boost Website Traffic & Rankings",
+    description: "Boost your website's ranking with GDC Digital Solutions. We offer expert SEO services, including keyword optimization, on-page SEO, and link building for higher traffic.",
+    keywords: "SEO services NZ, search engine optimization, keyword optimization, link building, on-page SEO, website rankings, organic traffic",
+    canonical: "https://gdcdigital.net/services/seo"
+  },
+  "nfc-cards": {
+    title: "NFC Business Cards New Zealand | Smart Contactless Card Solutions",
+    description: "Get smart with NFC Cards from GDC Digital Solutions. Simplify contactless sharing of information, boost networking, and enhance your brand visibility effortlessly.",
+    keywords: "NFC business cards, contactless cards, digital business cards, smart cards NZ, contactless sharing, networking solutions, brand visibility",
+    canonical: "https://gdcdigital.net/services/nfc-cards"
+  }
+};
+
 export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
   const { slug } = params;
 
@@ -100,6 +128,55 @@ export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
 
   return (
     <>
+      <Head>
+        <title>{seoData.title}</title>
+        <meta name="description" content={seoData.description} />
+        <meta name="keywords" content={seoData.keywords} />
+        <meta name="robots" content="index, follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        {/* Open Graph tags */}
+        <meta property="og:title" content={seoData.title} />
+        <meta property="og:description" content={seoData.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={seoData.canonical} />
+        <meta property="og:image" content={`https://gdcdigital.net${service.image}`} />
+        
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seoData.title} />
+        <meta name="twitter:description" content={seoData.description} />
+        <meta name="twitter:image" content={`https://gdcdigital.net${service.image}`} />
+        
+        <link rel="canonical" href={seoData.canonical} />
+
+        {/* Structured data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": service.heading,
+            "provider": {
+              "@type": "Organization",
+              "name": "GDC Digital Solutions",
+              "url": "https://gdcdigital.net"
+            },
+            "description": seoData.description,
+            "areaServed": "New Zealand",
+            "serviceType": service.heading,
+            "image": `https://gdcdigital.net${service.image}`,
+            "offers": {
+              "@type": "Offer",
+              "areaServed": "New Zealand"
+            },
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": seoData.canonical
+            }
+          })}
+        </script>
+      </Head>
+      
       <section className="relative flex items-center justify-center min-h-[600px] bg-gray-800 text-white">
         {/* Gradient Overlay with Image */}
         <div className="absolute inset-0 z-10 bg-gradient-to-l from-gray-600 via-customGray to-transparent"></div>
