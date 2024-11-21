@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useState, useEffect } from "react";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -16,9 +17,6 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
-
-const hubspotPortalId = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
-const hubspotChatflowId = process.env.NEXT_PUBLIC_TICKET_BOT_ID;
 
 export default function RootLayout({ children }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -69,6 +67,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <GoogleAnalytics />
         <Header
           setIsDropdownOpen={setIsDropdownOpen}
           isDropdownOpen={isDropdownOpen}
