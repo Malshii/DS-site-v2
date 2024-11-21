@@ -52,7 +52,7 @@ export default function RootLayout({ children }) {
             chatflowId: 51899598,
             portalId: 6187835,
           });
-        }, 2000); // Add a 1-second delay
+        }, 2000);
       };
       document.body.appendChild(chatbotScript);
     }
@@ -60,18 +60,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <head>
-        <title>
-          GDC Digital Solutions - Your Trusted Digital Marketing Partner
-        </title>
-        <meta
-          name="description"
-          content="Boost your business with GDC Digital Solutions, experts in Google Ads, SEO, social media marketing, and web development. Get tailored digital marketing strategies today!"
-        />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <GoogleAnalytics />
         <Header
           setIsDropdownOpen={setIsDropdownOpen}
