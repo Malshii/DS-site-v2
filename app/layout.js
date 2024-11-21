@@ -59,7 +59,16 @@ export default function RootLayout({ children }) {
   }, [isDropdownOpen]);
 
   return (
-    <html lang="en">      
+    <html lang="en">
+      <head>
+        <title>
+          GDC Digital Solutions - Your Trusted Digital Marketing Partner
+        </title>
+        <meta
+          name="description"
+          content="Boost your business with GDC Digital Solutions, experts in Google Ads, SEO, social media marketing, and web development. Get tailored digital marketing strategies today!"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
