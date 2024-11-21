@@ -30,10 +30,13 @@ export default function ScheduleConsultation() {
           <div className="grid grid-cols-1 md:grid-cols-5 min-h-full text-white">
             {/* Left Column - Image */}
             <div className="flex items-center justify-center p-4 md:col-span-3">
-              <img
+              <Image
                 src="/assets/images/contact-form-image.webp"
                 alt="Consulting"
+                width={500} // Adjust based on your image's actual dimensions
+                height={300} // Adjust based on your image's actual dimensions
                 className="w-full h-auto"
+                priority={true} // Since this is likely above the fold
               />
             </div>
 

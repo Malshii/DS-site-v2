@@ -16,6 +16,7 @@ import NFCBenefits from "@/components/services/nfc-cards/NFCBenefits";
 import NFCIntroductionSection from "@/components/services/nfc-cards/NFCIntroductionSection";
 import CaseStudyCard from "@/components/services/case-study/CaseStudyCard";
 import GoogleAdsProcessFlow from "@/components/services/google-ads/GoogleAdsProcessFlow";
+import Head from "next/head";
 
 // Define or import serviceDetails at the top
 const serviceDetails = {
@@ -176,7 +177,7 @@ export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
           })}
         </script>
       </Head>
-      
+
       <section className="relative flex items-center justify-center min-h-[600px] bg-gray-800 text-white">
         {/* Gradient Overlay with Image */}
         <div className="absolute inset-0 z-10 bg-gradient-to-l from-gray-600 via-customGray to-transparent"></div>
