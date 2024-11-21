@@ -1,4 +1,5 @@
 import HubSpotMeeting from "@/components/booking/HubSpotMeeting";
+import Image from "next/image";
 
 export default function ScheduleConsultation() {
   return (
