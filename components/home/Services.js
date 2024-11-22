@@ -1,14 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion"; // Importing framer-motion for animations
-import { useInView } from "react-intersection-observer"; // Importing useInView to trigger animations on view
 import {
   ChartBarIcon,
   PresentationChartLineIcon,
   GlobeAltIcon,
   MagnifyingGlassIcon,
-} from "@heroicons/react/24/solid"; // Importing Heroicons for icons
+} from "@heroicons/react/24/solid";
 import Image from "next/image";
 
 const services = [
@@ -17,7 +15,7 @@ const services = [
     icon: ChartBarIcon,
     title: "Website Development",
     description:
-      "Create stunning, user-friendly websites to enhance your brand’s online presence and drive growth.",
+      "Create stunning, user-friendly websites to enhance your brand's online presence and drive growth.",
   },
   {
     id: 2,
@@ -44,55 +42,74 @@ const services = [
 
 const Services = () => {
   const [isSingleColumn, setIsSingleColumn] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
-  const { ref, inView } = useInView({
-    triggerOnce: false, // Animation will re-trigger every time the section comes into view
-    threshold: 0.2, // The percentage of the component that needs to be visible to trigger the animation
-  });
-
-  // Check the screen size and set the state
   useEffect(() => {
     const handleResize = () => {
-      // Check if the screen size matches the single-column layout
-      setIsSingleColumn(window.innerWidth < 640); // Tailwind's 'sm:' breakpoint is at 640px
+      setIsSingleColumn(window.innerWidth < 640);
     };
 
-    // Initial check
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // Update visibility state based on intersection
+          setIsVisible(entry.isIntersecting);
+        });
+      },
+      {
+        // Trigger when element is 20% visible
+        threshold: 0.2,
+        // Start observing slightly before the element comes into view
+        rootMargin: '50px',
+      }
+    );
+
+    // Get the section element and start observing
+    const section = document.getElementById('services-section');
+    if (section) {
+      observer.observe(section);
+    }
+
+    // Initial resize check
     handleResize();
 
-    // Add event listener
+    // Add resize listener
     window.addEventListener("resize", handleResize);
 
-    // Cleanup event listener
-    return () => window.removeEventListener("resize", handleResize);
+    // Cleanup
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      if (section) {
+        observer.unobserve(section);
+      }
+    };
   }, []);
 
   return (
     <section
-      id="about"
-      ref={ref} // Attach the ref to the section
+      id="services-section"
       className="about-us section py-10 sm:py-20 lg:py-40 bg-cover bg-no-repeat bg-center"
       style={{
-        backgroundImage: "url('/assets/images/bg.webp')", // Update the path to your background image
+        backgroundImage: "url('/assets/images/bg.webp')",
       }}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-10">
         <div className="flex flex-col lg:flex-row items-center">
           {/* Left Image Section */}
-          <motion.div
-            className="lg:w-1/2 w-full mb-8 lg:mb-0 flex justify-center lg:justify-start"
-            initial={{ opacity: 0, x: -50 }}
-            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }} // Animate only if in view
-            transition={{ duration: 1, delay: 0.2 }}
+          <div 
+            className={`lg:w-1/2 w-full mb-8 lg:mb-0 flex justify-center lg:justify-start ${
+              isVisible ? 'animate-fade-slide-left' : 'invisible'
+            }`}
           >
             <Image
-              src="/assets/images/services.webp" // Update the path to your actual image
+              src="/assets/images/services.webp"
               alt="Person Graphic"
-              width={600} // Adjust the width for responsiveness
-              height={600} // Adjust the height for responsiveness
-              className="rounded-lg w-full sm:w-4/5 lg:w-3/4" // Update responsive width classes for scaling
+              width={600}
+              height={600}
+              className="rounded-lg w-full sm:w-4/5 lg:w-3/4"
+              priority
             />
-          </motion.div>
+          </div>
 
           {/* Services Section */}
           <div className="lg:w-1/2 w-full">
@@ -100,16 +117,14 @@ const Services = () => {
               {services.map((service, index) => {
                 const IconComponent = service.icon;
                 return (
-                  <motion.div
+                  <div
                     key={service.id}
                     className={`flex items-center ${
-                      isSingleColumn ? "bg-customYellow rounded-lg p-4" : ""
-                    }`} // Conditionally add background color
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={
-                      inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-                    } // Animate only if in view
-                    transition={{ duration: 1, delay: 0.5 + index * 0.2 }}
+                      isVisible ? 'animate-fade-slide-up' : 'invisible'
+                    } ${isSingleColumn ? "bg-customYellow rounded-lg p-4" : ""}`}
+                    style={{
+                      animationDelay: `${0.2 + index * 0.2}s`
+                    }}
                   >
                     <div className="p-3 rounded-full bg-white mr-4 flex items-center justify-center">
                       <IconComponent className="w-8 h-8 text-customYellow" />
@@ -122,7 +137,7 @@ const Services = () => {
                         {service.description}
                       </p>
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
@@ -134,3 +149,4 @@ const Services = () => {
 };
 
 export default Services;
+
