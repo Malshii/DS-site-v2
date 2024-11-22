@@ -55,7 +55,6 @@ export async function generateMetadata() {
     ...metadata,
     other: {
       'script:ld+json': [
-        JSON.stringify(organizationSchema),
         JSON.stringify(websiteSchema)
       ]
     }
