@@ -50,7 +50,7 @@ const Banner = ({ isServicesOpen, isAboutOpen }) => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-800">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-800">
               We Make{" "}
               <motion.span
                 key={currentService}
@@ -62,7 +62,7 @@ const Banner = ({ isServicesOpen, isAboutOpen }) => {
               >
                 {services[currentService]}
               </motion.span>
-            </h2>
+            </h1>
 
             {/* Buttons Section */}
             <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">

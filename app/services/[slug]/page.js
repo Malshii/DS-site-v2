@@ -17,6 +17,7 @@ import NFCIntroductionSection from "@/components/services/nfc-cards/NFCIntroduct
 import CaseStudyCard from "@/components/services/case-study/CaseStudyCard";
 import GoogleAdsProcessFlow from "@/components/services/google-ads/GoogleAdsProcessFlow";
 import Head from "next/head";
+import Link from "next/link";
 
 // Define or import serviceDetails at the top
 const serviceDetails = {
@@ -244,12 +245,12 @@ export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
           <p className="text-lg text-white mb-6">{service.description}</p>
 
           {/* Call to Action Button */}
-          <a
+          <Link
             href="/contact-us"
             className="border-2 text-white px-6 py-3 rounded-full transition-all"
           >
             Contact Now
-          </a>
+          </Link>
         </div>
 
         {/* Down Arrow Icon with Motion */}

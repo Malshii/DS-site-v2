@@ -10,6 +10,7 @@ import {
   FaGlobe,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const ClientOverview = () => {
   // Define services with icons and labels
@@ -114,14 +115,14 @@ const ClientOverview = () => {
         </p>
         <p>
           <span className="font-semibold">Website:</span>{" "}
-          <a
+          <Link
             href="https://www.gdcgroup.co.nz"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 underline"
           >
             www.gdcgroup.co.nz
-          </a>
+          </Link>
         </p>
         <p className="text-gray-700 leading-relaxed">
           GDC Consultants is a full-service engineering consultancy offering

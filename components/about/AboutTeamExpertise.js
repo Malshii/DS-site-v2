@@ -51,39 +51,16 @@ export default function AboutTeamExpertise({ isDropdownOpen }) {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ delay: 0.3, duration: 0.8 }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-customYellow">
+              <h3 className="text-3xl md:text-4xl font-bold text-customYellow">
                 We are the experts in driving digital growth through innovative
                 solutions
-              </h2>
+              </h3>
               <p className="mt-4 text-customGray">
                 From web development and SEO to targeted ad campaigns and
                 cutting-edge technology, our team excels at crafting strategies
                 that empower businesses to thrive in the digital landscape.
               </p>
-            </motion.div>
-
-            {/* Stats Section */}
-            {/* <motion.div
-              className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center"
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ delay: 0.5, duration: 1 }}
-            >
-              <div>
-                <h3 className="text-4xl font-bold text-customYellow">
-                  8,560,342
-                </h3>
-                <p className="mt-2 text-customGray">Projects</p>
-              </div>
-              <div>
-                <h3 className="text-4xl font-bold text-customYellow">4</h3>
-                <p className="mt-2 text-customGray">Services</p>
-              </div>
-              <div>
-                <h3 className="text-4xl font-bold text-customYellow">1,500+</h3>
-                <p className="mt-2 text-customGray">Integrated partners</p>
-              </div>
-            </motion.div> */}
+            </motion.div>            
           </motion.div>
 
           {/* Right Column: Image Section */}

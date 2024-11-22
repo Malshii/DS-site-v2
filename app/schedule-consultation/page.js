@@ -1,56 +1,40 @@
-import HubSpotMeeting from "@/components/booking/HubSpotMeeting";
-import Image from "next/image";
+import React from 'react';
+import ScheduleConsultation from '@/components/booking/ScheduleConsultation';
 
-export default function ScheduleConsultation() {
+export const generateMetadata = async () => {
+  return {
+    title: 'Schedule a Consultation | GDC Digital Solutions - Web Design & Google Ads',
+    description: 'Schedule a consultation with GDC Digital Solutions. Let our experts craft tailored digital marketing strategies, including Google Ads and SEO, to grow your business.',
+    keywords: 'digital marketing consultation, GDC Digital Solutions, web design consultation, Google Ads strategy, SEO consultation, digital marketing experts',
+    openGraph: {
+      title: 'Schedule a Consultation | GDC Digital Solutions',
+      description: 'Book your free digital marketing consultation with our experts.',
+      type: 'website',
+      url: 'https://gdcdigital.net/schedule-consultation',
+      siteName: 'GDC Digital Solutions',
+      locale: 'en_NZ',
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+    alternates: {
+      canonical: 'https://gdcdigital.net/schedule-consultation',
+    },
+  };
+};
+
+const ConsultationPageClient = () => {
   return (
-    <section
-      className="relative bg-cover bg-center bg-no-repeat min-h-screen"
-      style={{
-        backgroundImage: "url('/assets/images/consulting.webp')",
-        backgroundAttachment: "fixed",
-      }}
-    >
-      {/* Background Blur Layer */}
-      <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-
-      {/* Flex Centering Wrapper with Added Padding for Spacing */}
-      <div className="relative z-20 flex items-center justify-center min-h-screen px-6 pt-24 pb-4">
-        {/* Card Container */}
-        <div
-          id="move-down"
-          className="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-2xl p-10 w-full max-w-6xl mx-auto"
-        >
-          {/* Title Centered in the Card */}
-          <div className="flex items-center justify-center mb-10">
-            <h1 className="text-4xl text-white font-bold text-center">
-              Schedule a Consultation
-            </h1>
-          </div>
-
-          {/* Grid Container */}
-          <div className="grid grid-cols-1 md:grid-cols-5 min-h-full text-white">
-            {/* Left Column - Image */}
-            <div className="flex items-center justify-center p-4 md:col-span-3">
-              <Image
-                src="/assets/images/contact-form-image.webp"
-                alt="Consulting"
-                width={500} // Adjust based on your image's actual dimensions
-                height={300} // Adjust based on your image's actual dimensions
-                className="w-full h-auto"
-                priority={true} // Since this is likely above the fold
-              />
-            </div>
-
-            {/* Right Column - HubSpot Meeting */}
-            <div className="flex flex-col items-center justify-center text-center px-6 md:col-span-2">
-              {/* HubSpot Meeting Integration */}
-              <div className="w-full">
-                <HubSpotMeeting />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <ScheduleConsultation />
   );
-}
+};
+
+export default ConsultationPageClient;

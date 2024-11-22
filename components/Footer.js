@@ -1,6 +1,7 @@
 // components/Footer.js
 import { PaperAirplaneIcon } from "@heroicons/react/24/solid"; // Import the Heroicons
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -15,23 +16,23 @@ export default function Footer() {
             height={160} // Next.js Image component requires width and height, but it can be controlled through CSS as well
             className="w-40 mb-4"
           />
-          <a href="mailto:digital@gdcgroup.co.nz" className="text-gray-600">
+          <Link href="mailto:digital@gdcgroup.co.nz" className="text-gray-600">
             digital@gdcgroup.co.nz
-          </a>
+          </Link>
           <div className="flex space-x-4 mt-4">
             {/* Social Media Icons */}
-            <a href="#" className="text-blue-500">
+            <Link href="#" className="text-blue-500">
               <i className="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" className="text-blue-500">
+            </Link>
+            <Link href="#" className="text-blue-500">
               <i className="fab fa-twitter"></i>
-            </a>
-            <a href="#" className="text-blue-500">
+            </Link>
+            <Link href="#" className="text-blue-500">
               <i className="fab fa-behance"></i>
-            </a>
-            <a href="#" className="text-blue-500">
+            </Link>
+            <Link href="#" className="text-blue-500">
               <i className="fab fa-instagram"></i>
-            </a>
+            </Link>
           </div>
         </div>
 

@@ -8,6 +8,7 @@ import {
   FaFacebookF,
 } from "react-icons/fa";
 import Image from "next/image";
+import Link from "next/link";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -91,9 +92,9 @@ const ContactUs = () => {
         <div className="bg-opacity-90 backdrop-blur-md rounded-lg shadow-xl p-8 w-full max-w-5xl flex flex-col md:flex-row relative overflow-hidden">
           {/* Form Section */}
           <div className="flex-1 md:pr-8 z-10">
-            <h2 className="text-2xl font-bold text-center text-white mb-4">
+            <h1 className="text-2xl font-bold text-center text-white mb-4">
               Get In Touch
-            </h2>
+            </h1>
             <p className="text-customYellow text-center mb-6">
               We are here for you! How can we help?
             </p>
@@ -161,21 +162,21 @@ const ContactUs = () => {
                 </div>
                 <div className="flex items-center mb-4">
                   <FaPhoneAlt className="text-customYellow text-lg mr-2" />
-                  <a
+                  <Link
                     href="tel:021 246 3988"
                     className="hover:text-customYellow transition-colors"
                   >
                     021 246 3988
-                  </a>
+                  </Link>
                 </div>
                 <div className="flex items-center mb-4">
                   <FaEnvelope className="text-customYellow text-lg mr-2" />
-                  <a
+                  <Link
                     href="mailto:digital@gdcgroup.co.nz"
                     className="hover:text-customYellow transition-colors"
                   >
                     digital@gdcgroup.co.nz
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -186,12 +187,12 @@ const ContactUs = () => {
               <span className="text-customGray text-lg font-semibold">Follow us on:</span>
 
               {/* Icon Container */}
-              <a
+              <Link
                 href="https://www.facebook.com/profile.php?id=61567398772169&mibextid=ZbWKwL"
                 className="bg-customYellow text-white p-3 rounded-full hover:bg-customGray transition duration-300"
               >
                 <FaFacebookF />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

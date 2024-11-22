@@ -120,9 +120,9 @@ const TeamPage = () => {
       <div className="min-h-screen">
         <header className="pt-8">
           <div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-10">
-            <h1 className="text-6xl font-bold text-center text-white">
+            <h2 className="text-6xl font-bold text-center text-white">
               Our Core Team
-            </h1>
+            </h2>
           </div>
         </header>
 
