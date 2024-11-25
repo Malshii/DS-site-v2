@@ -42,8 +42,7 @@ export default function CallToAction() {
             initial="hidden"
             animate={inView ? "visible" : "hidden"} // Animate based on inView
           >
-            FREE one-on-one advice for how you can use online marketing to grow
-            your business
+            Get FREE Marketing Consultation to Grow Your Business
           </motion.h2>
 
           {/* Action Button */}

@@ -3,8 +3,8 @@ import ScheduleConsultation from '@/components/booking/ScheduleConsultation';
 
 export const generateMetadata = async () => {
   return {
-    title: 'Schedule a Consultation | GDC Digital Solutions - Web Design & Google Ads',
-    description: 'Schedule a consultation with GDC Digital Solutions. Let our experts craft tailored digital marketing strategies, including Google Ads and SEO, to grow your business.',
+    title: 'Consultation Booking | GDC Digital - Web & Ads Services',
+    description: "Book a free consultation with GDC Digital Solutions. Expert digital marketing strategies in SEO & Google Ads.",
     keywords: 'digital marketing consultation, GDC Digital Solutions, web design consultation, Google Ads strategy, SEO consultation, digital marketing experts',
     openGraph: {
       title: 'Schedule a Consultation | GDC Digital Solutions',

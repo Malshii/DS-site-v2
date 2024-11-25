@@ -6,7 +6,7 @@ export async function generateMetadata() {
   // Base metadata
   const metadata = {
     title: "GDC Digital Solutions | Expert Web Design, Google Ads & SEO",
-    description: "Boost your business with GDC Digital Solutions, experts in Google Ads, SEO, social media marketing, and web development. Get tailored digital marketing strategies today!",
+    description: "Boost your business with GDC Digital Solutions. Expert services in Google Ads, SEO, social media marketing & web development.",
     keywords: "digital marketing agency, SEO services, Google Ads management, web development, social media marketing, digital strategy, NZ digital agency, digital solutions",
     robots: "index, follow",
     viewport: "width=device-width, initial-scale=1",
@@ -14,7 +14,7 @@ export async function generateMetadata() {
       type: "website",
       siteName: "GDC Digital Solutions",
       title: "GDC Digital Solutions | Expert Web Design, Google Ads & SEO",
-      description: "Boost your business with GDC Digital Solutions, experts in Google Ads, SEO, social media marketing, and web development. Get tailored digital marketing strategies today!",
+      description: "Boost your business with GDC Digital Solutions. Expert services in Google Ads, SEO, social media marketing & web development.",
       url: "https://gdcdigital.net/",
       images: [
         {
@@ -28,7 +28,7 @@ export async function generateMetadata() {
     twitter: {
       card: "summary_large_image",
       title: "GDC Digital Solutions | Expert Web Design, Google Ads & SEO",
-      description: "Boost your business with GDC Digital Solutions, experts in Google Ads, SEO, social media marketing, and web development. Get tailored digital marketing strategies today!",
+      description: "Boost your business with GDC Digital Solutions. Expert services in Google Ads, SEO, social media marketing & web development.",
       images: ["https://gdcdigital.net/assets/images/og-image.jpg"],
     },
     alternates: {

@@ -5,12 +5,12 @@ import CallToAction from "@/components/home/CallToAction";
 
 // Method 1: Using metadata object (for Next.js 13+)
 export const metadata = {
-  title: 'About GDC Digital Solutions | Experts in Web Design & Digital Marketing',
-  description: 'Learn about GDC Digital Solutions, a top digital marketing agency in New Zealand specializing in SEO, Google Ads, web development, and innovative digital strategies.',
+  title: 'About GDC Digital Solutions | Web Design & Digital Marketing Experts',
+  description: "GDC Digital Solutions: New Zealand's leading digital marketing agency. Experts in SEO, Google Ads & web development services.",
   keywords: 'digital marketing agency, SEO, Google Ads, web development, New Zealand, digital strategies, GDC Digital Solutions',
   openGraph: {
-    title: 'About GDC Digital Solutions | Experts in Web Design & Digital Marketing',
-    description: 'Learn about GDC Digital Solutions, a top digital marketing agency in New Zealand specializing in SEO, Google Ads, web development, and innovative digital strategies.',
+    title: 'About GDC Digital Solutions | Web Design & Digital Marketing Experts',
+    description: "GDC Digital Solutions: New Zealand's leading digital marketing agency. Experts in SEO, Google Ads & web development services.",
     url: 'https://gdcdigital.net/about',
     siteName: 'GDC Digital Solutions',
     images: [
@@ -25,8 +25,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About GDC Digital Solutions | Experts in Web Design & Digital Marketing',
-    description: 'Learn about GDC Digital Solutions, a top digital marketing agency in New Zealand specializing in SEO, Google Ads, web development, and innovative digital strategies.',
+    title: 'About GDC Digital Solutions | Web Design & Digital Marketing Experts',
+    description: "GDC Digital Solutions: New Zealand's leading digital marketing agency. Experts in SEO, Google Ads & web development services.",
     images: ['https://gdcdigital.net/assets/images/og-image.jpg'], // Replace with actual image URL
   },
   robots: {

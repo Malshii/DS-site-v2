@@ -28,9 +28,7 @@ const ScheduleConsultation = () => {
               Schedule a Consultation
             </h1>
             <h2 className="text-white text-center max-w-2xl">
-              Schedule a consultation with GDC Digital Solutions. Let our
-              experts craft tailored digital marketing strategies, including
-              Google Ads and SEO, to grow your business.
+              Schedule Your Digital Marketing Strategy Session with GDC Digital
             </h2>
           </div>
 

@@ -6,8 +6,8 @@ export async function generateMetadata() {
   const siteUrl = 'https://gdcdigital.net';
   const pageUrl = `${siteUrl}/contact-us`;
   const imageUrl = `${siteUrl}/assets/images/contact-page.jpg`;
-  const title = 'Contact GDC Digital Solutions | Web Design & Digital Marketing Experts';
-  const description = 'Contact GDC Digital Solutions for expert digital marketing services in New Zealand. Get SEO, Google Ads, web development, and social media strategies to grow your business.';
+  const title = 'Contact GDC Digital Solutions - Digital Marketing Experts';
+  const description = "Contact GDC Digital Solutions - New Zealand's digital marketing experts. Specialists in SEO, Google Ads & web development.";
 
   return {
     // Basic Meta Tags
