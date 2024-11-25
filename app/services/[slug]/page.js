@@ -131,26 +131,26 @@ export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
   return (
     <>
       <Head>
-        <title>{seoData.title}</title>
-        <meta name="description" content={seoData.description} />
-        <meta name="keywords" content={seoData.keywords} />
+        <title>{serviceSEOData.title}</title>
+        <meta name="description" content={serviceSEOData.description} />
+        <meta name="keywords" content={serviceSEOData.keywords} />
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
         {/* Open Graph tags */}
-        <meta property="og:title" content={seoData.title} />
-        <meta property="og:description" content={seoData.description} />
+        <meta property="og:title" content={serviceSEOData.title} />
+        <meta property="og:description" content={serviceSEOData.description} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={seoData.canonical} />
+        <meta property="og:url" content={serviceSEOData.canonical} />
         <meta property="og:image" content={`https://gdcdigital.net${service.image}`} />
         
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={seoData.title} />
-        <meta name="twitter:description" content={seoData.description} />
+        <meta name="twitter:title" content={serviceSEOData.title} />
+        <meta name="twitter:description" content={serviceSEOData.description} />
         <meta name="twitter:image" content={`https://gdcdigital.net${service.image}`} />
         
-        <link rel="canonical" href={seoData.canonical} />
+        <link rel="canonical" href={serviceSEOData.canonical} />
 
         {/* Structured data */}
         <script type="application/ld+json">
@@ -163,7 +163,7 @@ export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
               "name": "GDC Digital Solutions",
               "url": "https://gdcdigital.net"
             },
-            "description": seoData.description,
+            "description": serviceSEOData.description,
             "areaServed": "New Zealand",
             "serviceType": service.heading,
             "image": `https://gdcdigital.net${service.image}`,
@@ -173,7 +173,7 @@ export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
             },
             "mainEntityOfPage": {
               "@type": "WebPage",
-              "@id": seoData.canonical
+              "@id": serviceSEOData.canonical
             }
           })}
         </script>
