@@ -16,19 +16,6 @@
   status = 301
   force = true
 
-# Handle clean URLs
-[[redirects]]
-  from = "/*/"
-  to = ":splat"
-  status = 301
-  force = true
-
-# SPA fallback
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
 [[headers]]
   for = "/*"
   [headers.values]
