@@ -60,12 +60,12 @@ const Services = () => {
         // Trigger when element is 20% visible
         threshold: 0.2,
         // Start observing slightly before the element comes into view
-        rootMargin: '50px',
+        rootMargin: "50px",
       }
     );
 
     // Get the section element and start observing
-    const section = document.getElementById('services-section');
+    const section = document.getElementById("services-section");
     if (section) {
       observer.observe(section);
     }
@@ -96,9 +96,9 @@ const Services = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-10">
         <div className="flex flex-col lg:flex-row items-center">
           {/* Left Image Section */}
-          <div 
+          <div
             className={`lg:w-1/2 w-full mb-8 lg:mb-0 flex justify-center lg:justify-start ${
-              isVisible ? 'animate-fade-slide-left' : 'invisible'
+              isVisible ? "animate-fade-slide-left" : "invisible"
             }`}
           >
             <Image
@@ -120,10 +120,12 @@ const Services = () => {
                   <div
                     key={service.id}
                     className={`flex items-center ${
-                      isVisible ? 'animate-fade-slide-up' : 'invisible'
-                    } ${isSingleColumn ? "bg-customYellow rounded-lg p-4" : ""}`}
+                      isVisible ? "animate-fade-slide-up" : "invisible"
+                    } ${
+                      isSingleColumn ? "bg-customYellow rounded-lg p-4" : ""
+                    }`}
                     style={{
-                      animationDelay: `${0.2 + index * 0.2}s`
+                      animationDelay: `${0.2 + index * 0.2}s`,
                     }}
                   >
                     <div className="p-3 rounded-full bg-white mr-4 flex items-center justify-center">
@@ -149,4 +151,3 @@ const Services = () => {
 };
 
 export default Services;
-
