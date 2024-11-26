@@ -10,33 +10,57 @@ const nextConfig = {
             value:
               process.env.NODE_ENV === "development"
                 ? [
+                    // Development CSP
                     "default-src 'self';",
-                    // Allow Google Tag Manager and other external scripts
-                    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://*.hs-scripts.com;",
+                    "script-src 'self' 'unsafe-inline' 'unsafe-eval' " +
+                      "https://*.hscollectedforms.net " + // for collectedforms.js
+                      "https://*.hs-banner.com " + // for banner.js
+                      "https://*.hsadspixel.net " + // for fb.js
+                      "https://*.hs-analytics.net " + // for 6187835.js
+                      "https://*.usemessages.com " + // for conversations-embed.js
+                      "https://*.hubspot.com;", // for general hubspot resources
                     "style-src 'self' 'unsafe-inline';",
-                    // Allow imgur images
-                    "img-src 'self' data: blob: https://*.imgur.com;",
-                    "font-src 'self';",
-                    // Allow connections to external APIs if needed
-                    "connect-src 'self' https://www.googletagmanager.com https://*.hs-scripts.com;",
+                    "img-src 'self' data: blob: https://*.hubspot.com;",
+                    "font-src 'self' https://*.hubspot.com;",
+                    "connect-src 'self' " +
+                      "https://*.hscollectedforms.net " +
+                      "https://*.hs-banner.com " +
+                      "https://*.hsadspixel.net " +
+                      "https://*.hs-analytics.net " +
+                      "https://*.usemessages.com " +
+                      "https://*.hubspot.com " +
+                      "wss://*.hubspot.com;", // for WebSocket connections
+                    "frame-src 'self' https://*.hubspot.com;",
+                    "media-src 'self';",
+                    "object-src 'none';",
                   ].join(" ")
                 : [
+                    // Production CSP - same as development for now
                     "default-src 'self';",
-                    // Production script sources
-                    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://*.hs-scripts.com;",
+                    "script-src 'self' 'unsafe-inline' 'unsafe-eval' " +
+                      "https://*.hscollectedforms.net " +
+                      "https://*.hs-banner.com " +
+                      "https://*.hsadspixel.net " +
+                      "https://*.hs-analytics.net " +
+                      "https://*.usemessages.com " +
+                      "https://*.hubspot.com;",
                     "style-src 'self' 'unsafe-inline';",
-                    // Production image sources
-                    "img-src 'self' data: blob: https://*.imgur.com;",
-                    "font-src 'self';",
-                    // Production connect sources
-                    "connect-src 'self' https://www.googletagmanager.com https://*.hs-scripts.com;",
-                    "frame-src 'self';",
-                    "object-src 'none';",
+                    "img-src 'self' data: blob: https://*.hubspot.com;",
+                    "font-src 'self' https://*.hubspot.com;",
+                    "connect-src 'self' " +
+                      "https://*.hscollectedforms.net " +
+                      "https://*.hs-banner.com " +
+                      "https://*.hsadspixel.net " +
+                      "https://*.hs-analytics.net " +
+                      "https://*.usemessages.com " +
+                      "https://*.hubspot.com " +
+                      "wss://*.hubspot.com;",
+                    "frame-src 'self' https://*.hubspot.com;",
                     "media-src 'self';",
-                    "worker-src 'self';",
+                    "object-src 'none';",
                   ].join(" "),
           },
-          // Rest of your security headers remain the same
+          // Keep your other security headers
           {
             key: "X-Frame-Options",
             value: "DENY",
