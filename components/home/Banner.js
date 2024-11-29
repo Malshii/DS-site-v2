@@ -1,20 +1,32 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 const WaveBackground = () => {
   const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+  // Debounced resize handler
+  const checkMobile = useCallback(() => {
+    setIsMobile(window.innerWidth < 768);
   }, []);
+
+  useEffect(() => {
+    checkMobile();
+    let timeoutId;
+    
+    const debouncedResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(checkMobile, 150);
+    };
+
+    window.addEventListener('resize', debouncedResize);
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('resize', debouncedResize);
+    };
+  }, [checkMobile]);
 
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden">
@@ -73,23 +85,31 @@ const Banner = ({ isServicesOpen, isAboutOpen }) => {
   const [currentService, setCurrentService] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
+  // Debounced resize handler
+  const checkMobile = useCallback(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentService((prev) => (prev + 1) % services.length);
     }, 3000);
 
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-
-    return () => {
-      clearInterval(interval);
-      window.removeEventListener('resize', checkMobile);
+    let timeoutId;
+    
+    const debouncedResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(checkMobile, 150);
     };
-  }, []);
+
+    window.addEventListener('resize', debouncedResize);
+    return () => {
+      clearTimeout(timeoutId);
+      clearInterval(interval);
+      window.removeEventListener('resize', debouncedResize);
+    };
+  }, [checkMobile]);
 
   return (
     <section id="top" className="relative pt-32 lg:pt-40 transition-all duration-300 md:min-h-[80vh] lg:min-h-[60vh]">
@@ -104,7 +124,6 @@ const Banner = ({ isServicesOpen, isAboutOpen }) => {
         id="move-down"
       >
         <div className="container relative z-10 mx-auto flex flex-col lg:flex-row items-center justify-between px-4 sm:px-6 lg:px-20">
-          {/* Left Content Section */}
           <div className={`lg:w-1/2 w-full text-center lg:text-left ${!isMobile ? 'animate-slideInLeft' : ''}`}>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-800">
               We Make{" "}
@@ -126,24 +145,28 @@ const Banner = ({ isServicesOpen, isAboutOpen }) => {
             </div>
           </div>
 
-          {/* Right Image Section - Optimized */}
           <div className={`lg:w-1/2 w-full mt-8 lg:mt-0 flex justify-center ${!isMobile ? 'animate-slideInRight' : ''}`}>
             <div className="relative w-full max-w-lg">
               <Image
                 src="/assets/images/hero-bg.webp"
-                alt="team meeting"
+                alt="Team meeting illustration"
                 width={480}
                 height={320}
-                className="w-full h-auto"
-                sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 40vw"
+                className="w-full h-auto transform-gpu"
+                sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 480px"
                 priority
-                quality={85}
+                quality={75}
                 loading="eager"
                 fetchPriority="high"
                 style={{
                   maxWidth: '100%',
                   height: 'auto',
-                  objectFit: 'contain'
+                  objectFit: 'contain',
+                  willChange: 'transform'
+                }}
+                onLoad={(e) => {
+                  // Add loaded class for smoother transitions
+                  e.target.classList.add('loaded');
                 }}
               />
             </div>

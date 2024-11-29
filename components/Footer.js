@@ -1,5 +1,5 @@
 // components/Footer.js
-import { PaperAirplaneIcon } from "@heroicons/react/24/solid"; // Import the Heroicons
+import { PaperAirplaneIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,38 +10,31 @@ export default function Footer() {
         {/* Company Info Section */}
         <div className="flex flex-col items-start">
           <Image
-            src="/assets/images/Digital Solution.webp" // Path to your image file
+            src="/assets/images/Digital Solution.webp"
             alt="GDC DS Logo"
-            width={160} // Corresponds to `w-40` (40 * 4 = 160px)
-            height={160} // Next.js Image component requires width and height, but it can be controlled through CSS as well
+            width={160}
+            height={160}
             className="w-40 mb-4"
           />
-          <Link href="mailto:digital@gdcgroup.co.nz" className="text-gray-600">
+          <Link 
+            href="mailto:digital@gdcgroup.co.nz" 
+            className="text-gray-600"
+            aria-label="Send email to digital@gdcgroup.co.nz"
+          >
             digital@gdcgroup.co.nz
           </Link>          
         </div>
 
         {/* Services Section */}
-        <div>
+        <nav aria-label="Services navigation">
           <h3 className="font-semibold mb-4">Services</h3>
-          <ul className="text-gray-600 space-y-2">
+          <ul className="text-gray-600 space-y-2" role="list">
             <li>Website Development</li>
             <li>Google Ads</li>
             <li>SEO/ Copywriting</li>
             <li>NFC Cards</li>
           </ul>
-        </div>
-
-        {/* Community Section */}
-        {/* <div>
-          <h3 className="font-semibold mb-4">Community</h3>
-          <ul className="text-gray-600 space-y-2">
-            <li>Digital Marketing</li>
-            <li>Business Ideas</li>
-            <li>Website Checkup</li>
-            <li>Page Speed Test</li>
-          </ul>
-        </div> */}
+        </nav>
 
         {/* Newsletter Subscription */}
         <div>
@@ -49,20 +42,23 @@ export default function Footer() {
           <p className="text-gray-600 mb-4">
             Get our latest news and ideas to your inbox
           </p>
-          <form className="flex flex-col items-center space-y-4">
+          <form className="flex flex-col items-center space-y-4" aria-label="Newsletter subscription form">
             <div className="flex w-full rounded-full overflow-hidden shadow-lg bg-white">
               <input
                 type="email"
                 placeholder="Your Email"
+                aria-label="Email address for newsletter"
                 className="py-3 px-6 w-full text-gray-600 focus:outline-none"
                 style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
+                required
               />
               <button
                 type="submit"
+                aria-label="Subscribe to newsletter"
                 className="bg-customYellow text-white flex items-center justify-center px-6 py-3"
                 style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
               >
-                <PaperAirplaneIcon className="h-5 w-5" />
+                <PaperAirplaneIcon className="h-5 w-5" aria-hidden="true" />
               </button>
             </div>
           </form>

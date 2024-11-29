@@ -21,11 +21,10 @@ const Header = ({ setIsDropdownOpen }) => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isCaseStudiesOpen, setIsCaseStudiesOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // For mobile menu toggle
-  const [activeDropdown, setActiveDropdown] = useState(""); // Track mobile dropdown state
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState("");
   const pathname = usePathname();
 
-  // Scroll behavior to change header background
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -36,15 +35,12 @@ const Header = ({ setIsDropdownOpen }) => {
     };
   }, []);
 
-  // Toggle the mobile menu
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  // Toggle mobile dropdown
   const handleMobileDropdownToggle = (dropdown) => {
     setActiveDropdown(activeDropdown === dropdown ? "" : dropdown);
   };
 
-  // Desktop dropdown handlers for Services and About Us
   const handleServicesMouseEnter = () => {
     setIsServicesOpen(true);
     setIsDropdownOpen(true);
@@ -73,7 +69,6 @@ const Header = ({ setIsDropdownOpen }) => {
         }`}
       >
         <div className="container mx-auto flex justify-between items-center py-4 px-6 lg:px-20">
-          {/* Logo Section */}
           <Link href="/" className="flex items-center">
             <Image
               src={
@@ -91,7 +86,6 @@ const Header = ({ setIsDropdownOpen }) => {
             />
           </Link>
 
-          {/* Desktop Nav */}
           <nav className="hidden lg:flex space-x-10">
             <Link
               href="/"
@@ -108,13 +102,15 @@ const Header = ({ setIsDropdownOpen }) => {
               Home
             </Link>
 
-            {/* Services Dropdown */}
             <div
               className="relative"
               onMouseEnter={handleServicesMouseEnter}
               onMouseLeave={handleServicesMouseLeave}
             >
               <button
+                aria-expanded={isServicesOpen}
+                aria-haspopup="true"
+                aria-label="Services menu"
                 className={`flex items-center ${
                   pathname === "/"
                     ? isScrolled
@@ -126,7 +122,7 @@ const Header = ({ setIsDropdownOpen }) => {
                 } text-xl font-bold`}
               >
                 Services
-                <ChevronDownIcon className="w-4 h-4 ml-1 transition-transform duration-300" />
+                <ChevronDownIcon className="w-4 h-4 ml-1 transition-transform duration-300" aria-hidden="true" />
               </button>
 
               {isServicesOpen && (
@@ -135,6 +131,8 @@ const Header = ({ setIsDropdownOpen }) => {
                     isScrolled ? "bg-white" : "bg-transparent"
                   } rounded-xl shadow-xl p-6 grid grid-cols-4 gap-6 z-50`}
                   style={{ minWidth: "800px", zIndex: 50 }}
+                  role="menu"
+                  aria-label="Services menu"
                 >
                   {/* First Row */}
                   <Link
@@ -236,11 +234,10 @@ const Header = ({ setIsDropdownOpen }) => {
                       Innovate with contactless technology.
                     </span>
                   </Link>
-                </div>
+                  </div>
               )}
             </div>
 
-            {/* About Us Dropdown */}
             <Link
               href="/about"
               className={`${
@@ -256,13 +253,15 @@ const Header = ({ setIsDropdownOpen }) => {
               About Us
             </Link>
 
-            {/* Case Studies Dropdown */}
             <div
               className="relative"
               onMouseEnter={handleCaseStudiesMouseEnter}
               onMouseLeave={handleCaseStudiesMouseLeave}
             >
               <button
+                aria-expanded={isCaseStudiesOpen}
+                aria-haspopup="true"
+                aria-label="Case Studies menu"
                 className={`flex items-center ${
                   pathname === "/"
                     ? isScrolled
@@ -274,7 +273,7 @@ const Header = ({ setIsDropdownOpen }) => {
                 } text-xl font-bold`}
               >
                 Case Studies
-                <ChevronDownIcon className="w-4 h-4 ml-1 transition-transform duration-300" />
+                <ChevronDownIcon className="w-4 h-4 ml-1 transition-transform duration-300" aria-hidden="true" />
               </button>
 
               {isCaseStudiesOpen && (
@@ -282,6 +281,8 @@ const Header = ({ setIsDropdownOpen }) => {
                   className={`absolute left-0 mt-2 w-60 ${
                     isScrolled ? "bg-white" : "bg-transparent"
                   } rounded-xl shadow-xl z-50`}
+                  role="menu"
+                  aria-label="Case Studies menu"
                 >
                   <Link
                     href="/case-studies/web-development"
@@ -311,11 +312,10 @@ const Header = ({ setIsDropdownOpen }) => {
                   >
                     Google Ads
                   </Link>
-                </div>
+                  </div>
               )}
             </div>
 
-            {/* Contact Button */}
             <Link
               href="/contact-us"
               className={`border-2 ${
@@ -332,20 +332,22 @@ const Header = ({ setIsDropdownOpen }) => {
             </Link>
           </nav>
 
-          {/* Hamburger Menu Icon for Mobile on the Right */}
           <div className="flex lg:hidden ml-auto">
-            {/* Mobile Menu Toggle Button */}
-            <button onClick={toggleMenu} className="lg:hidden">
+            <button 
+              onClick={toggleMenu} 
+              className="lg:hidden"
+              aria-expanded={isMenuOpen}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            >
               {isMenuOpen ? (
-                <XMarkIcon className="w-6 h-6 text-black transition-transform duration-300" />
+                <XMarkIcon className="w-6 h-6 text-black transition-transform duration-300" aria-hidden="true" />
               ) : (
-                <Bars3Icon className="w-6 h-6 text-black transition-transform duration-300" />
+                <Bars3Icon className="w-6 h-6 text-black transition-transform duration-300" aria-hidden="true" />
               )}
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu Items */}
         <ul
           className={`absolute top-full left-0 w-full bg-white shadow-md lg:hidden transition-all duration-300 ease-in-out ${
             isMenuOpen
@@ -353,6 +355,7 @@ const Header = ({ setIsDropdownOpen }) => {
               : "max-h-0 hidden"
           }`}
           style={{ zIndex: 100 }}
+          role="menu"
         >
           <li>
             <Link
@@ -430,18 +433,20 @@ const Header = ({ setIsDropdownOpen }) => {
             </Link>
           </li>
 
-          <li className="relative">
+          <li role="none">
             <button
               className="flex justify-between items-center w-full py-2 px-4 text-left font-light text-gray-800 hover:text-customYellow"
-              onClick={() => handleMobileDropdownToggle("case-studies")}
+              onClick={() => handleMobileDropdownToggle("services")}
+              aria-expanded={activeDropdown === "services"}
+              aria-label="Services submenu"
             >
               <span className="flex items-center">
-                {activeDropdown === "case-studies" ? (
-                  <MinusIcon className="w-5 h-5 mr-2" />
+                {activeDropdown === "services" ? (
+                  <MinusIcon className="w-5 h-5 mr-2" aria-hidden="true" />
                 ) : (
-                  <PlusIcon className="w-5 h-5 mr-2" />
+                  <PlusIcon className="w-5 h-5 mr-2" aria-hidden="true" />
                 )}
-                Case Studies
+                Services
               </span>
             </button>
             {activeDropdown === "case-studies" && (

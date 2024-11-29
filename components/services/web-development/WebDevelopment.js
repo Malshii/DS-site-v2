@@ -1,6 +1,5 @@
 import { FaBullhorn, FaUsers, FaQuestionCircle } from "react-icons/fa"; // Using react-icons for icons
 import { motion } from 'framer-motion';
-import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 // Data for the web development benefits

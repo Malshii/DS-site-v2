@@ -171,9 +171,9 @@ const Services = () => {
                       <IconComponent className="w-8 h-8 text-customYellow" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-bold text-lg text-white">
+                      <h1 className="font-bold text-lg text-white">
                         {service.title}
-                      </h4>
+                      </h1>
                       <p className="text-white text-sm sm:text-base">
                         {service.description}
                       </p>
