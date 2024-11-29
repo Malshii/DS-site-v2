@@ -1,5 +1,5 @@
-"use client"
-import { React, useState, useEffect } from "react";
+"use client";
+import { React, useState } from "react";
 import {
   FaMapMarkerAlt,
   FaPhoneAlt,
@@ -17,39 +17,29 @@ const ContactUs = () => {
   });
   const [formStatus, setFormStatus] = useState("idle");
   const [formMessage, setFormMessage] = useState("");
-  const [isFacebookLoaded, setIsFacebookLoaded] = useState(false);
 
-  // Lazy load Facebook script only when component mounts
-  useEffect(() => {
-    const loadFacebookScript = () => {
-      if (!isFacebookLoaded && !window.FB) {
+  // Lazy load Facebook SDK only when user clicks the Facebook link
+  const handleFacebookClick = (e) => {
+    e.preventDefault();
+    const loadFacebookAndRedirect = async () => {
+      // Load the SDK
+      await new Promise((resolve) => {
         const script = document.createElement("script");
         script.src = "https://connect.facebook.net/en_US/sdk.js";
         script.async = true;
         script.defer = true;
         script.crossOrigin = "anonymous";
-        script.onload = () => setIsFacebookLoaded(true);
+        script.onload = resolve;
         document.body.appendChild(script);
-      }
+      });
+
+      // After SDK loads, redirect to Facebook page
+      window.location.href =
+        "https://www.facebook.com/profile.php?id=61567398772169&mibextid=ZbWKwL";
     };
 
-    // Load Facebook script only when user interacts with Facebook section
-    const handleFacebookInteraction = () => {
-      loadFacebookScript();
-    };
-
-    // Add listener to Facebook link
-    const facebookLink = document.querySelector(".facebook-link");
-    if (facebookLink) {
-      facebookLink.addEventListener("mouseenter", handleFacebookInteraction);
-      return () => {
-        facebookLink.removeEventListener(
-          "mouseenter",
-          handleFacebookInteraction
-        );
-      };
-    }
-  }, [isFacebookLoaded]);
+    loadFacebookAndRedirect();
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -197,14 +187,17 @@ const ContactUs = () => {
               </div>
             </div>
 
-            {/* Social Media Section */}
+            {/* Social Media Section - Optimized */}
             <div className="flex items-center space-x-2 mt-4">
               <span className="text-customGray text-lg font-semibold">
                 Follow us on:
               </span>
               <Link
                 href="https://www.facebook.com/profile.php?id=61567398772169&mibextid=ZbWKwL"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="facebook-link bg-customYellow text-white p-3 rounded-full hover:bg-customGray transition duration-300"
+                prefetch={false}
               >
                 <FaFacebookF />
               </Link>
