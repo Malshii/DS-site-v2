@@ -23,7 +23,23 @@ const Header = ({ setIsDropdownOpen }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
   const pathname = usePathname();
+
+  // Check for mobile viewport
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024); // 1024px is the lg breakpoint
+    };
+
+    // Initial check
+    checkMobile();
+
+    // Add resize listener
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -107,15 +123,32 @@ const Header = ({ setIsDropdownOpen }) => {
     );
   };
 
+  // Create conditional wrapper component
+  const ConditionalMotion = ({ children }) => {
+    if (isMobile) {
+      return (
+        <header className="fixed top-0 left-0 w-full z-50 transition-colors bg-transparent">
+          {children}
+        </header>
+      );
+    }
+
+    return (
+      <motion.header
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
+          isScrolled ? "bg-white shadow-md" : "bg-transparent"
+        }`}
+      >
+        {children}
+      </motion.header>
+    );
+  };
+
   return (
-    <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
-        isScrolled ? "bg-white shadow-md" : "bg-transparent"
-      }`}
-    >
+    <ConditionalMotion>
       <div className="container mx-auto flex justify-between items-center py-4 px-6 lg:px-20">
         <Link href="/" className="flex items-center">
           <LogoImage />
@@ -530,7 +563,7 @@ const Header = ({ setIsDropdownOpen }) => {
           </Link>
         </li>
       </ul>
-    </motion.header>
+    </ConditionalMotion>
   );
 };
 
