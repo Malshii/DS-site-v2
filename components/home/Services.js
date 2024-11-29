@@ -44,17 +44,23 @@ const Services = () => {
   const [isSingleColumn, setIsSingleColumn] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsSingleColumn(window.innerWidth < 640);
+      const width = window.innerWidth;
+      setWindowWidth(width);
+      setIsSingleColumn(width < 640);
     };
+
+    // Initial setup
+    handleResize();
+    window.addEventListener("resize", handleResize);
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Delay visibility for smoother transition after image load
             setTimeout(() => setIsVisible(true), 100);
             observer.unobserve(entry.target);
           }
@@ -71,9 +77,6 @@ const Services = () => {
       observer.observe(section);
     }
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("resize", handleResize);
       if (section) {
@@ -86,34 +89,43 @@ const Services = () => {
     <section
       id="services-section"
       className="relative py-10 sm:py-20 lg:py-40 min-h-[600px] overflow-hidden"
-      style={{ opacity: isLoaded ? 1 : 0, transition: 'opacity 0.3s ease-in-out' }}
+      style={{
+        opacity: isLoaded ? 1 : 0,
+        transition: "opacity 0.3s ease-in-out",
+      }}
     >
-      {/* Background Image - Optimized */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/assets/images/bg.webp"
-          alt="Background"
-          fill
-          priority
-          fetchPriority="high"
-          className="object-cover mix-blend-overlay"
-          sizes="100vw"
-          quality={75}
-          onLoad={() => setIsLoaded(true)}
-          placeholder="blur"
-          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSUvJR8lPTw1PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT3/2wBDARUXFyAeIB8gID0lJT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT3/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-        />
-      </div>
+      {/* Background Image with responsive handling */}
+      {!isSingleColumn && (
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <div className="absolute inset-[-10%] sm:inset-[-5%]">
+            <Image
+              src="/assets/images/bg.webp"
+              alt="Background"
+              fill
+              priority
+              fetchPriority="high"
+              className="object-cover mix-blend-overlay transform scale-110"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
+              quality={75}
+              onLoad={() => setIsLoaded(true)}
+              style={{
+                objectPosition: windowWidth < 768 ? 'center center' : '50% 50%'
+              }}
+            />
+          </div>
+        </div>
+      )}
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-10">
         <div className="flex flex-col lg:flex-row items-center">
-          {/* Left Image Section - Optimized */}
+          {/* Left Image Section */}
           <div
             className={`lg:w-1/2 w-full mb-8 lg:mb-0`}
-            style={{ 
+            style={{
               opacity: isVisible ? 1 : 0,
-              transform: `translateY(${isVisible ? '0' : '20px'})`,
-              transition: 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out'
+              transform: `translateY(${isVisible ? "0" : "20px"})`,
+              transition:
+                "opacity 0.5s ease-in-out, transform 0.5s ease-in-out",
             }}
           >
             <div className="relative w-full max-w-[500px] mx-auto lg:mx-0">
@@ -147,8 +159,12 @@ const Services = () => {
                     }`}
                     style={{
                       opacity: isVisible ? 1 : 0,
-                      transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-                      transition: `opacity 0.5s ease-in-out ${index * 0.1}s, transform 0.5s ease-in-out ${index * 0.1}s`,
+                      transform: isVisible
+                        ? "translateY(0)"
+                        : "translateY(20px)",
+                      transition: `opacity 0.5s ease-in-out ${
+                        index * 0.1
+                      }s, transform 0.5s ease-in-out ${index * 0.1}s`,
                     }}
                   >
                     <div className="p-3 rounded-full bg-white mr-4 flex-shrink-0">
