@@ -50,63 +50,6 @@ export async function generateMetadata() {
       description,
       images: [imageUrl],
     },
-    
-    // Schema.org / JSON-LD
-    other: {
-      'application/ld+json': JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "ContactPage",
-        "name": "Contact GDC Digital Solutions",
-        "description": "Contact page for GDC Digital Solutions, a leading digital marketing agency in New Zealand",
-        "mainEntity": {
-          "@type": "Organization",
-          "name": "GDC Digital Solutions",
-          "url": siteUrl,
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "", // Add your contact number
-            "contactType": "customer service",
-            "areaServed": "New Zealand",
-            "availableLanguage": "English"
-          },
-          "address": {
-            "@type": "PostalAddress",
-            "addressCountry": "New Zealand"
-            // Add more address details as needed
-          },
-          "sameAs": [
-            // Add your social media profile URLs
-            "https://www.linkedin.com/company/gdc-digital",
-            "https://www.facebook.com/gdcdigital"
-          ]
-        },
-        "offers": {
-          "@type": "Offer",
-          "itemOffered": [
-            {
-              "@type": "Service",
-              "name": "SEO Services",
-              "description": "Professional SEO services to improve your website's visibility"
-            },
-            {
-              "@type": "Service",
-              "name": "Google Ads Management",
-              "description": "Expert Google Ads campaign management for better ROI"
-            },
-            {
-              "@type": "Service",
-              "name": "Web Development",
-              "description": "Custom website development solutions"
-            },
-            {
-              "@type": "Service",
-              "name": "NFC Cards",
-              "description": "Innovate with contactless technology"
-            }
-          ]
-        }
-      })
-    },
   };
 }
 

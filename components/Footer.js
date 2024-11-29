@@ -18,22 +18,7 @@ export default function Footer() {
           />
           <Link href="mailto:digital@gdcgroup.co.nz" className="text-gray-600">
             digital@gdcgroup.co.nz
-          </Link>
-          <div className="flex space-x-4 mt-4">
-            {/* Social Media Icons */}
-            <Link href="#" className="text-blue-500">
-              <i className="fab fa-facebook-f"></i>
-            </Link>
-            <Link href="#" className="text-blue-500">
-              <i className="fab fa-twitter"></i>
-            </Link>
-            <Link href="#" className="text-blue-500">
-              <i className="fab fa-behance"></i>
-            </Link>
-            <Link href="#" className="text-blue-500">
-              <i className="fab fa-instagram"></i>
-            </Link>
-          </div>
+          </Link>          
         </div>
 
         {/* Services Section */}
