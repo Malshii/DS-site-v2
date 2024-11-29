@@ -29,6 +29,7 @@ export default function RootLayout({ children }) {
       div.style.transition = "margin-top 0.3s ease";
     });
 
+    // Load HubSpot tracking script
     const trackingScriptId = "hs-tracking-code";
     if (!document.getElementById(trackingScriptId)) {
       const trackingScript = document.createElement("script");
@@ -39,22 +40,20 @@ export default function RootLayout({ children }) {
       document.head.appendChild(trackingScript);
     }
 
-    const chatbotScriptId = "hs-chatbot-loader";
-    if (!document.getElementById(chatbotScriptId)) {
-      const chatbotScript = document.createElement("script");
-      chatbotScript.src = `https://js.hs-scripts.com/6187835.js`;
-      chatbotScript.id = chatbotScriptId;
-      chatbotScript.async = true;
-      chatbotScript.defer = true;
-      chatbotScript.onload = () => {
-        setTimeout(() => {
-          window.HubSpotConversations?.widget.load({
-            chatflowId: 51899598,
-            portalId: 6187835,
-          });
-        }, 2000);
-      };
-      document.body.appendChild(chatbotScript);
+    // Load HubSpot chat widget
+    const loadHubSpotChat = () => {
+      if (!window.HubSpotConversations) {
+        window._hsq = window._hsq || [];
+        window._hsq.push(['loadChat']);
+      }
+    };
+
+    // Wait for tracking script to load before initializing chat
+    const trackingScript = document.getElementById(trackingScriptId);
+    if (trackingScript) {
+      trackingScript.addEventListener('load', () => {
+        setTimeout(loadHubSpotChat, 2000);
+      });
     }
   }, [isDropdownOpen]);
 
