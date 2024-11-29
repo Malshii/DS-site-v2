@@ -5,22 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 const WaveBackground = () => {
-  // Add state to track window width
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Function to check if device is mobile
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768); // 768px is typical tablet/mobile breakpoint
+      setIsMobile(window.innerWidth < 768);
     };
-
-    // Check initially
     checkMobile();
-
-    // Add resize listener
     window.addEventListener('resize', checkMobile);
-
-    // Cleanup
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
@@ -90,10 +82,7 @@ const Banner = ({ isServicesOpen, isAboutOpen }) => {
       setIsMobile(window.innerWidth < 768);
     };
 
-    // Initial check
     checkMobile();
-
-    // Add resize listener
     window.addEventListener('resize', checkMobile);
 
     return () => {
@@ -137,16 +126,27 @@ const Banner = ({ isServicesOpen, isAboutOpen }) => {
             </div>
           </div>
 
-          {/* Right Image Section */}
+          {/* Right Image Section - Optimized */}
           <div className={`lg:w-1/2 w-full mt-8 lg:mt-0 flex justify-center ${!isMobile ? 'animate-slideInRight' : ''}`}>
-            <Image
-              src="/assets/images/hero-bg.webp"
-              alt="team meeting"
-              width={900}
-              height={600}
-              className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full h-auto"
-              priority
-            />
+            <div className="relative w-full max-w-lg">
+              <Image
+                src="/assets/images/hero-bg.webp"
+                alt="team meeting"
+                width={480}
+                height={320}
+                className="w-full h-auto"
+                sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 40vw"
+                priority
+                quality={85}
+                loading="eager"
+                fetchPriority="high"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                  objectFit: 'contain'
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
