@@ -8,8 +8,10 @@ import {
 } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const ContactUs = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     full_name: "",
     email: "",
@@ -71,11 +73,8 @@ const ContactUs = () => {
       });
 
       if (response.ok) {
-        setFormStatus("success");
-        setFormMessage(
-          "Thank you! Your message has been successfully submitted."
-        );
-        setFormData({ full_name: "", email: "", message: "" });
+        // Instead of showing message in the form, redirect to success page
+        router.push('/success');
       } else {
         setFormStatus("error");
         setFormMessage(
@@ -137,12 +136,8 @@ const ContactUs = () => {
               </button>
             </form>
 
-            {formStatus !== "idle" && (
-              <p
-                className={`mt-4 font-semibold text-center ${
-                  formStatus === "success" ? "text-green-600" : "text-red-600"
-                }`}
-              >
+            {formStatus === "error" && (
+              <p className="mt-4 font-semibold text-center text-red-600">
                 {formMessage}
               </p>
             )}
