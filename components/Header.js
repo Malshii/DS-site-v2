@@ -33,6 +33,8 @@ const Header = ({ setIsDropdownOpen }) => {
   
   // Add a ref to track initial render
   const isInitialRender = useRef(true);
+  // Add a ref for animation check
+  const shouldAnimate = useRef(typeof window !== 'undefined' && !sessionStorage.getItem('headerAnimated'));
 
   // Check for mobile viewport
   useEffect(() => {
@@ -62,6 +64,14 @@ const Header = ({ setIsDropdownOpen }) => {
   // Set isInitialRender to false after first render
   useEffect(() => {
     isInitialRender.current = false;
+  }, []);
+
+  // Set animation flag in sessionStorage
+  useEffect(() => {
+    if (shouldAnimate.current) {
+      // Set flag in sessionStorage to prevent animation on subsequent renders
+      sessionStorage.setItem('headerAnimated', 'true');
+    }
   }, []);
 
   // Toggle mobile menu
@@ -127,7 +137,7 @@ const Header = ({ setIsDropdownOpen }) => {
     );
   };
 
-  // Conditional wrapper component
+  // Conditional wrapper component - Fixed to avoid conditional hooks
   const ConditionalMotion = ({ children }) => {
     const headerClasses = `fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
       isScrolled ? "bg-white shadow-md" : "bg-transparent"
@@ -136,17 +146,7 @@ const Header = ({ setIsDropdownOpen }) => {
     if (isMobile) {
       return <header className={headerClasses}>{children}</header>;
     }
-  
-    // Only animate on initial page load by checking sessionStorage
-    const shouldAnimate = useRef(typeof window !== 'undefined' && !sessionStorage.getItem('headerAnimated'));
     
-    useEffect(() => {
-      if (shouldAnimate.current) {
-        // Set flag in sessionStorage to prevent animation on subsequent renders
-        sessionStorage.setItem('headerAnimated', 'true');
-      }
-    }, []);
-  
     return (
       <motion.header
         initial={shouldAnimate.current ? { y: -100, opacity: 0 } : false}

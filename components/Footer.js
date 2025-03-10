@@ -31,7 +31,7 @@ export default function Footer() {
             </div>
             <div className="flex items-center justify-center">
               <Image
-                src="/assets/images/Recruit Logo.webp"
+                src="/assets/images/Recruit Logo.png"
                 alt="GDC Recruitment Logo"
                 width={140}
                 height={60}

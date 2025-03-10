@@ -33,7 +33,7 @@ export default function ClosingSection() {
                 Achieve Success with <span className="text-customYellow">GDC Digital Solutions</span>
               </h2>
               <p className="text-gray-300 mb-4 text-lg leading-relaxed">
-                When you partner with GDC Digital Solutions, you're not just hiring a consultant; you're gaining a trusted ally committed to helping you achieve your business goals. From the initial discovery phase to successful implementation and beyond, our Business Analysts provide the expertise and insights that will drive your organisation's success.
+                When you partner with GDC Digital Solutions, you&apos;re not just hiring a consultant; you&apos;re gaining a trusted ally committed to helping you achieve your business goals. From the initial discovery phase to successful implementation and beyond, our Business Analysts provide the expertise and insights that will drive your organisation&apos;s success.
               </p>
               <p className="text-gray-300 text-lg leading-relaxed md:mb-0 mb-8">
                 Contact us today to find out how our tailored business analysis solutions can help you navigate challenges, seize new opportunities, and propel your business forward.
@@ -49,7 +49,7 @@ export default function ClosingSection() {
             >
               <div className="bg-gray-800/70 rounded-xl p-6 backdrop-blur-sm border border-gray-700 shadow-lg">
                 <h3 className="text-xl font-semibold text-white mb-4">Ready to get started?</h3>
-                <p className="text-gray-300 mb-6">Let's discuss how we can help your business succeed in today's competitive landscape.</p>
+                <p className="text-gray-300 mb-6">Let&apos;s discuss how we can help your business succeed in today&apos;s competitive landscape.</p>
                 <a 
                   href="/contact-us" 
                   className="group inline-flex items-center justify-center gap-2 bg-customYellow hover:bg-yellow-500 text-black font-semibold py-3 px-6 rounded-lg w-full transition-all duration-300 transform hover:scale-105"
