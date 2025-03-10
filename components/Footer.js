@@ -9,31 +9,71 @@ export default function Footer() {
       <div className="container mx-auto px-20 grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10 py-10">
         {/* Company Info Section */}
         <div className="flex flex-col items-start">
-          <Image
-            src="/assets/images/Digital Solution.webp"
-            alt="GDC DS Logo"
-            width={160}
-            height={160}
-            className="w-40 mb-4"
-          />
-          <Link 
-            href="mailto:digital@gdcgroup.co.nz" 
-            className="text-gray-600"
-            aria-label="Send email to digital@gdcgroup.co.nz"
-          >
-            digital@gdcgroup.co.nz
-          </Link>          
+          {/* Logo grid with proper spacing and alignment */}
+          <div className="grid grid-cols-2 gap-4 mb-4">
+            <div className="flex items-center justify-center">
+              <Image
+                src="/assets/images/Digital Solution.webp"
+                alt="GDC Digital Solutions Logo"
+                width={140}
+                height={60}
+                className="object-contain h-16"
+              />
+            </div>
+            <div className="flex items-center justify-center">
+              <Image
+                src="/assets/images/GDC LOGOS 2024 BLUE.webp"
+                alt="GDC Consultants Logo"
+                width={140}
+                height={60}
+                className="object-contain h-16"
+              />
+            </div>
+            <div className="flex items-center justify-center">
+              <Image
+                src="/assets/images/Recruit Logo.webp"
+                alt="GDC Recruitment Logo"
+                width={140}
+                height={60}
+                className="object-contain h-16"
+              />
+            </div>
+            <div className="flex items-center justify-center">
+              <Image
+                src="/assets/images/properties logo.png"
+                alt="GDC Properties Logo"
+                width={140}
+                height={60}
+                className="object-contain h-16"
+              />
+            </div>
+          </div>
         </div>
 
-        {/* Services Section */}
+        {/* Services Section - Updated Structure */}
         <nav aria-label="Services navigation">
-          <h3 className="font-semibold mb-4">Services</h3>
-          <ul className="text-gray-600 space-y-2" role="list">
-            <li>Website Development</li>
-            <li>Google Ads</li>
-            <li>SEO/ Copywriting</li>
-            <li>NFC Cards</li>
-          </ul>
+          <div className="mb-6">
+            <h3 className="font-semibold mb-2">Digital Marketing</h3>
+            <ul className="text-gray-600 space-y-1 ml-4" role="list">
+              <li>Google & Facebook Ads</li>
+              <li>SEO/ Copywriting</li>
+            </ul>
+          </div>
+
+          <div className="mb-6">
+            <h3 className="font-semibold mb-2">Web & App Development</h3>
+            <ul className="text-gray-600 space-y-1 ml-4" role="list">
+              <li>Website Development</li>
+              <li>App Development</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold mb-2">Consulting & Strategy</h3>
+            <ul className="text-gray-600 space-y-1 ml-4" role="list">
+              <li>Business Analysis & Consulting</li>
+            </ul>
+          </div>
         </nav>
 
         {/* Newsletter Subscription */}
@@ -42,7 +82,10 @@ export default function Footer() {
           <p className="text-gray-600 mb-4">
             Get our latest news and ideas to your inbox
           </p>
-          <form className="flex flex-col items-center space-y-4" aria-label="Newsletter subscription form">
+          <form
+            className="flex flex-col items-center space-y-4"
+            aria-label="Newsletter subscription form"
+          >
             <div className="flex w-full rounded-full overflow-hidden shadow-lg bg-white">
               <input
                 type="email"

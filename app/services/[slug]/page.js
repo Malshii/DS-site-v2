@@ -1,4 +1,4 @@
-"use client"; // This marks the component as a Client Component
+"use client";
 
 import CallToAction from "@/components/home/CallToAction";
 import CustomCodedWebsites from "@/components/services/web-development/CustomCodedWebsites";
@@ -12,20 +12,19 @@ import { motion } from "framer-motion";
 import GoogleAdsBenefits from "@/components/services/google-ads/GoogleAds";
 import OnePageWebsite from "@/components/services/web-development/OnePageWebsite";
 import SeoOverview from "@/components/services/seo/SeoOverview";
-import NFCBenefits from "@/components/services/nfc-cards/NFCBenefits";
-import NFCIntroductionSection from "@/components/services/nfc-cards/NFCIntroductionSection";
 import CaseStudyCard from "@/components/services/case-study/CaseStudyCard";
 import GoogleAdsProcessFlow from "@/components/services/google-ads/GoogleAdsProcessFlow";
 import Head from "next/head";
 import Link from "next/link";
+import ConsultingBenefits from "@/components/services/business-consulting/ConsultingBenefits";
+import ConsultingIntroductionSection from "@/components/services/business-consulting/ConsultingIntroductionSection";
+import ExpertiseSection from "@/components/services/business-consulting/ExpertiseSection";
+import ClosingSection from "@/components/services/business-consulting/ClosingSection";
+import AppDevelopmentBenefits from "@/components/app-development/AppDevelopment";
+import AppProcessFlow from "@/components/app-development/ProcessFlow";
 
 // Define or import serviceDetails at the top
 const serviceDetails = {
-  development: {
-    heading: "Website Development",
-    description: "Build professional and engaging websites.",
-    image: "/assets/images/services/6.webp",
-  },
   "google-ads": {
     heading: "Google Ads",
     description: "Optimize your ads to reach the right audience.",
@@ -36,10 +35,20 @@ const serviceDetails = {
     description: "Enhance your content for better search rankings.",
     image: "/assets/images/services/8.webp",
   },
-  "nfc-cards": {
-    heading: "NFC Cards",
-    description: "Innovate with contactless technology.",
-    image: "/assets/images/services/9.webp",
+  development: {
+    heading: "Website Development",
+    description: "Build professional and engaging websites.",
+    image: "/assets/images/services/6.webp",
+  },
+  "app-development": {
+    heading: "App Development",
+    description: "Mobile & web applications",
+    image: "/assets/images/services/10.png",
+  },
+  "business-consulting": {
+    heading: "Business Analysis & Consulting",
+    description: "Strategic Business Solutions",
+    image: "/assets/images/services/11.png",
   },
 };
 
@@ -86,28 +95,37 @@ const serviceCaseStudies = {
 const serviceSEOData = {
   development: {
     title: "Professional Web Development Services | GDC Digital Solutions",
-    description: "Get professional web development services with GDC Digital Solutions. We build responsive, SEO-friendly websites tailored to boost your business growth online.",
-    keywords: "web development services, custom websites, responsive design, website development NZ, professional web developers, business websites, SEO-friendly development",
-    canonical: "https://gdcdigital.net/services/development"
+    description:
+      "Get professional web development services with GDC Digital Solutions. We build responsive, SEO-friendly websites tailored to boost your business growth online.",
+    keywords:
+      "web development services, custom websites, responsive design, website development NZ, professional web developers, business websites, SEO-friendly development",
+    canonical: "https://gdcdigital.net/services/development",
   },
   "google-ads": {
-    title: "Google Ads Management Services | Boost ROI with GDC Digital Solutions",
-    description: "Boost your business with GDC Digital Solutions' expert Google Ads services. Drive traffic, generate leads, and increase ROI with targeted campaigns in New Zealand.",
-    keywords: "Google Ads management, PPC advertising, paid search marketing, Google Ads agency NZ, ROI optimization, lead generation, targeted advertising",
-    canonical: "https://gdcdigital.net/services/google-ads"
+    title:
+      "Google Ads Management Services | Boost ROI with GDC Digital Solutions",
+    description:
+      "Boost your business with GDC Digital Solutions' expert Google Ads services. Drive traffic, generate leads, and increase ROI with targeted campaigns in New Zealand.",
+    keywords:
+      "Google Ads management, PPC advertising, paid search marketing, Google Ads agency NZ, ROI optimization, lead generation, targeted advertising",
+    canonical: "https://gdcdigital.net/services/google-ads",
   },
   seo: {
     title: "SEO Services New Zealand | Boost Website Traffic & Rankings",
-    description: "Boost your website's ranking with GDC Digital Solutions. We offer expert SEO services, including keyword optimization, on-page SEO, and link building for higher traffic.",
-    keywords: "SEO services NZ, search engine optimization, keyword optimization, link building, on-page SEO, website rankings, organic traffic",
-    canonical: "https://gdcdigital.net/services/seo"
+    description:
+      "Boost your website's ranking with GDC Digital Solutions. We offer expert SEO services, including keyword optimization, on-page SEO, and link building for higher traffic.",
+    keywords:
+      "SEO services NZ, search engine optimization, keyword optimization, link building, on-page SEO, website rankings, organic traffic",
+    canonical: "https://gdcdigital.net/services/seo",
   },
   "nfc-cards": {
     title: "NFC Business Cards New Zealand | Smart Contactless Card Solutions",
-    description: "Get smart with NFC Cards from GDC Digital Solutions. Simplify contactless sharing of information, boost networking, and enhance your brand visibility effortlessly.",
-    keywords: "NFC business cards, contactless cards, digital business cards, smart cards NZ, contactless sharing, networking solutions, brand visibility",
-    canonical: "https://gdcdigital.net/services/nfc-cards"
-  }
+    description:
+      "Get smart with NFC Cards from GDC Digital Solutions. Simplify contactless sharing of information, boost networking, and enhance your brand visibility effortlessly.",
+    keywords:
+      "NFC business cards, contactless cards, digital business cards, smart cards NZ, contactless sharing, networking solutions, brand visibility",
+    canonical: "https://gdcdigital.net/services/nfc-cards",
+  },
 };
 
 export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
@@ -128,6 +146,26 @@ export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
     }
   };
 
+  const animateText = (text, startDelay = 0) => {
+    return text.split("").map((char, index) => {
+      // For spaces, use a non-breaking space character
+      const display = char === " " ? "\u00A0" : char;
+      return (
+        <span
+          key={index}
+          className="inline-block"
+          style={{
+            animation: `fadeIn 0.05s ease forwards`,
+            animationDelay: `${(index + startDelay) * 0.1}s`,
+            opacity: 0,
+          }}
+        >
+          {display}
+        </span>
+      );
+    });
+  };
+
   return (
     <>
       <Head>
@@ -136,20 +174,26 @@ export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
         <meta name="keywords" content={serviceSEOData.keywords} />
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        
+
         {/* Open Graph tags */}
         <meta property="og:title" content={serviceSEOData.title} />
         <meta property="og:description" content={serviceSEOData.description} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={serviceSEOData.canonical} />
-        <meta property="og:image" content={`https://gdcdigital.net${service.image}`} />
-        
+        <meta
+          property="og:image"
+          content={`https://gdcdigital.net${service.image}`}
+        />
+
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={serviceSEOData.title} />
         <meta name="twitter:description" content={serviceSEOData.description} />
-        <meta name="twitter:image" content={`https://gdcdigital.net${service.image}`} />
-        
+        <meta
+          name="twitter:image"
+          content={`https://gdcdigital.net${service.image}`}
+        />
+
         <link rel="canonical" href={serviceSEOData.canonical} />
 
         {/* Structured data */}
@@ -157,24 +201,24 @@ export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            "name": service.heading,
-            "provider": {
+            name: service.heading,
+            provider: {
               "@type": "Organization",
-              "name": "GDC Digital Solutions",
-              "url": "https://gdcdigital.net"
+              name: "GDC Digital Solutions",
+              url: "https://gdcdigital.net",
             },
-            "description": serviceSEOData.description,
-            "areaServed": "New Zealand",
-            "serviceType": service.heading,
-            "image": `https://gdcdigital.net${service.image}`,
-            "offers": {
+            description: serviceSEOData.description,
+            areaServed: "New Zealand",
+            serviceType: service.heading,
+            image: `https://gdcdigital.net${service.image}`,
+            offers: {
               "@type": "Offer",
-              "areaServed": "New Zealand"
+              areaServed: "New Zealand",
             },
-            "mainEntityOfPage": {
+            mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": serviceSEOData.canonical
-            }
+              "@id": serviceSEOData.canonical,
+            },
           })}
         </script>
       </Head>
@@ -202,44 +246,45 @@ export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
             isServicesOpen || isAboutOpen ? "mt-20" : ""
           }`}
         >
-          {/* Animated Heading */}
           <h1 className="text-5xl font-bold mb-4 leading-tight">
-            {service.heading
-              .split(" ")[0]
-              .split("")
-              .map((letter, index) => (
-                <span
-                  key={index}
-                  className="inline-block"
-                  style={{
-                    animation: `fadeIn 0.05s ease forwards`,
-                    animationDelay: `${index * 0.1}s`,
-                    opacity: 0,
-                  }}
-                >
-                  {letter}
-                </span>
-              ))}{" "}
-            <span className="block text-customYellow">
-              {service.heading
-                .split(" ")[1]
-                .split("")
-                .map((letter, index) => (
-                  <span
-                    key={index}
-                    className="inline-block"
-                    style={{
-                      animation: `fadeIn 0.05s ease forwards`,
-                      animationDelay: `${
-                        (index + service.heading.split(" ")[0].length) * 0.1
-                      }s`,
-                      opacity: 0,
-                    }}
-                  >
-                    {letter}
-                  </span>
-                ))}
-            </span>
+            {slug === "business-consulting" ? (
+              // Special case for business consulting
+              <>
+                <div>{animateText("Business Analysis")}</div>
+                <div className="text-customYellow">
+                  {animateText("& Consulting", "Business Analysis".length)}
+                </div>
+              </>
+            ) : (
+              // For other services, dynamically use the heading from serviceDetails
+              <>
+                {service.heading.includes("&") ? (
+                  // For headings with &, split into two parts
+                  <>
+                    <div>
+                      {animateText(service.heading.split("&")[0].trim())}
+                    </div>
+                    <div className="text-customYellow">
+                      {animateText(
+                        "& " + service.heading.split("&")[1].trim(),
+                        service.heading.split("&")[0].trim().length
+                      )}
+                    </div>
+                  </>
+                ) : (
+                  // For headings without &, show first word in regular color, rest in yellow
+                  <>
+                    <div>{animateText(service.heading.split(" ")[0])}</div>
+                    <div className="text-customYellow">
+                      {animateText(
+                        service.heading.split(" ").slice(1).join(" "),
+                        service.heading.split(" ")[0].length
+                      )}
+                    </div>
+                  </>
+                )}
+              </>
+            )}
           </h1>
 
           <p className="text-lg text-white mb-6">{service.description}</p>
@@ -317,10 +362,19 @@ export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
         </section>
       )}
 
-      {service.heading === "NFC Cards" && (
+      {service.heading === "Business Analysis & Consulting" && (
         <section id="next-section">
-          <NFCIntroductionSection />
-          <NFCBenefits />
+          <ConsultingIntroductionSection />
+          <ConsultingBenefits />
+          <ExpertiseSection />
+          <ClosingSection />
+        </section>
+      )}
+
+      {service.heading === "App Development" && (
+        <section id="next-section">
+          <AppDevelopmentBenefits />
+          <AppProcessFlow />
         </section>
       )}
 

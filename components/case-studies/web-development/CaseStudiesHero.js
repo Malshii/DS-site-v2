@@ -29,7 +29,7 @@ const CaseStudiesHero = () => {
   const titleWords = title.split(" ");
 
   return (
-    <section className="relative h-screen w-full flex items-center text-white overflow-hidden px-4 sm:px-8 md:px-12 lg:px-20">
+    <section className="relative min-h-screen w-full flex items-center text-white overflow-hidden px-4 sm:px-8 md:px-12 lg:px-20 py-16 sm:py-20 md:py-24">
       {/* Snow Animation Background */}
       <div
         id="snow"
@@ -39,11 +39,11 @@ const CaseStudiesHero = () => {
       {/* Content */}
       <div
         id="move-down"
-        className="relative z-10 w-full container mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between gap-10 pt-20"
+        className="relative z-10 w-full container mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between gap-10 pt-12 md:pt-20"
       >
         {/* Left Content */}
         <motion.div
-          className="flex flex-col items-center md:items-start max-w-full md:max-w-xl space-y-6 text-center md:text-left"
+          className="flex flex-col items-center md:items-start max-w-full md:max-w-xl space-y-6 text-center md:text-left my-8 sm:my-10 md:my-0"
           variants={leftContentVariants}
           initial="hidden"
           whileInView="visible"
@@ -53,7 +53,7 @@ const CaseStudiesHero = () => {
             Driving Results for Engineering Excellence
           </h5>
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight flex flex-wrap justify-center md:justify-start"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight flex flex-wrap justify-center md:justify-start gap-x-2"
             variants={leftContentVariants}
             initial="hidden"
             whileInView="visible"
@@ -66,7 +66,6 @@ const CaseStudiesHero = () => {
                 className={`${word === "Consultants" ? "whitespace-nowrap" : ""}`}
               >
                 {word}
-                {index < titleWords.length - 1 && " "}
               </motion.span>
             ))}
           </motion.h1>
@@ -79,7 +78,7 @@ const CaseStudiesHero = () => {
           </p>
 
           {/* Buttons */}
-          <div className="flex gap-4 sm:gap-6 mt-6 justify-center md:justify-start">
+          <div className="flex gap-4 sm:gap-6 mt-8 justify-center md:justify-start">
             <motion.button
               className="bg-white text-customYellow px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-full font-bold text-sm sm:text-base md:text-lg shadow-lg transition"
               whileHover={{ scale: 1.05 }}
@@ -92,7 +91,7 @@ const CaseStudiesHero = () => {
 
         {/* Right Content */}
         <motion.div
-          className="flex justify-center md:justify-end mt-8 md:mt-0 w-full md:w-auto"
+          className="flex justify-center md:justify-end mt-6 md:mt-0 w-full md:w-auto mb-8 sm:mb-10 md:mb-0"
           variants={rightContentVariants}
           initial="hidden"
           whileInView="visible"
