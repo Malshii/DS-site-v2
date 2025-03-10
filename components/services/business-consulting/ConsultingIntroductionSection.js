@@ -57,7 +57,7 @@ const ConsultingIntroductionSection = () => {
             undergoing a digital transformation, enhancing operational
             processes, or aligning your IT strategy with business goals, we are
             here to guide you through every phase of your journey.
-          </motion.p>          
+          </motion.p>
         </div>
 
         {/* Right Image */}
