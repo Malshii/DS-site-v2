@@ -23,7 +23,7 @@ const ConsultationCTA = () => {
         <div>
           {/* Main Heading */}
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
-            Let's Discuss Your Business Goals & Schedule A Free Consultation
+            Let&apos;s Discuss Your Business Goals & Schedule A Free Consultation
             Today
           </h2>
 
