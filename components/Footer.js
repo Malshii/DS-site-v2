@@ -18,7 +18,7 @@ export default function Footer() {
             {/* Column 1: Let's start working together */}
             <div>
               <h2 className="text-2xl font-bold mb-6">
-                Let's start working together get in touch!
+                Let&apos;s start working together get in touch!
               </h2>
               <div className="mt-6">
                 <Link
