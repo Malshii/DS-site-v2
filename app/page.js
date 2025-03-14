@@ -1,6 +1,7 @@
 import Banner from "@/components/home/Banner";
 import Services from "@/components/home/Services";
 import CallToAction from "@/components/home/CallToAction";
+import ServicesBar from "@/components/home/ServicesBar";
 
 export async function generateMetadata() {
   // Base metadata
@@ -65,6 +66,7 @@ export default function Home() {
   return (
     <main>
       <Banner />
+      <ServicesBar />
       <Services />
       <CallToAction />
     </main>

@@ -1,54 +1,22 @@
-"use client"
+"use client";
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import {
-  CodeBracketIcon,
-  CurrencyDollarIcon,
-  DevicePhoneMobileIcon,
-  PresentationChartLineIcon,
-  ChevronDownIcon,
   Bars3Icon,
-  PlusIcon,
   XMarkIcon,
-  MinusIcon,
-  ChartBarIcon,
+  ChevronDownIcon,
+  ChevronRightIcon,
 } from "@heroicons/react/24/solid";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
-const Header = ({ setIsDropdownOpen }) => {
-  // State for dropdown menus
-  const [dropdownStates, setDropdownStates] = useState({
-    digitalMarketing: false,
-    webDev: false,
-    consulting: false,
-    caseStudies: false
-  });
+const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState("");
-  const [isMobile, setIsMobile] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [expandedItems, setExpandedItems] = useState({});
   const pathname = usePathname();
-  
-  // Add a ref to track initial render
-  const isInitialRender = useRef(true);
-  // Add a ref for animation check
-  const shouldAnimate = useRef(typeof window !== 'undefined' && !sessionStorage.getItem('headerAnimated'));
-
-  // Check for mobile viewport
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024); // 1024px is the lg breakpoint
-    };
-
-    // Initial check
-    checkMobile();
-
-    // Add resize listener
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+  const sidebarRef = useRef(null);
 
   // Handle scroll events
   useEffect(() => {
@@ -61,438 +29,259 @@ const Header = ({ setIsDropdownOpen }) => {
     };
   }, []);
 
-  // Set isInitialRender to false after first render
+  // Close sidebar when clicking outside
   useEffect(() => {
-    isInitialRender.current = false;
-  }, []);
-
-  // Set animation flag in sessionStorage
-  useEffect(() => {
-    if (shouldAnimate.current) {
-      // Set flag in sessionStorage to prevent animation on subsequent renders
-      sessionStorage.setItem('headerAnimated', 'true');
-    }
-  }, []);
-
-  // Toggle mobile menu
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-  // Toggle mobile dropdown menus
-  const handleMobileDropdownToggle = (dropdown) => {
-    setActiveDropdown(activeDropdown === dropdown ? "" : dropdown);
-  };
-
-  // Generic handler for desktop dropdown menus
-  const handleDropdownToggle = (menu, isOpen) => {
-    setDropdownStates(prev => ({...prev, [menu]: isOpen}));
-    setIsDropdownOpen && setIsDropdownOpen(isOpen);
-  };
-
-  // Preload logo images
-  useEffect(() => {
-    const preloadImages = async () => {
-      const images = [
-        "/assets/images/Digital Solution.webp",
-        "/assets/images/Digital Solution Logo.webp",
-      ];
-
-      try {
-        await Promise.all(
-          images.map((src) => {
-            return new Promise((resolve, reject) => {
-              const img = document.createElement("img");
-              img.onload = resolve;
-              img.onerror = reject;
-              img.src = src;
-            });
-          })
-        );
-      } catch (error) {
-        console.warn("Image preloading failed:", error);
+    const handleClickOutside = (event) => {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target) &&
+        !event.target.closest(".menu-button")
+      ) {
+        setIsSidebarOpen(false);
       }
     };
 
-    preloadImages();
-  }, []);
-
-  // Logo component
-  const LogoImage = () => {
-    const logoSrc =
-      pathname === "/" || isScrolled
-        ? "/assets/images/Digital Solution.webp"
-        : "/assets/images/Digital Solution Logo.webp";
-
-    return (
-      <Image
-        src={logoSrc}
-        alt="GDC Digital Solutions Logo"
-        width={240}
-        height={60}
-        className="h-auto w-auto"
-        priority={true}
-        loading="eager"
-        sizes="240px"
-        quality={85}
-      />
-    );
-  };
-
-  // Conditional wrapper component - Fixed to avoid conditional hooks
-  const ConditionalMotion = ({ children }) => {
-    const headerClasses = `fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
-      isScrolled ? "bg-white shadow-md" : "bg-transparent"
-    }`;
-
-    if (isMobile) {
-      return <header className={headerClasses}>{children}</header>;
+    if (isSidebarOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
     }
-    
-    return (
-      <motion.header
-        initial={shouldAnimate.current ? { y: -100, opacity: 0 } : false}
-        animate={shouldAnimate.current ? { y: 0, opacity: 1 } : {}}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className={headerClasses}
-      >
-        {children}
-      </motion.header>
-    );
-  };
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isSidebarOpen]);
 
-  // Helper functions for styling
-  const getTextColorClasses = () => {
-    return pathname === "/"
-      ? isScrolled
-        ? "text-customGray hover:text-customYellow"
-        : "text-customGray hover:text-customYellow"
-      : isScrolled
-      ? "text-customGray hover:text-customYellow"
-      : "text-white hover:text-customYellow";
-  };
-
-  const getDropdownBgClass = () => isScrolled ? "bg-white" : "bg-transparent";
-
-  const getDropdownTextColor = () => {
-    if (pathname === "/") {
-      return isScrolled
-        ? "text-gray-700 hover:text-customYellow"
-        : "text-gray-500 hover:text-customYellow";
+  // Lock body scroll when sidebar is open
+  useEffect(() => {
+    if (isSidebarOpen) {
+      document.body.style.overflow = "hidden";
     } else {
-      return isScrolled
-        ? "text-gray-700 hover:text-customYellow"
-        : "text-white hover:text-customYellow";
+      document.body.style.overflow = "unset";
     }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isSidebarOpen]);
+
+  // Close sidebar on route change
+  useEffect(() => {
+    setIsSidebarOpen(false);
+  }, [pathname]);
+
+  // Toggle sidebar
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const getDropdownDescriptionColor = () => {
-    if (pathname === "/") {
-      return isScrolled ? "text-gray-500" : "text-gray-500";
-    } else {
-      return isScrolled ? "text-gray-500" : "text-gray-300";
-    }
+  // Toggle dropdown in sidebar
+  const toggleDropdown = (index) => {
+    setExpandedItems((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
   };
 
-  // Menu item generator
-  const DesktopDropdownMenu = ({ name, title, items }) => (
-    <div
-      className="relative"
-      onMouseEnter={() => handleDropdownToggle(name, true)}
-      onMouseLeave={() => handleDropdownToggle(name, false)}
-    >
-      <button
-        aria-expanded={dropdownStates[name]}
-        aria-haspopup="true"
-        aria-label={`${title} menu`}
-        className={`flex items-center ${getTextColorClasses()} text-base font-bold`}
-      >
-        {title}
-        <ChevronDownIcon
-          className="w-3 h-3 ml-1 transition-transform duration-300"
-          aria-hidden="true"
-        />
-      </button>
-
-      {dropdownStates[name] && (
-        <div
-          className={`absolute left-0 mt-2 w-64 ${getDropdownBgClass()} rounded-xl shadow-xl p-4 z-50`}
-          role="menu"
-          aria-label={`${title} menu`}
-        >
-          {items.map((item, index) => (
-            <Link
-              key={index}
-              href={item.href}
-              className={`flex items-center py-3 px-4 ${getDropdownTextColor()} group rounded-lg hover:bg-gray-50 hover:bg-opacity-10 transition-colors`}
-            >
-              {item.icon && (
-                <item.icon className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform duration-300" />
-              )}
-              <div>
-                <div className="font-semibold">{item.title}</div>
-                {item.description && (
-                  <p className={`text-sm ${getDropdownDescriptionColor()} group-hover:text-customYellow`}>
-                    {item.description}
-                  </p>
-                )}
-              </div>
-            </Link>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-
-  // Mobile menu item generator
-  const MobileDropdownMenu = ({ id, title, items }) => (
-    <li className="relative">
-      <button
-        className="flex justify-between items-center w-full py-2 px-4 text-left font-light text-gray-800 hover:text-customYellow"
-        onClick={() => handleMobileDropdownToggle(id)}
-      >
-        <span className="flex items-center">
-          {activeDropdown === id ? (
-            <MinusIcon className="w-5 h-5 mr-2" />
-          ) : (
-            <PlusIcon className="w-5 h-5 mr-2" />
-          )}
-          {title}
-        </span>
-      </button>
-      {activeDropdown === id && (
-        <ul className="pl-4 bg-gray-50 border-l border-gray-500">
-          {items.map((item, index) => (
-            <li key={index}>
-              <Link
-                href={item.href}
-                className="block py-2 px-11 hover:text-customYellow"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
-    </li>
-  );
-
-  // Define menu items
-  const menuItems = {
-    digitalMarketing: {
-      title: "Digital Marketing",
-      items: [
-        {
-          title: "Google & Facebook Ads",
-          description: "Optimize your ads for results",
-          href: "/services/google-ads",
-          icon: CurrencyDollarIcon
-        },
-        {
-          title: "SEO / Copywriting",
-          description: "Boost your search rankings",
-          href: "/services/seo",
-          icon: PresentationChartLineIcon
-        }
-      ]
+  // Navigation links with dropdown items
+  const navItems = [
+    { name: "Home", href: "/", hasDropdown: false },
+    {
+      name: "Digital Marketing",
+      href: "/digital-marketing",
+      hasDropdown: true,
+      dropdownItems: [
+        { name: "Google & Facebook Ads", href: "/services/google-ads" },
+        { name: "SEO/ Copywriting", href: "/services/seo" },
+      ],
     },
-    webDev: {
-      title: "Web & App Development",
-      items: [
-        {
-          title: "Website Development",
-          description: "Professional, engaging websites",
-          href: "/services/development",
-          icon: CodeBracketIcon
-        },
-        {
-          title: "App Development",
-          description: "Mobile & web applications",
-          href: "/services/app-development",
-          icon: DevicePhoneMobileIcon
-        }
-      ]
+    {
+      name: "Web & App Development",
+      href: "/development",
+      hasDropdown: true,
+      dropdownItems: [
+        { name: "Website development", href: "/services/development" },
+        { name: "App development", href: "/services/app-development" },
+      ],
     },
-    consulting: {
-      title: "Consulting & Strategy",
-      items: [
+    {
+      name: "Consulting & Strategy",
+      href: "/consulting",
+      hasDropdown: true,
+      dropdownItems: [
         {
-          title: "Business Analysis & Consulting",
-          description: "Strategic business solutions",
+          name: "Business Analysis & Consulting",
           href: "/services/business-consulting",
-          icon: ChartBarIcon
-        }
-      ]
-    },
-    caseStudies: {
-      title: "Case Studies",
-      items: [
-        {
-          title: "Website Development",
-          href: "/case-studies/web-development",
-          icon: CodeBracketIcon
         },
-        {
-          title: "Google Ads",
-          href: "/case-studies/google-ads",
-          icon: CurrencyDollarIcon
-        }
-      ]
-    }
-  };
+      ],
+    },
+    { name: "About Us", href: "/about", hasDropdown: false },
+    {
+      name: "Case Studies",
+      href: "/case-studies",
+      hasDropdown: true,
+      dropdownItems: [
+        { name: "Website development", href: "/case-studies/web-development" },
+        { name: "Google Ads", href: "/case-studies/google-ads" },
+      ],
+    },
+    { name: "Contact Us Now", href: "/contact-us", hasDropdown: false },
+  ];
 
   return (
-    <ConditionalMotion>
-      <div className="container mx-auto flex justify-between items-center py-4 px-4 lg:px-12">
-        <Link href="/" className="flex items-center">
-          <LogoImage />
-        </Link>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex space-x-5">
-          <Link
-            href="/"
-            className={`${getTextColorClasses()} text-base font-bold`}
-          >
-            Home
+    <>
+      {/* Header */}
+      <header
+        className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 px-10 ${
+          isScrolled ? "bg-black bg-opacity-80 shadow-md" : "bg-transparent"
+        }`}
+      >
+        <div className="container mx-auto flex items-center justify-between py-4 px-6">
+          {/* Logo */}
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/assets/images/Digital Solution Logo.webp"
+              alt="GDC Digital Solutions Logo"
+              width={240}
+              height={60}
+              className="h-auto w-auto"
+              priority={true}
+              loading="eager"
+              sizes="240px"
+              quality={85}
+            />
           </Link>
 
-          {/* Generate desktop dropdown menus */}
-          <DesktopDropdownMenu 
-            name="digitalMarketing" 
-            title={menuItems.digitalMarketing.title} 
-            items={menuItems.digitalMarketing.items} 
-          />
-          
-          <DesktopDropdownMenu 
-            name="webDev" 
-            title={menuItems.webDev.title} 
-            items={menuItems.webDev.items} 
-          />
-          
-          <DesktopDropdownMenu 
-            name="consulting" 
-            title={menuItems.consulting.title} 
-            items={menuItems.consulting.items} 
-          />
-
-          <Link
-            href="/about"
-            className={`${getTextColorClasses()} text-base font-bold`}
-          >
-            About Us
-          </Link>
-
-          <DesktopDropdownMenu 
-            name="caseStudies" 
-            title={menuItems.caseStudies.title} 
-            items={menuItems.caseStudies.items} 
-          />
-
-          <Link
-            href="/contact-us"
-            className={`border-2 ${
-              pathname === "/"
-                ? isScrolled
-                  ? "border-customGray text-customGray hover:text-customYellow hover:border-customYellow hover:bg-transparent"
-                  : "border-customGray text-customGray hover:text-white hover:border-white hover:bg-transparent"
-                : isScrolled
-                ? "border-customGray text-customGray hover:text-customYellow hover:border-customYellow hover:bg-transparent"
-                : "border-white text-white hover:text-customYellow hover:border-customYellow hover:bg-transparent"
-            } bg-transparent px-5 py-1.5 rounded-full text-base font-bold transition-colors duration-300`}
-          >
-            Contact Us Now
-          </Link>
-        </nav>
-
-        {/* Mobile Menu Button */}
-        <div className="flex lg:hidden ml-auto">
+          {/* Hamburger Menu Button */}
           <button
-            onClick={toggleMenu}
-            className="lg:hidden"
-            aria-expanded={isMenuOpen}
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            className="menu-button text-white hover:text-customYellow focus:outline-none"
+            onClick={toggleSidebar}
+            aria-label="Menu"
           >
-            {isMenuOpen ? (
-              <XMarkIcon
-                className={`w-6 h-6 ${isScrolled ? "text-black" : "text-white"} transition-transform duration-300`}
-                aria-hidden="true"
-              />
-            ) : (
-              <Bars3Icon
-                className={`w-6 h-6 ${isScrolled ? "text-black" : "text-white"} transition-transform duration-300`}
-                aria-hidden="true"
-              />
-            )}
+            <Bars3Icon className="w-8 h-8" />
           </button>
         </div>
-      </div>
+      </header>
 
-      {/* Mobile Menu */}
-      <ul
-        className={`absolute top-full left-0 w-full bg-white shadow-md lg:hidden transition-all duration-300 ease-in-out ${
-          isMenuOpen
-            ? "max-h-[75vh] opacity-100 overflow-y-auto"
-            : "max-h-0 hidden"
-        }`}
-        style={{ zIndex: 100 }}
-        role="menu"
-      >
-        <li>
-          <Link
-            href="/"
-            className="block py-2 px-11 font-light text-gray-800 hover:text-customYellow"
-            onClick={() => setIsMenuOpen(false)}
+      {/* Overlay when sidebar is open */}
+      <AnimatePresence>
+        {isSidebarOpen && (
+          <motion.div
+            className="fixed inset-0 bg-black bg-opacity-50 z-40"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Sidebar */}
+      <AnimatePresence>
+        {isSidebarOpen && (
+          <motion.div
+            ref={sidebarRef}
+            className="fixed top-0 right-0 h-full w-80 bg-customGray z-50 overflow-y-auto shadow-xl"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "tween", duration: 0.3 }}
           >
-            Home
-          </Link>
-        </li>
-        
-        {/* Generate mobile dropdown menus */}
-        <MobileDropdownMenu 
-          id="digital-marketing" 
-          title={menuItems.digitalMarketing.title} 
-          items={menuItems.digitalMarketing.items} 
-        />
-        
-        <MobileDropdownMenu 
-          id="web-dev" 
-          title={menuItems.webDev.title} 
-          items={menuItems.webDev.items} 
-        />
-        
-        <MobileDropdownMenu 
-          id="consulting" 
-          title={menuItems.consulting.title} 
-          items={menuItems.consulting.items} 
-        />
+            <div className="flex justify-between items-center p-6 border-b border-customGray">
+              <button
+                onClick={toggleSidebar}
+                className="text-white hover:text-customYellow focus:outline-none"
+                aria-label="Close menu"
+              >
+                <XMarkIcon className="w-6 h-6" />
+              </button>
+            </div>
 
-        <li className="relative">
-          <Link
-            href="/about"
-            className="block py-2 px-11 font-light text-gray-800 hover:text-customYellow"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            About Us
-          </Link>
-        </li>
+            <nav className="p-6">
+              <ul className="space-y-6">
+                {navItems.map((item, index) => (
+                  <li key={item.name} className="py-1">
+                    {item.hasDropdown ? (
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between">
+                          <Link
+                            href={item.href}
+                            className={`text-lg ${
+                              pathname === item.href ||
+                              pathname.startsWith(item.href + "/")
+                                ? "text-customYellow font-medium"
+                                : "text-white"
+                            } hover:text-customYellow transition-colors`}
+                          >
+                            {item.name}
+                          </Link>
+                          <button
+                            onClick={() => toggleDropdown(index)}
+                            className="text-white hover:text-customYellow focus:outline-none transition-transform duration-200"
+                            aria-expanded={expandedItems[index]}
+                          >
+                            {expandedItems[index] ? (
+                              <ChevronDownIcon className="w-5 h-5" />
+                            ) : (
+                              <ChevronRightIcon className="w-5 h-5" />
+                            )}
+                          </button>
+                        </div>
 
-        <MobileDropdownMenu 
-          id="case-studies" 
-          title={menuItems.caseStudies.title} 
-          items={menuItems.caseStudies.items} 
-        />
+                        <AnimatePresence>
+                          {expandedItems[index] && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="overflow-hidden"
+                            >
+                              <ul className="pl-4 pt-2 space-y-3 border-l border-gray-700">
+                                {item.dropdownItems.map((dropdownItem) => (
+                                  <li key={dropdownItem.name}>
+                                    <Link
+                                      href={dropdownItem.href}
+                                      className={`block text-sm ${
+                                        pathname === dropdownItem.href
+                                          ? "text-customYellow font-medium"
+                                          : "text-gray-300"
+                                      } hover:text-customYellow transition-colors`}
+                                    >
+                                      {dropdownItem.name}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className={`text-lg ${
+                          pathname === item.href
+                            ? "text-customYellow font-medium"
+                            : "text-white"
+                        } hover:text-customYellow transition-colors`}
+                      >
+                        {item.name}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </nav>
 
-        <li>
-          <Link
-            href="/contact-us"
-            className="block py-2 px-11 font-light text-gray-800 hover:text-customYellow"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Contact Now
-          </Link>
-        </li>
-      </ul>
-    </ConditionalMotion>
+            {/* Social Links or Additional Info */}
+            <div className="p-6 border-t border-gray-700 mt-6">
+              <div className="mb-4">
+                <p className="text-gray-400 text-sm mb-2">Contact Us</p>
+                <p className="text-white">digital@gdcgroup.co.nz</p>
+                <p className="text-white">021 246 3988</p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

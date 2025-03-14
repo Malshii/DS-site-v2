@@ -1,192 +1,126 @@
 "use client";
-
-import { useEffect, useState } from "react";
-import {
-  ChartBarIcon,
-  PresentationChartLineIcon,
-  GlobeAltIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/24/solid";
+import React, { useState } from "react";
 import Image from "next/image";
 
-const services = [
-  {
-    id: 1,
-    icon: ChartBarIcon,
-    title: "Website Development",
-    description:
-      "Create stunning, user-friendly websites to enhance your brand's online presence and drive growth.",
-  },
-  {
-    id: 2,
-    icon: PresentationChartLineIcon,
-    title: "Google Ads",
-    description:
-      "Boost your business with targeted Google Ads that convert clicks into loyal customers.",
-  },
-  {
-    id: 3,
-    icon: GlobeAltIcon,
-    title: "SEO / Copywriting",
-    description:
-      "Increase visibility with compelling, SEO-friendly content that drives meaningful traffic.",
-  },
-  {
-    id: 4,
-    icon: MagnifyingGlassIcon,
-    title: "NFC Cards",
-    description:
-      "Modern, eco-friendly NFC cards for seamless networking and lasting connections.",
-  },
-];
+// Check icon component with outlined design
+const CheckIcon = ({ className }) => (
+  <div className="flex items-center justify-center w-6 h-6 rounded-sm border-2 border-amber-400 mr-2">
+    <svg
+      className={`h-4 w-4 text-amber-400 ${className}`}
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M7.5 13.5L4 10L3 11L7.5 15.5L17.5 5.5L16.5 4.5L7.5 13.5Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+);
 
-const Services = () => {
-  const [isSingleColumn, setIsSingleColumn] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(0);
-
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      setWindowWidth(width);
-      setIsSingleColumn(width < 640);
-    };
-
-    // Initial setup
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => setIsVisible(true), 100);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.2,
-        rootMargin: "50px",
-      }
-    );
-
-    const section = document.getElementById("services-section");
-    if (section) {
-      observer.observe(section);
-    }
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      if (section) {
-        observer.unobserve(section);
-      }
-    };
-  }, []);
+const ServiceCard = ({ title, items, iconSrc }) => {
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <section
-      id="services-section"
-      className="relative py-10 sm:py-20 lg:py-40 min-h-[600px] overflow-hidden"
-      style={{
-        opacity: isLoaded ? 1 : 0,
-        transition: "opacity 0.3s ease-in-out",
-      }}
+    <div
+      className={`relative rounded-xl p-6 transition-all duration-300 h-full shadow-md ${
+        isHovered ? "bg-customGray text-white" : "bg-white text-gray-800"
+      }`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Background Image with responsive handling */}
-      {!isSingleColumn && (
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <div className="absolute inset-[-10%] sm:inset-[-5%]">
-            <Image
-              src="/assets/images/bg.webp"
-              alt="Background"
-              fill
-              priority
-              fetchPriority="high"
-              className="object-cover mix-blend-overlay transform scale-110"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
-              quality={75}
-              onLoad={() => setIsLoaded(true)}
-              style={{
-                objectPosition: windowWidth < 768 ? 'center center' : '50% 50%'
-              }}
+      <div className="flex items-center mb-6">
+        <div className="w-20 h-20 mr-3 relative">
+          <img
+            src={iconSrc}
+            alt={`${title} icon`}
+            className="w-full h-full object-contain"
+          />
+        </div>
+        <h3 className="text-xl font-bold">{title}</h3>
+      </div>
+
+      <ul className="space-y-4">
+        {items.map((item, index) => (
+          <li key={index} className="flex items-start">
+            <CheckIcon
+              className={isHovered ? "text-amber-400" : "text-amber-400"}
+            />
+            <span className="text-sm">{item}</span>
+          </li>
+        ))}
+      </ul>
+
+      {/* Decorative corner element */}
+      <div className="absolute bottom-0 right-0 w-8 h-8 bg-amber-400 rounded-tl-lg"></div>
+    </div>
+  );
+};
+
+const ServicesSection = () => {
+  const serviceCards = [
+    {
+      title: "Digital Marketing",
+      items: ["Google & Facebook Ads", "SEO / Copywriting"],
+      iconSrc: "/assets/images/icons/2.png",
+    },
+    {
+      title: "Consulting & Strategy",
+      items: ["Business Strategy & Consulting"],
+      iconSrc: "/assets/images/icons/3.png",
+    },
+    {
+      title: "Web & App Development",
+      items: ["Website Development", "App Development"],
+      iconSrc: "/assets/images/icons/4.png",
+    },
+  ];
+
+  return (
+    <section className="bg-white">
+      {/* Main Services Section */}
+      <div className="container mx-auto px-40 py-16">
+        {/* First Row: Title + Description and First Card */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          {/* Left Column: Text Content */}
+          <div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-customGray mb-6">
+              Explore unique digital solutions service
+            </h2>
+            <p className="text-gray-600">
+              Crafting compelling digital experiences that captivate audiences
+              and drive meaningful connections. Our digital solutions combines
+              innovation, strategy, and expertise to fuel your online success.
+            </p>
+          </div>
+
+          {/* Right Column: First Card */}
+          <div>
+            <ServiceCard
+              title={serviceCards[0].title}
+              items={serviceCards[0].items}
+              iconSrc={serviceCards[0].iconSrc}
             />
           </div>
         </div>
-      )}
 
-      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-10">
-        <div className="flex flex-col lg:flex-row items-center">
-          {/* Left Image Section */}
-          <div
-            className={`lg:w-1/2 w-full mb-8 lg:mb-0`}
-            style={{
-              opacity: isVisible ? 1 : 0,
-              transform: `translateY(${isVisible ? "0" : "20px"})`,
-              transition:
-                "opacity 0.5s ease-in-out, transform 0.5s ease-in-out",
-            }}
-          >
-            <div className="relative w-full max-w-[500px] mx-auto lg:mx-0">
-              <div className="aspect-[4/3] w-full">
-                <Image
-                  src="/assets/images/services.webp"
-                  alt="Services Illustration"
-                  fill
-                  priority
-                  fetchPriority="high"
-                  className="object-contain"
-                  sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 40vw"
-                  quality={85}
-                  placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSUvJR8lPTw1PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT3/2wBDARUXFyAeIB8gID0lJT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT3/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Services Section */}
-          <div className="lg:w-1/2 w-full">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {services.map((service, index) => {
-                const IconComponent = service.icon;
-                return (
-                  <div
-                    key={service.id}
-                    className={`flex items-start ${
-                      isSingleColumn ? "bg-customYellow rounded-lg p-4" : ""
-                    }`}
-                    style={{
-                      opacity: isVisible ? 1 : 0,
-                      transform: isVisible
-                        ? "translateY(0)"
-                        : "translateY(20px)",
-                      transition: `opacity 0.5s ease-in-out ${
-                        index * 0.1
-                      }s, transform 0.5s ease-in-out ${index * 0.1}s`,
-                    }}
-                  >
-                    <div className="p-3 rounded-full bg-white mr-4 flex-shrink-0">
-                      <IconComponent className="w-8 h-8 text-customYellow" />
-                    </div>
-                    <div className="flex-1">
-                      <h1 className="font-bold text-lg text-white">
-                        {service.title}
-                      </h1>
-                      <p className="text-white text-sm sm:text-base">
-                        {service.description}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+        {/* Second Row: Two Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {serviceCards.slice(1).map((card, index) => (
+            <ServiceCard
+              key={index}
+              title={card.title}
+              items={card.items}
+              iconSrc={card.iconSrc}
+            />
+          ))}
         </div>
       </div>
     </section>
   );
 };
 
-export default Services;
+export default ServicesSection;
