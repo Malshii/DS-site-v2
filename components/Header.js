@@ -200,9 +200,9 @@ const Header = () => {
                     {item.hasDropdown ? (
                       <div className="space-y-2 sm:space-y-3">
                         <div className="flex items-center justify-between">
-                          <Link
-                            href={item.href}
-                            className={`text-base sm:text-lg ${
+                          <button
+                            onClick={() => toggleDropdown(index)}
+                            className={`text-left text-base sm:text-lg ${
                               pathname === item.href ||
                               pathname.startsWith(item.href + "/")
                                 ? "text-customYellow font-medium"
@@ -210,7 +210,7 @@ const Header = () => {
                             } hover:text-customYellow transition-colors`}
                           >
                             {item.name}
-                          </Link>
+                          </button>
                           <button
                             onClick={() => toggleDropdown(index)}
                             className="text-white hover:text-customYellow focus:outline-none transition-transform duration-200"
