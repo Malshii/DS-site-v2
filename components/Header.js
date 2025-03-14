@@ -128,11 +128,11 @@ const Header = () => {
     <>
       {/* Header */}
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 px-10 ${
+        className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 px-2 sm:px-4 md:px-6 lg:px-10 ${
           isScrolled ? "bg-black bg-opacity-80 shadow-md" : "bg-transparent"
         }`}
       >
-        <div className="container mx-auto flex items-center justify-between py-4 px-6">
+        <div className="container mx-auto flex items-center justify-between py-3 sm:py-4 px-2 sm:px-4 md:px-6">
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
@@ -140,10 +140,10 @@ const Header = () => {
               alt="GDC Digital Solutions Logo"
               width={240}
               height={60}
-              className="h-auto w-auto"
+              className="h-auto w-auto max-w-[160px] sm:max-w-[180px] md:max-w-[200px] lg:max-w-[240px]"
               priority={true}
               loading="eager"
-              sizes="240px"
+              sizes="(max-width: 640px) 160px, (max-width: 768px) 180px, (max-width: 1024px) 200px, 240px"
               quality={85}
             />
           </Link>
@@ -154,7 +154,7 @@ const Header = () => {
             onClick={toggleSidebar}
             aria-label="Menu"
           >
-            <Bars3Icon className="w-8 h-8" />
+            <Bars3Icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
           </button>
         </div>
       </header>
@@ -177,32 +177,32 @@ const Header = () => {
         {isSidebarOpen && (
           <motion.div
             ref={sidebarRef}
-            className="fixed top-0 right-0 h-full w-80 bg-customGray z-50 overflow-y-auto shadow-xl"
+            className="fixed top-0 right-0 h-full w-[85%] sm:w-80 bg-customGray z-50 overflow-y-auto shadow-xl"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
           >
-            <div className="flex justify-between items-center p-6 border-b border-customGray">
+            <div className="flex justify-between items-center p-4 sm:p-6 border-b border-customGray">
               <button
                 onClick={toggleSidebar}
                 className="text-white hover:text-customYellow focus:outline-none"
                 aria-label="Close menu"
               >
-                <XMarkIcon className="w-6 h-6" />
+                <XMarkIcon className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
             </div>
 
-            <nav className="p-6">
-              <ul className="space-y-6">
+            <nav className="p-4 sm:p-6">
+              <ul className="space-y-4 sm:space-y-6">
                 {navItems.map((item, index) => (
                   <li key={item.name} className="py-1">
                     {item.hasDropdown ? (
-                      <div className="space-y-3">
+                      <div className="space-y-2 sm:space-y-3">
                         <div className="flex items-center justify-between">
                           <Link
                             href={item.href}
-                            className={`text-lg ${
+                            className={`text-base sm:text-lg ${
                               pathname === item.href ||
                               pathname.startsWith(item.href + "/")
                                 ? "text-customYellow font-medium"
@@ -217,9 +217,9 @@ const Header = () => {
                             aria-expanded={expandedItems[index]}
                           >
                             {expandedItems[index] ? (
-                              <ChevronDownIcon className="w-5 h-5" />
+                              <ChevronDownIcon className="w-4 h-4 sm:w-5 sm:h-5" />
                             ) : (
-                              <ChevronRightIcon className="w-5 h-5" />
+                              <ChevronRightIcon className="w-4 h-4 sm:w-5 sm:h-5" />
                             )}
                           </button>
                         </div>
@@ -233,12 +233,12 @@ const Header = () => {
                               transition={{ duration: 0.2 }}
                               className="overflow-hidden"
                             >
-                              <ul className="pl-4 pt-2 space-y-3 border-l border-gray-700">
+                              <ul className="pl-3 sm:pl-4 pt-1 sm:pt-2 space-y-2 sm:space-y-3 border-l border-gray-700">
                                 {item.dropdownItems.map((dropdownItem) => (
                                   <li key={dropdownItem.name}>
                                     <Link
                                       href={dropdownItem.href}
-                                      className={`block text-sm ${
+                                      className={`block text-xs sm:text-sm ${
                                         pathname === dropdownItem.href
                                           ? "text-customYellow font-medium"
                                           : "text-gray-300"
@@ -256,7 +256,7 @@ const Header = () => {
                     ) : (
                       <Link
                         href={item.href}
-                        className={`text-lg ${
+                        className={`text-base sm:text-lg ${
                           pathname === item.href
                             ? "text-customYellow font-medium"
                             : "text-white"
@@ -271,11 +271,11 @@ const Header = () => {
             </nav>
 
             {/* Social Links or Additional Info */}
-            <div className="p-6 border-t border-gray-700 mt-6">
+            <div className="p-4 sm:p-6 border-t border-gray-700 mt-4 sm:mt-6">
               <div className="mb-4">
-                <p className="text-gray-400 text-sm mb-2">Contact Us</p>
-                <p className="text-white">digital@gdcgroup.co.nz</p>
-                <p className="text-white">021 246 3988</p>
+                <p className="text-gray-400 text-xs sm:text-sm mb-1 sm:mb-2">Contact Us</p>
+                <p className="text-white text-sm sm:text-base">digital@gdcgroup.co.nz</p>
+                <p className="text-white text-sm sm:text-base">021 246 3988</p>
               </div>
             </div>
           </motion.div>
