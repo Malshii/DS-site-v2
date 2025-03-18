@@ -73,7 +73,7 @@ const ServicesBar = () => {
         
         .service-item {
           color: #333333;
-          font-weight: 500;
+          font-weight: bold;
           padding: 0 20px;
         }
         
@@ -91,7 +91,7 @@ const ServicesBar = () => {
             {scrollServices.map((service, index) => (
               <React.Fragment key={index}>
                 <span 
-                  className="service-item text-gray-800 text-lg"
+                  className="service-item text-customGray text-lg"
                   data-index={index % services.length}
                 >
                   {service}

@@ -18,7 +18,7 @@ export default function AboutHeader({ isServicesOpen, isAboutOpen }) {
 
   return (
     <div
-      className={`relative flex flex-col items-center justify-center h-[600px] text-white text-center px-6 transition-all duration-300`}
+      className={`relative flex flex-col items-center justify-center h-[600px] text-customGray text-center px-6 transition-all duration-300`}
       style={{
         backgroundPositionY: scrollY * 0.5, // Parallax effect only affects content
       }}

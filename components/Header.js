@@ -87,7 +87,8 @@ const Header = () => {
       href: "/digital-marketing",
       hasDropdown: true,
       dropdownItems: [
-        { name: "Google & Facebook Ads", href: "/services/google-ads" },
+        { name: "Google Ads", href: "/services/google-ads" },
+        { name: "Facebook Ads", href: "/services/facebook-ads" },
         { name: "SEO/ Copywriting", href: "/services/seo" },
       ],
     },

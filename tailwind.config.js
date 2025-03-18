@@ -60,7 +60,14 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ['"Roboto"', "sans-serif"],
+        sans: ['"Space Grotesk"', "sans-serif"],      
+      },
+      fontWeight: {
+        light: 400,
+        normal: 400,
+        medium: 400,
+        semibold: 400,
+        bold: 400,
       },
     },
   },
