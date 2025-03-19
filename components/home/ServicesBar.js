@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef } from 'react';
-import Image from 'next/image';
 
 const ServicesBar = () => {
   // List of services to display

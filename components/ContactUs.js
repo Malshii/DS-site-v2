@@ -6,42 +6,19 @@ import {
   FaEnvelope,
   FaFacebookF,
 } from "react-icons/fa";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const ContactUs = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
-    full_name: "",
+    name: "",
     email: "",
+    phone: "",
     message: "",
   });
   const [formStatus, setFormStatus] = useState("idle");
   const [formMessage, setFormMessage] = useState("");
-
-  // Lazy load Facebook SDK only when user clicks the Facebook link
-  const handleFacebookClick = (e) => {
-    e.preventDefault();
-    const loadFacebookAndRedirect = async () => {
-      // Load the SDK
-      await new Promise((resolve) => {
-        const script = document.createElement("script");
-        script.src = "https://connect.facebook.net/en_US/sdk.js";
-        script.async = true;
-        script.defer = true;
-        script.crossOrigin = "anonymous";
-        script.onload = resolve;
-        document.body.appendChild(script);
-      });
-
-      // After SDK loads, redirect to Facebook page
-      window.location.href =
-        "https://www.facebook.com/profile.php?id=61567398772169&mibextid=ZbWKwL";
-    };
-
-    loadFacebookAndRedirect();
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -65,16 +42,16 @@ const ContactUs = () => {
         },
         body: JSON.stringify({
           fields: [
-            { name: "full_name", value: formData.full_name },
+            { name: "name", value: formData.name },
             { name: "email", value: formData.email },
+            { name: "phone", value: formData.phone },
             { name: "message", value: formData.message },
           ],
         }),
       });
 
       if (response.ok) {
-        // Instead of showing message in the form, redirect to success page
-        router.push('/success');
+        router.push("/success");
       } else {
         setFormStatus("error");
         setFormMessage(
@@ -90,113 +67,143 @@ const ContactUs = () => {
   };
 
   return (
-    <section
-      className="flex justify-center items-center min-h-screen p-6 relative bg-cover bg-center"
-      style={{ backgroundImage: "url('/assets/images/contact-bg.webp')" }}
-    >
-      <div id="move-down" className="py-20">
-        <div className="bg-opacity-90 backdrop-blur-md rounded-lg shadow-xl p-8 w-full max-w-5xl flex flex-col md:flex-row relative overflow-hidden">
-          {/* Form Section */}
-          <div className="flex-1 md:pr-8 z-10">
-            <h1 className="text-2xl font-bold text-center text-white mb-4">
-              Get In Touch
-            </h1>
-            <p className="text-customYellow text-center mb-6">
-              We are here for you! How can we help?
+    <section className="py-16 px-4 md:px-6 lg:px-8 bg-white">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex flex-col md:flex-row">
+          {/* Contact Info Section - Left Side */}
+          <div className="w-full md:w-1/2 p-8 md:p-10 bg-white">
+            <h2 className="text-3xl md:text-4xl font-bold mb-2 text-gray-900">
+            Get In Touch
+            </h2>
+            <p className="text-2xl md:text-3xl font-bold mb-6 text-gray-900">
+            We are here for you! How can we help?
             </p>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input
-                type="text"
-                name="full_name"
-                value={formData.full_name}
-                onChange={handleChange}
-                placeholder="Enter your full name"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-customYellow"
-              />
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Enter your email address"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-customYellow"
-              />
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Go ahead, we're listening..."
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-customYellow h-32 resize-none"
-              />
-              <button
-                type="submit"
-                className="w-full py-3 bg-customYellow text-white rounded-lg font-semibold hover:bg-customGray transition duration-300"
-              >
-                Submit
-              </button>
-            </form>
 
-            {formStatus === "error" && (
-              <p className="mt-4 font-semibold text-center text-red-600">
-                {formMessage}
-              </p>
-            )}
-          </div>
-
-          {/* Contact Info Section */}
-          <div className="flex-1 flex flex-col items-center justify-between mt-8 md:mt-0 md:pl-6">
-            <div className="flex flex-col items-center">
-              <Image
-                src="/assets/images/contact-form-image.webp"
-                alt="Contact Illustration"
-                width={0}
-                height={0}
-                sizes="75vw"
-                className="w-3/4 h-auto mb-4"
-                loading="lazy"
-              />
-
-              <div className="text-customGray text-center font-bold mb-6 space-y-4">
-                <div className="flex items-center">
-                  <FaMapMarkerAlt className="text-customYellow text-lg mr-2" />
-                  <span>89 Church Road, Pukete, Hamilton 3200</span>
+            <div className="space-y-6">
+              {/* Address */}
+              <div className="flex items-start">
+                <div className="bg-customGray p-2 rounded-md mr-4 flex items-center justify-center w-10 h-10">
+                  <FaMapMarkerAlt className="text-white text-lg" />
                 </div>
-                <div className="flex items-center">
-                  <FaPhoneAlt className="text-customYellow text-lg mr-2" />
+                <div>
+                  <p className="text-gray-900 font-semibold">
+                    89 Church Road, Pukete, Hamilton 3200
+                  </p>
+                  <p className="text-gray-600">NZ, USA</p>
+                </div>
+              </div>
+
+              {/* Phone */}
+              <div className="flex items-start">
+                <div className="bg-customGray p-2 rounded-md mr-4 flex items-center justify-center w-10 h-10">
+                  <FaPhoneAlt className="text-white text-lg" />
+                </div>
+                <div>
                   <Link
                     href="tel:021 246 3988"
-                    className="hover:text-customYellow transition-colors"
+                    className="text-gray-900 font-semibold hover:text-customYellow transition-colors"
                   >
-                    021 246 3988
+                    (+1) 021 246 3988
                   </Link>
                 </div>
-                <div className="flex items-center">
-                  <FaEnvelope className="text-customYellow text-lg mr-2" />
+              </div>
+
+              {/* Email */}
+              <div className="flex items-start">
+                <div className="bg-customGray p-2 rounded-md mr-4 flex items-center justify-center w-10 h-10">
+                  <FaEnvelope className="text-white text-lg" />
+                </div>
+                <div>
                   <Link
                     href="mailto:digital@gdcgroup.co.nz"
-                    className="hover:text-customYellow transition-colors"
+                    className="text-gray-900 font-semibold hover:text-customYellow transition-colors"
                   >
                     digital@gdcgroup.co.nz
                   </Link>
                 </div>
               </div>
-            </div>
 
-            {/* Social Media Section - Optimized */}
-            <div className="flex items-center space-x-2 mt-4">
-              <span className="text-customGray text-lg font-semibold">
-                Follow us on:
-              </span>
-              <Link
-                href="https://www.facebook.com/profile.php?id=61567398772169&mibextid=ZbWKwL"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="facebook-link bg-customYellow text-white p-3 rounded-full hover:bg-customGray transition duration-300"
-                prefetch={false}
-              >
-                <FaFacebookF />
-              </Link>
-            </div>
+              <div className="flex items-start">
+                <div className="bg-customGray p-2 rounded-md mr-4 flex items-center justify-center w-10 h-10">
+                  <FaFacebookF className="text-white text-lg" />
+                </div>
+                <div>
+                  <Link
+                    href="https://www.facebook.com/profile.php?id=61567398772169&mibextid=ZbWKwL"
+                    className="text-gray-900 font-semibold hover:text-customYellow transition-colors"
+                  >
+                    Follow us on
+                  </Link>
+                </div>
+              </div>
+            </div>            
+          </div>
+
+          {/* Form Section - Right Side */}
+          <div className="w-full md:w-1/2 p-8 md:p-10 bg-customGray text-white rounded-lg">
+            <h3 className="text-4xl font-bold mb-6">Contact form</h3>
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Name"
+                  className="w-full p-3 border-none focus:ring-2 focus:ring-customYellow focus:outline-none text-white placeholder-gray-400 rounded-sm"
+                  required
+                />
+              </div>
+
+              <div className="flex flex-col md:flex-row gap-4">
+                <div className="w-full md:w-1/2">
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Email"
+                    className="w-full p-3 border-none focus:ring-2 focus:ring-customYellow focus:outline-none text-white placeholder-gray-400 rounded-sm"
+                    required
+                  />
+                </div>
+                <div className="w-full md:w-1/2">
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="Phone Number"
+                    className="w-full p-3 border-none focus:ring-2 focus:ring-customYellow focus:outline-none text-white placeholder-gray-400 rounded-sm"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Write Your Message Here"
+                  className="w-full p-3 border-none focus:ring-2 focus:ring-customYellow focus:outline-none text-white placeholder-gray-400 h-24 resize-none rounded-sm"
+                  required
+                />
+              </div>
+
+              <div className="pt-4">
+                <button
+                  type="submit"
+                  className="py-3 px-8 bg-customYellow text-black font-semibold rounded-md hover:bg-yellow-400 transition duration-300"
+                >
+                  Submit Now
+                </button>
+              </div>
+            </form>
+
+            {formStatus === "error" && (
+              <p className="mt-4 font-semibold text-red-400">{formMessage}</p>
+            )}
           </div>
         </div>
       </div>

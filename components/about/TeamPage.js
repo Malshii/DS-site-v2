@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import TeamTitleBar from "./TeamTitleBar";
 
-// Define the teamMembers array
+// Define the teamMembers array with updated positions to match the design
 const teamMembers = [
   {
     image: "/assets/images/team/Danyon-Fernando.webp",
@@ -26,7 +27,7 @@ const teamMembers = [
     name: "Ruwani Kokawala",
     position: "Google Ads Specialist/ SEO",
     qualifications:
-      "Master of Science Technology Management - Southeast Missouri State University, USA",
+      "Master of Science Technology Management - Southeast Missouri State University, USA",
   },
   {
     image: "/assets/images/team/Malshi.webp",
@@ -34,149 +35,80 @@ const teamMembers = [
     position: "Web Developer/ App Development",
     qualifications:
       "Bachelor of Science (Hons) Information Technology & Management - University of Moratuwa, Sri Lanka",
-  }
+  },
 ];
 
 const TeamPage = () => {
-  // State definitions
-  const [activeCoreIndex, setActiveCoreIndex] = useState(null);
-  const [activeSubIndex, setActiveSubIndex] = useState(null);
-  const subTeamSliderRef = useRef(null);
-  const autoScrollIntervalRef = useRef(null);
+  // State for tracking which member is being hovered/focused
+  const [activeIndex, setActiveIndex] = useState(null);
 
-  // Function to scroll the sub-team slider
-  const scrollSubTeamSlider = (direction) => {
-    const scrollAmount = direction === "left" ? -300 : 300;
-    subTeamSliderRef.current.scrollBy({
-      left: scrollAmount,
-      behavior: "smooth",
-    });
-    pauseAutoScroll();
+  // Handle mouse and touch interactions
+  const handleMouseEnter = (index) => {
+    setActiveIndex(index);
   };
 
-  // Function to auto-scroll the sub-team slider every few seconds
-  const autoScrollSubTeamSlider = () => {
-    autoScrollIntervalRef.current = setInterval(() => {
-      if (!subTeamSliderRef.current) return;
-
-      const maxScrollLeft =
-        subTeamSliderRef.current.scrollWidth -
-        subTeamSliderRef.current.clientWidth;
-
-      if (subTeamSliderRef.current.scrollLeft >= maxScrollLeft) {
-        subTeamSliderRef.current.scrollTo({ left: 0, behavior: "smooth" });
-      } else {
-        subTeamSliderRef.current.scrollBy({ left: 300, behavior: "smooth" });
-      }
-    }, 5000); // Scroll every 3 seconds
+  const handleMouseLeave = () => {
+    setActiveIndex(null);
   };
 
-  const pauseAutoScroll = () => {
-    clearInterval(autoScrollIntervalRef.current);
-    setTimeout(() => {
-      autoScrollSubTeamSlider();
-    }, 5000); // Restart auto-scroll after 5 seconds of inactivity
-  };
-
-  useEffect(() => {
-    autoScrollSubTeamSlider();
-    return () => {
-      clearInterval(autoScrollIntervalRef.current);
-    };
-  }, []);
-
-  // Prevent double-tap behavior and default action on touch
-  useEffect(() => {
-    const handleTouchStart = (e) => {
-      if (e.touches.length > 1) {
-        e.preventDefault();
-      }
-    };
-
-    document.addEventListener("touchstart", handleTouchStart, {
-      passive: false,
-    });
-
-    return () => {
-      document.removeEventListener("touchstart", handleTouchStart);
-    };
-  }, []);
-
-  const toggleOverlay = (index) => {
-    setActiveCoreIndex(activeCoreIndex === index ? null : index);
-  };
-
-  const handleTouchEvent = (e, index) => {
-    // Prevent the default behavior and stop the event propagation
+  const handleTouchStart = (e, index) => {
     e.preventDefault();
     e.stopPropagation();
-
-    // Toggle the overlay when touched
-    toggleOverlay(index);
+    setActiveIndex(activeIndex === index ? null : index);
   };
 
   return (
-    <>
-      <div className="min-h-screen">
-        <header className="pt-8">
-          <div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-10">
-            <h2 className="text-6xl font-bold text-center text-white">
-              Our Core Team
-            </h2>
-          </div>
-        </header>
+    <div className="min-h-screen">
+      <TeamTitleBar />
 
-        {/* Core Team Section */}
-        <section className="py-8 md:py-16">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="max-w-screen-2xl mx-auto px-4 md:px-6 lg:px-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-4 gap-10"
-          >
-            {teamMembers.map((member, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.05 }}
-                className="relative group overflow-hidden shadow-lg cursor-pointer rounded-xl"
-                onMouseEnter={() => toggleOverlay(index)} // For desktop hover
-                onMouseLeave={() => toggleOverlay(null)} // For desktop hover leave
-                onTouchStart={(e) => handleTouchEvent(e, index)} // For touch devices
-              >
+      <section className="pb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-screen-full mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-0"
+        >
+          {teamMembers.map((member, index) => (
+            <div
+              key={index}
+              className="relative overflow-hidden h-full"
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={handleMouseLeave}
+              onTouchStart={(e) => handleTouchStart(e, index)}
+            >
+              {/* Member image */}
+              <div className="h-[400px] md:h-[500px] relative">
                 <Image
                   src={member.image}
                   alt={member.name}
-                  width={600}
-                  height={600}
-                  className="object-cover w-full h-[400px] transition-transform duration-500"
+                  fill
+                  style={{ objectFit: "cover" }}
+                  className="grayscale transition-all duration-300"
                 />
-                {/* Text container with overlay, hide on hover */}
-                <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-60 py-4 px-4 z-10 group-hover:opacity-0 transition-opacity duration-300 h-28 flex flex-col justify-center">
-                  <h4 className="text-white text-center text-xl font-semibold">
-                    {member.name}
-                  </h4>
-                  <p className="text-customYellow text-center text-base font-medium">
-                    {member.position}
-                  </p>
-                </div>
-                {/* Full overlay on hover */}
-                <motion.div
-                  className={`absolute inset-0 bg-customYellow bg-opacity-80 flex items-center justify-center rounded-xl transition-opacity duration-300 ${
-                    activeCoreIndex === index ? "opacity-100" : "opacity-0"
-                  }`}
+
+                {/* Overlay that appears on hover (lime green with name/position) */}
+                <div
+                  className={`absolute bottom-0 left-0 w-full transition-all duration-300 ease-in-out
+                    ${
+                      activeIndex === index
+                        ? "bg-customYellow h-26"
+                        : "bg-transparent h-0"
+                    }`}
                 >
-                  <div className="text-white text-center px-4">
-                    <h3 className="text-2xl font-bold">{member.name}</h3>
-                    <h5 className="text-lg">{member.position}</h5>
-                    <p className="text-sm mt-2">{member.qualifications}</p>
+                  <div className="p-4 text-center">
+                    <h3 className="text-xl font-semibold text-black">
+                      {member.name}
+                    </h3>
+                    <h6 className="text-black mb-4">{member.position}</h6>
+                    <p className="text-black">{member.qualifications}</p>
                   </div>
-                </motion.div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </section>
-      </div>
-    </>
+                </div>
+              </div>
+            </div>
+          ))}
+        </motion.div>
+      </section>
+    </div>
   );
 };
 

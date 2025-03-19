@@ -1,5 +1,4 @@
 import AboutHeader from "@/components/about/AboutHeader";
-import AboutTeamExpertise from "@/components/about/AboutTeamExpertise";
 import PageTitle from "@/components/about/PageTitle";
 import TeamPage from "@/components/about/TeamPage";
 import CallToAction from "@/components/home/CallToAction";
@@ -44,15 +43,14 @@ export const metadata = {
   },
 };
 
-export default function AboutUs({ isDropdownOpen }) {
+export default function AboutUs() {
   return (
     <>
       <PageTitle />
       <ServicesBar />
       {/* Main content */}
       <div className={`relative z-10 transition-all duration-300`}>
-        <AboutHeader isDropdownOpen={isDropdownOpen} />
-        <AboutTeamExpertise />
+        <AboutHeader/>
         <TeamPage />
         <CallToAction />
       </div>

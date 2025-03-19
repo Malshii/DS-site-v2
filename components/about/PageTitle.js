@@ -4,11 +4,45 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronDoubleDownIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const PageTitle = ({
-  title = "About Us", // Default title or accept as prop
+  title, // Accept title as prop (can be overridden)
   onScrollDown,
 }) => {
+  const pathname = usePathname();
+  const [pageTitle, setPageTitle] = useState(title || "About Us");
+
+  // Determine page title based on current route
+  useEffect(() => {
+    if (title) {
+      // If title prop is explicitly provided, use it
+      setPageTitle(title);
+    } else {
+      // Otherwise determine from pathname
+      const path = pathname || "";
+      if (path.includes("/about")) {
+        setPageTitle("About Us");
+      } else if (path.includes("/contact-us")) {
+        setPageTitle("Let’s work together");
+      } else if (path.includes("/team")) {
+        setPageTitle("Our Team");
+      } else if (path.includes("/contact")) {
+        setPageTitle("Contact Us");
+      } else if (path.includes("/portfolio") || path.includes("/work")) {
+        setPageTitle("Our Portfolio");
+      } else if (path.includes("/blog")) {
+        setPageTitle("Blog & News");
+      } else if (path === "/") {
+        setPageTitle("Digital Solutions");
+      } else {
+        // Default fallback
+        setPageTitle("About Us");
+      }
+    }
+  }, [pathname, title]);
+
   // Text animation helper
   const animateText = (text, startDelay = 0) => {
     return text.split("").map((char, index) => {
@@ -37,8 +71,8 @@ const PageTitle = ({
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/assets/images/global-bg.webp"
-          alt={`${title} page title`}
+          src="/assets/images/hero.jpeg"
+          alt={`${pageTitle} page title`}
           layout="fill"
           objectFit="cover"
           className="w-full h-full object-cover"
@@ -50,7 +84,7 @@ const PageTitle = ({
       <div className="container relative z-20 mx-auto px-6 md:px-10">
         <div className="max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            {animateText(title)}
+            {animateText(pageTitle)}
           </h1>
 
           {/* Contact Now Button */}
