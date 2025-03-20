@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 
 // Common components
 import CallToAction from "@/components/home/CallToAction";
-import CaseStudyCard from "@/components/services/case-study/CaseStudyCard";
+import CaseStudyCard from "@/components/case-studies/case-study/CaseStudyCard";
 import HeroSection from "@/components/services/HeroSection";
 
 // Web Development components
@@ -28,16 +28,21 @@ import ExpertiseSection from "@/components/services/business-consulting/Expertis
 import ClosingSection from "@/components/services/business-consulting/ClosingSection";
 
 // App Development components
-import AppDevelopmentBenefits from "@/components/app-development/AppDevelopment";
-import AppProcessFlow from "@/components/app-development/ProcessFlow";
+import AppDevelopmentBenefits from "@/components/services/app-development/AppDevelopment";
+import AppProcessFlow from "@/components/services/app-development/ProcessFlow";
 
 // Data imports
 import {
   serviceDetails,
   serviceCaseStudies,
   serviceSEOData,
-} from "./serviceData";
+} from "../../../data/serviceData";
 import ServicesBar from "@/components/home/ServicesBar";
+import FacebookAdsBenefits from "@/components/services/facebook-ads/FacebookAds";
+import FacebookAdsProcessFlow from "@/components/services/facebook-ads/FacebookAdsProcessFlow";
+import FacebookAdsIntroductionSection from "@/components/services/facebook-ads/FacebookAdsIntroductionSection";
+import FBClosingSection from "@/components/services/facebook-ads/ClosingSection";
+import LocalBusinessTargeting from "@/components/services/facebook-ads/LocalBusinessTargeting";
 
 export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
   const { slug } = params;
@@ -98,6 +103,17 @@ export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
               imagePath={caseStudy?.imagePath}
               caseStudyPath={caseStudy?.caseStudyPath}
             />
+          </>
+        );
+
+      case "Facebook Ads":
+        return (
+          <>
+            <FacebookAdsIntroductionSection />
+            <FacebookAdsBenefits />
+            <FacebookAdsProcessFlow />
+            <LocalBusinessTargeting />
+            <FBClosingSection />
           </>
         );
 

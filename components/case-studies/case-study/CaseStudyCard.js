@@ -69,7 +69,7 @@ const CaseStudyCard = ({
         >
           <Image
             src={imagePath}
-            alt={`${heading} Success Screenshot`}
+            // alt={${heading} Success Screenshot}
             width={400}
             height={400}
             className="w-full max-w-[400px] mx-auto transform hover:scale-105 transition duration-300"

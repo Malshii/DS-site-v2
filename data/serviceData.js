@@ -5,6 +5,11 @@ export const serviceDetails = {
     description: "Optimize your ads to reach the right audience.",
     image: "/assets/images/services/Google Ads.jpg",
   },
+  "facebook-ads": {
+    heading: "Facebook Ads",
+    description: "Optimize your ads to reach the right audience.",
+    image: "/assets/images/services/Facebook Ads.jpg",
+  },
   seo: {
     heading: "SEO/ Copywriting",
     description: "Enhance your content for better search rankings.",

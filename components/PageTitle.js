@@ -6,7 +6,7 @@ import { ChevronDoubleDownIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { serviceDetails } from "@/app/services/[slug]/serviceData";
+import { serviceDetails } from "@/data/serviceData";
 
 const PageTitle = ({
   title, // Accept title as prop (can be overridden)
