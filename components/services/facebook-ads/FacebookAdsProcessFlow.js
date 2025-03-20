@@ -83,7 +83,7 @@ export default function FacebookAdsProcessFlow() {
             Our Facebook Advertising Services
           </h2>
           <p className="text-gray-600 mt-4">
-            Comprehensive solutions to boost your brand's presence on Facebook
+            Comprehensive solutions to boost your brand&apos;s presence on Facebook
           </p>
         </motion.div>
 

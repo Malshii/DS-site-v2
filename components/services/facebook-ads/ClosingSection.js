@@ -33,7 +33,7 @@ export default function FBClosingSection() {
                 Get Started with <span className="text-customYellow">GDC Digital Solutions Today!</span>
               </h2>
               <p className="text-gray-300 mb-4 text-lg leading-relaxed">
-                Ready to scale your business with Facebook Ads? Let's create a high-performance ad campaign that drives sales, leads, and brand awareness in New Zealand.
+                Ready to scale your business with Facebook Ads? Let&apos;s create a high-performance ad campaign that drives sales, leads, and brand awareness in New Zealand.
               </p>
               <p className="text-gray-300 text-lg leading-relaxed md:mb-0 mb-8">
                 Contact Us today to grow your business with expert Facebook advertising in NZ!
