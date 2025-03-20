@@ -1,11 +1,7 @@
 // components/Footer.js
 import Image from "next/image";
 import Link from "next/link";
-import {
-  FaEnvelope,
-  FaMapMarkedAlt,
-  FaPhoneAlt,
-} from "react-icons/fa";
+import { FaEnvelope, FaMapMarkedAlt, FaPhoneAlt } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -32,13 +28,17 @@ export default function Footer() {
 
             {/* Column 2: Contact information */}
             <div className="mb-6 sm:mb-0">
-              <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Contact information</h2>
+              <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">
+                Contact information
+              </h2>
               <ul className="space-y-3 sm:space-y-4">
                 <li className="flex items-start">
                   <div className="text-customYellow mr-3 flex-shrink-0">
                     <FaMapMarkedAlt className="text-lg sm:text-xl mt-1" />
                   </div>
-                  <span className="text-sm sm:text-base">89 Church Road, Pukete, Hamilton 3200</span>
+                  <span className="text-sm sm:text-base">
+                    89 Church Road, Pukete, Hamilton 3200
+                  </span>
                 </li>
                 <li className="flex items-center">
                   <div className="text-customYellow mr-3 flex-shrink-0">
@@ -61,13 +61,15 @@ export default function Footer() {
                   >
                     digital@gdcgroup.co.nz
                   </Link>
-                </li>              
+                </li>
               </ul>
             </div>
 
             {/* Column 3: Subscribe newsletter */}
             <div className="sm:col-span-2 md:col-span-1">
-              <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Subscribe newsletter</h2>
+              <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">
+                Subscribe newsletter
+              </h2>
               <p className="mb-4 sm:mb-6 text-sm sm:text-base">
                 Get our latest news and ideas to your inbox
               </p>
@@ -97,40 +99,68 @@ export default function Footer() {
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-6 md:gap-8">
             <div className="flex items-center justify-center w-1/2 sm:w-1/3 md:w-auto mb-4 sm:mb-0">
-              <Image
-                src="/assets/images/Digital Solution.webp"
-                alt="GDC Digital Solutions Logo"
-                width={180}
-                height={60}
-                className="object-contain h-12 sm:h-16"
-              />
+              <a
+                href="https://www.gdcdigital.net/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-opacity hover:opacity-80"
+              >
+                <Image
+                  src="/assets/images/Digital Solution.webp"
+                  alt="GDC Digital Solutions Logo"
+                  width={180}
+                  height={60}
+                  className="object-contain h-12 sm:h-16"
+                />
+              </a>
             </div>
             <div className="flex items-center justify-center w-1/2 sm:w-1/3 md:w-auto mb-4 sm:mb-0">
-              <Image
-                src="/assets/images/GDC LOGOS 2024 BLUE.webp"
-                alt="GDC Consultants Logo"
-                width={180}
-                height={60}
-                className="object-contain h-12 sm:h-16"
-              />
+              <a
+                href="https://www.gdcgroup.co.nz/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-opacity hover:opacity-80"
+              >
+                <Image
+                  src="/assets/images/GDC LOGOS 2024 BLUE.webp"
+                  alt="GDC Consultants Logo"
+                  width={180}
+                  height={60}
+                  className="object-contain h-12 sm:h-16"
+                />
+              </a>
             </div>
             <div className="flex items-center justify-center w-1/2 sm:w-1/3 md:w-auto mb-4 sm:mb-0">
-              <Image
-                src="/assets/images/Recruit Logo.png"
-                alt="GDC Recruitment Logo"
-                width={180}
-                height={60}
-                className="object-contain h-12 sm:h-16"
-              />
+              <a
+                href="https://www.gdcrecruit.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-opacity hover:opacity-80"
+              >
+                <Image
+                  src="/assets/images/Recruit Logo.png"
+                  alt="GDC Recruitment Logo"
+                  width={180}
+                  height={60}
+                  className="object-contain h-12 sm:h-16"
+                />
+              </a>
             </div>
             <div className="flex items-center justify-center w-1/2 sm:w-1/3 md:w-auto">
-              <Image
-                src="/assets/images/properties logo.png"
-                alt="GDC Properties Logo"
-                width={180}
-                height={60}
-                className="object-contain h-12 sm:h-16"
-              />
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-opacity hover:opacity-80"
+              >
+                <Image
+                  src="/assets/images/properties logo.png"
+                  alt="GDC Properties Logo"
+                  width={180}
+                  height={60}
+                  className="object-contain h-12 sm:h-16"
+                />
+              </a>
             </div>
           </div>
         </div>
@@ -140,7 +170,9 @@ export default function Footer() {
       <div className="bg-white py-4 border-t border-gray-200">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="text-center text-gray-600">
-            <p className="text-xs sm:text-sm">Copyright © 2025 GDC Digital Solutions. All Rights Reserved.</p>
+            <p className="text-xs sm:text-sm">
+              Copyright © 2025 GDC Digital Solutions. All Rights Reserved.
+            </p>
           </div>
         </div>
       </div>

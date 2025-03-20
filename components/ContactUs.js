@@ -89,7 +89,7 @@ const ContactUs = () => {
                   <p className="text-gray-900 font-semibold">
                     89 Church Road, Pukete, Hamilton 3200
                   </p>
-                  <p className="text-gray-600">NZ, USA</p>
+                  <p className="text-gray-600">NZ</p>
                 </div>
               </div>
 
@@ -100,10 +100,10 @@ const ContactUs = () => {
                 </div>
                 <div>
                   <Link
-                    href="tel:021 246 3988"
+                    href="tel:+64212463988."
                     className="text-gray-900 font-semibold hover:text-customYellow transition-colors"
                   >
-                    (+1) 021 246 3988
+                    +64 21 246 3988
                   </Link>
                 </div>
               </div>

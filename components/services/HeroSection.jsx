@@ -4,11 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronDoubleDownIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
+import { useRef } from "react";
 
 const HeroSection = ({
   service,
-  onScrollDown,
+  nextSectionId = "next-section", // ID of the next section to scroll to
 }) => {
+  const scrollRef = useRef(null);
 
   // Text animation helper
   const animateText = (text, startDelay = 0) => {
@@ -28,6 +30,20 @@ const HeroSection = ({
         </span>
       );
     });
+  };
+
+  // Handle scroll down functionality
+  const handleScrollDown = () => {
+    const nextSection = document.getElementById(nextSectionId);
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // Fallback: scroll down by viewport height if next section not found
+      window.scrollBy({
+        top: window.innerHeight,
+        behavior: "smooth"
+      });
+    }
   };
 
   // Special case handling for "Business Analysis & Consulting"
@@ -92,7 +108,10 @@ const HeroSection = ({
   const { firstLine, secondLine } = getTitleParts();
 
   return (
-    <section className="relative flex items-center justify-center min-h-[500px] text-white">
+    <section 
+      ref={scrollRef}
+      className="relative flex items-center justify-center min-h-[500px] text-white"
+    >
       {/* Darker Overlay */}
       <div className="absolute inset-0 z-10 bg-black bg-opacity-70"></div>
 
@@ -137,7 +156,8 @@ const HeroSection = ({
         className="absolute bottom-10 right-10 z-20 cursor-pointer"
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 1.5 }}
-        onClick={onScrollDown}
+        onClick={handleScrollDown}
+        aria-label="Scroll to next section"
       >
         <div className="flex items-center justify-center w-20 h-20 bg-customYellow rounded-full">
           <ChevronDoubleDownIcon className="h-8 w-8 text-black" />

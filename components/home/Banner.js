@@ -109,7 +109,6 @@ const Banner = ({ isServicesOpen, isAboutOpen }) => {
         backgroundBlendMode: "overlay",
       }}
     >
-      {/* CSS for the scrolling effect with increased font sizes and rotating text */}
       <style jsx>{`
         @keyframes scrollWords {
           0% {
@@ -125,40 +124,60 @@ const Banner = ({ isServicesOpen, isAboutOpen }) => {
           background-color: #ffbf00;
           border-radius: 9999px;
           overflow: hidden;
-          padding: 12px 0; /* Increased padding */
-          width: 90%; /* Increased width */
+          width: 90%;
+          max-width: 900px;
           margin: 0 auto;
           z-index: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .scroll-content {
           display: inline-flex;
           white-space: nowrap;
           animation: scrollWords 40s linear infinite;
+          align-items: center;
         }
 
         .scroll-word {
           color: #333333;
-          font-weight: 400; /* Made bolder */
-          padding: 0 24px; /* Increased padding */
+          font-weight: 500;
+          padding: 0 24px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          line-height: 1;
         }
 
-        /* Custom responsive font size */
+        /* Custom responsive font size with better vertical alignment */
         @media (max-width: 640px) {
           .scroll-word {
-            font-size: 3rem; /* 48px for mobile */
+            font-size: 2.5rem;
+            height: 70px;
+            padding-top: 0;
+            padding-bottom: 0;
           }
         }
 
         @media (min-width: 641px) and (max-width: 1023px) {
           .scroll-word {
-            font-size: 4rem; /* 64px for tablet */
+            font-size: 3.25rem;
+            height: 90px;
+            padding-top: 0;
+            padding-bottom: 0;
           }
         }
 
         @media (min-width: 1024px) {
           .scroll-word {
-            font-size: 5rem; /* 80px for desktop */
+            font-size: 4.25rem;
+            height: 110px;
+            /* Specifically adjust vertical position for desktop */
+            padding-top: 10px;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
           }
         }
 
@@ -174,8 +193,8 @@ const Banner = ({ isServicesOpen, isAboutOpen }) => {
 
         .circular-text-container {
           position: absolute;
-          width: 140px;
-          height: 140px;
+          width: 120px;
+          height: 120px;
           z-index: 20;
         }
 
@@ -191,8 +210,8 @@ const Banner = ({ isServicesOpen, isAboutOpen }) => {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          width: 80px;
-          height: 80px;
+          width: 70px;
+          height: 70px;
           background-color: #ffb500;
           border-radius: 50%;
           display: flex;
@@ -200,10 +219,38 @@ const Banner = ({ isServicesOpen, isAboutOpen }) => {
           justify-content: center;
           transition: transform 0.3s ease;
           z-index: 2;
+          padding: 10px; /* Add padding around the icon */
         }
 
         .circular-button:hover {
           transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        /* Add responsive styles for the circular button */
+        @media (max-width: 640px) {
+          .circular-text-container {
+            width: 100px;
+            height: 100px;
+            top: -10px !important;
+            right: -10px !important;
+          }
+          
+          .circular-button {
+            width: 60px;
+            height: 60px;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .circular-text-container {
+            width: 90px;
+            height: 90px;
+          }
+          
+          .circular-button {
+            width: 50px;
+            height: 50px;
+          }
         }
       `}</style>
 
@@ -222,12 +269,12 @@ const Banner = ({ isServicesOpen, isAboutOpen }) => {
           <div className="w-full max-w-4xl mx-auto text-center">
             {/* Using the dynamic heading size function */}
             <h1
-              className={`${getHeadingSize()} font-bold leading-none text-white`}
+              className={`${getHeadingSize()} font-bold leading-none text-white text-center`}
             >
-              We do
+              <span>We do</span>
               {/* Single yellow container with scrolling words */}
               <div className="my-3">
-                <div className="scroll-container" ref={marqueeContainerRef}>
+                <div className="scroll-container mx-auto" ref={marqueeContainerRef}>
                   <div className="scroll-content">
                     {scrollWords.map((item, index) => (
                       <span
@@ -244,14 +291,14 @@ const Banner = ({ isServicesOpen, isAboutOpen }) => {
             </h1>
 
             {/* Description text with circular button positioned to the right */}
-            <div className="mt-8 text-left max-w-xl mx-auto relative">
-              <p className="text-white text-xl sm:text-2xl leading-relaxed pr-16 md:pr-28">
+            <div className="mt-8 mb-10 text-left max-w-xl mx-auto relative">
+              <p className="text-white text-xl sm:text-2xl leading-relaxed pr-14 pr-16 sm:pr-20 md:pr-28">
                 We make exceptional digital marketing, web & app development,
                 consulting, for startups and enterprises.
               </p>
               
-              {/* Circular text button positioned to the right of the description */}
-              <div className="circular-text-container absolute top-1/2 right-0 transform -translate-y-1/2">
+              {/* Circular text button with more responsive positioning */}
+              <div className="circular-text-container absolute top-0 right-0 sm:top-1/2 sm:-translate-y-1/2 transform scale-75 sm:scale-90 md:scale-100 origin-top-right">
                 <Link href="/contact-us" className="block w-full h-full">
                   <div className="rotating-text">
                     <svg viewBox="0 0 100 100" width="100%" height="100%">
@@ -269,19 +316,25 @@ const Banner = ({ isServicesOpen, isAboutOpen }) => {
                     </svg>
                   </div>
                   <div className="circular-button">
+                    {/* More balanced headset icon with reduced boldness and proper padding */}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width="30"
-                      height="30"
+                      width="26"
+                      height="26"
                       viewBox="0 0 24 24"
                       fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
+                      stroke="#000000"
+                      strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
+                      className="sm:w-28 sm:h-28 md:w-32 md:h-32"
                     >
-                      <line x1="7" y1="17" x2="17" y2="7"></line>
-                      <polyline points="7 7 17 7 17 17"></polyline>
+                      {/* Refined headset for better visual balance */}
+                      <rect x="4" y="13" rx="2" ry="2" width="4" height="5"></rect>
+                      <rect x="16" y="13" rx="2" ry="2" width="4" height="5"></rect>
+                      <path d="M4 15v-3a8 8 0 0 1 16 0v3"></path>
+                      <path d="M18 19a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-1.5"></path>
+                      <path d="M6 15H4a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2"></path>
                     </svg>
                   </div>
                 </Link>

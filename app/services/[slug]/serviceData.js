@@ -3,32 +3,37 @@ export const serviceDetails = {
   "google-ads": {
     heading: "Google Ads",
     description: "Optimize your ads to reach the right audience.",
-    image: "/assets/images/services/7.webp",
+    image: "/assets/images/services/Google Ads.jpg",
   },
   seo: {
     heading: "SEO/ Copywriting",
     description: "Enhance your content for better search rankings.",
-    image: "/assets/images/services/8.webp",
+    image: "/assets/images/services/SEO.png",
   },
   development: {
     heading: "Website Development",
     description: "Build professional and engaging websites.",
-    image: "/assets/images/services/6.webp",
+    image: "/assets/images/services/Web development.png",
   },
   "app-development": {
     heading: "App Development",
     description: "Mobile & web applications",
-    image: "/assets/images/services/10.png",
+    image: "/assets/images/services/Mobile development.jpg",
   },
   "business-consulting": {
     heading: "Business Analysis & Consulting",
     description: "Strategic Business Solutions",
-    image: "/assets/images/services/11.png",
+    image: "/assets/images/services/Business Analyst.png",
   },
   "about": {
-    heading: "About GDC Digital Solutions",
-    description: "About GDC Digital Solutions",
+    heading: "About Us",
+    description: "",
     image: "/assets/images/global-bg.webp",
+  },
+  "contact-us": {
+    heading: "Let's work together",
+    description: "",
+    image: "/assets/images/services/Call us.jpg",
   },
 };
 

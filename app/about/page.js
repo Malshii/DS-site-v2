@@ -1,5 +1,5 @@
 import AboutHeader from "@/components/about/AboutHeader";
-import PageTitle from "@/components/about/PageTitle";
+import PageTitle from "@/components/PageTitle";
 import TeamPage from "@/components/about/TeamPage";
 import CallToAction from "@/components/home/CallToAction";
 import ServicesBar from "@/components/home/ServicesBar";

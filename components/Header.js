@@ -82,6 +82,7 @@ const Header = () => {
   // Navigation links with dropdown items
   const navItems = [
     { name: "Home", href: "/", hasDropdown: false },
+    { name: "About Us", href: "/about", hasDropdown: false },
     {
       name: "Digital Marketing",
       href: "/digital-marketing",
@@ -112,7 +113,7 @@ const Header = () => {
         },
       ],
     },
-    { name: "About Us", href: "/about", hasDropdown: false },
+
     {
       name: "Case Studies",
       href: "/case-studies",
@@ -274,9 +275,21 @@ const Header = () => {
             {/* Social Links or Additional Info */}
             <div className="p-4 sm:p-6 border-t border-gray-700 mt-4 sm:mt-6">
               <div className="mb-4">
-                <p className="text-gray-400 text-xs sm:text-sm mb-1 sm:mb-2">Contact Us</p>
-                <p className="text-white text-sm sm:text-base">digital@gdcgroup.co.nz</p>
-                <p className="text-white text-sm sm:text-base">021 246 3988</p>
+                <p className="text-gray-400 text-base sm:text-lg mb-1 sm:mb-2 font-normal">
+                  Contact Us
+                </p>
+                <a
+                  href="mailto:digital@gdcgroup.co.nz"
+                  className="block text-white text-base sm:text-lg font-normal hover:text-customYellow transition-colors mb-1"
+                >
+                  digital@gdcgroup.co.nz
+                </a>
+                <a
+                  href="tel:+64212463988"
+                  className="block text-white text-base sm:text-lg font-normal hover:text-customYellow transition-colors"
+                >
+                  (+64) 21 246 3988
+                </a>
               </div>
             </div>
           </motion.div>

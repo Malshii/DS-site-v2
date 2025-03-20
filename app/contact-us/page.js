@@ -1,7 +1,8 @@
 // pages/contact-us.js
-import PageTitle from "@/components/about/PageTitle";
+import PageTitle from "@/components/PageTitle";
 import ContactUs from "@/components/ContactUs";
 import ServicesBar from "@/components/home/ServicesBar";
+import GoogleMapsComponent from "@/components/GoogleMapsComponent";
 
 // Metadata Generation
 export async function generateMetadata() {
@@ -65,6 +66,7 @@ export default function ContactUsPage() {
       <ServicesBar />
       <section className="relative bg-cover bg-center bg-no-repeat min-h-screen">
         <ContactUs />
+        <GoogleMapsComponent />
       </section>
     </>
   );
