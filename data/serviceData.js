@@ -33,7 +33,7 @@ export const serviceDetails = {
   "about": {
     heading: "About Us",
     description: "",
-    image: "/assets/images/global-bg.webp",
+    image: "/assets/images/services/AboutUs.jpg",
   },
   "contact-us": {
     heading: "Let's work together",
