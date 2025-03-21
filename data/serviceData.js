@@ -40,6 +40,11 @@ export const serviceDetails = {
     description: "",
     image: "/assets/images/services/Call us.jpg",
   },
+  "case-studies/web-development": {
+    heading: "Case Studies",
+    description: "",
+    image: "/assets/images/services/Web development.png",
+  },
 };
 
 // Case study information for each service

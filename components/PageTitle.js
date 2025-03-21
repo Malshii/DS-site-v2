@@ -26,11 +26,11 @@ const PageTitle = ({
       // Extract the service key from the pathname
       const path = pathname || "";
       const servicePath = path.split("/").pop();
-      
+
       // Find matching service in serviceDetails
       if (serviceDetails[servicePath]) {
         setPageTitle(serviceDetails[servicePath].heading);
-        
+
         // Set image if available in serviceDetails
         if (serviceDetails[servicePath].image) {
           setImageUrl(serviceDetails[servicePath].image);
@@ -41,12 +41,15 @@ const PageTitle = ({
       } else if (path.includes("/contact-us")) {
         setPageTitle(serviceDetails["contact-us"].heading);
         setImageUrl(serviceDetails["contact-us"].image);
+      } else if (path.includes("/case-studies/web-development")) {
+        setPageTitle(serviceDetails["case-studies/web-development"].heading);
+        setImageUrl(serviceDetails["case-studies/web-development"].image);
       } else {
         // Default fallback
         setPageTitle("GDC Digital Solutions");
       }
     }
-    
+
     // If a custom image is provided, use it instead
     if (customImage) {
       setImageUrl(customImage);
@@ -62,7 +65,7 @@ const PageTitle = ({
       // Fallback: scroll down by viewport height if next section not found
       window.scrollBy({
         top: window.innerHeight,
-        behavior: "smooth"
+        behavior: "smooth",
       });
     }
   };
@@ -133,7 +136,7 @@ const PageTitle = ({
           <ChevronDoubleDownIcon className="h-8 w-8 text-black" />
         </div>
       </motion.div>
-      
+
       {/* Animation Styles */}
       <style jsx>{`
         @keyframes fadeIn {

@@ -328,35 +328,35 @@ export const caseStudiesData = {
       images: [
         {
           src: "/assets/images/website-dev/twilson-builders/1.png",
-          alt: "Twilson Builders Responsive Design",
+          alt: "Twilson Builders Responsive Design1",
         },
         {
           src: "/assets/images/website-dev/twilson-builders/2.png",
-          alt: "Twilson Builders Responsive Design",
+          alt: "Twilson Builders Responsive Design2",
         },
         {
           src: "/assets/images/website-dev/twilson-builders/3.png",
-          alt: "Twilson Builders Responsive Design",
+          alt: "Twilson Builders Responsive Design3",
         },
         {
           src: "/assets/images/website-dev/twilson-builders/4.png",
-          alt: "Twilson Builders Responsive Design",
+          alt: "Twilson Builders Responsive Design4",
         },
         {
           src: "/assets/images/website-dev/twilson-builders/5.png",
-          alt: "Twilson Builders Responsive Design",
+          alt: "Twilson Builders Responsive Design5",
         },
         {
           src: "/assets/images/website-dev/twilson-builders/6.png",
-          alt: "Twilson Builders Responsive Design",
+          alt: "Twilson Builders Responsive Design6",
         },
         {
           src: "/assets/images/website-dev/twilson-builders/7.png",
-          alt: "Twilson Builders Responsive Design",
+          alt: "Twilson Builders Responsive Design7",
         },
         {
           src: "/assets/images/website-dev/twilson-builders/8.png",
-          alt: "Twilson Builders Responsive Design",
+          alt: "Twilson Builders Responsive Design8",
         },
       ],
     },
