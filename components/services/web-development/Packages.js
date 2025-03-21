@@ -87,7 +87,7 @@ export default function Packages() {
           <h2 className="text-3xl font-bold text-customGray">
             Find the{" "}
             <span className="text-customYellow">Website Development Plan</span>{" "}
-            that's Right for You
+            that&apos;s Right for You
           </h2>
           <p className="text-gray-600 mt-4">
             Join the thousands of businesses who trust our website development
