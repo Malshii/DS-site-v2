@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 
 // Common components
 import CallToAction from "@/components/home/CallToAction";
-import CaseStudyCard from "@/components/case-studies/case-study/WebDevCaseStudyCard";
+import CaseStudyCard from "@/components/case-studies/web-development/WebDevCaseStudyCard";
 import HeroSection from "@/components/services/HeroSection";
 
 // Web Development components
@@ -43,8 +43,8 @@ import FacebookAdsProcessFlow from "@/components/services/facebook-ads/FacebookA
 import FacebookAdsIntroductionSection from "@/components/services/facebook-ads/FacebookAdsIntroductionSection";
 import FBClosingSection from "@/components/services/facebook-ads/ClosingSection";
 import LocalBusinessTargeting from "@/components/services/facebook-ads/LocalBusinessTargeting";
-import GoogleAdsCaseStudyCard from "@/components/case-studies/case-study/GoogleAdsCaseStudyCard";
-import WebDevCaseStudyCard from "@/components/case-studies/case-study/WebDevCaseStudyCard";
+import GoogleAdsCaseStudyCard from "@/components/case-studies/google-ads/GoogleAdsCaseStudyCard";
+import WebDevCaseStudyCard from "@/components/case-studies/web-development/WebDevCaseStudyCard";
 
 export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
   const { slug } = params;

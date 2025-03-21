@@ -1,4 +1,4 @@
-import GoogleAdsCaseStudyCard from '@/components/case-studies/GoogleAdsCaseStudy';
+import GoogleAdsCaseStudy from "@/components/case-studies/google-ads/GoogleAdsCaseStudy";
 
 export const generateMetadata = async () => {
   // Base metadata
@@ -79,7 +79,7 @@ export const generateMetadata = async () => {
 export default function GoogleAdsCaseStudyPage() {
   return (
     <div>
-      <GoogleAdsCaseStudyCard />
+      <GoogleAdsCaseStudy />
     </div>
   );
 }
