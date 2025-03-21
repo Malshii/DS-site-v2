@@ -8,10 +8,7 @@ import GallerySection from '../web-development/GallerySection';
 const WebsiteDevelopmentCaseStudy = () => {
   return (
     <section>
-      {/* Title Section */}
-      <CaseStudiesHero />
-
-      {/* Case Study Content */}    
+      <CaseStudiesHero />    
       <ClientOverview />
       <ChallengesSection />
       <OurApproachSection />
