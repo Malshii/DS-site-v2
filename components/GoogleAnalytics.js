@@ -2,14 +2,16 @@ import { useState, useEffect, Suspense, memo } from "react";
 import Script from "next/script";
 import { usePathname, useSearchParams } from "next/navigation";
 
+// Tracking IDs
 const GA_MEASUREMENT_ID = "G-G4X6P45YTZ";
+const GOOGLE_ADS_ID = "AW-16917143672";
 const DEBUG_MODE = true; // Toggle this for debugging
 
 // Debug logger
 const logAnalytics = (action, data) => {
   if (DEBUG_MODE) {
     console.log(
-      `%c[GA Debug] ${action}`,
+      `%c[Tracking Debug] ${action}`,
       'background: #f0f0f0; color: #333; padding: 2px 5px; border-radius: 3px;',
       data
     );
@@ -34,6 +36,16 @@ const GoogleAnalyticsTracking = memo(function GoogleAnalyticsTracking() {
           send_to: GA_MEASUREMENT_ID,
           debug_mode: DEBUG_MODE
         });
+        
+        // Track if this is the contact page for easier segmentation
+        if (pathname === '/contact-us') {
+          window.gtag("event", "contact_page_view", {
+            send_to: GA_MEASUREMENT_ID,
+            debug_mode: DEBUG_MODE
+          });
+          
+          logAnalytics('Contact Page', 'Contact page visited');
+        }
       } else {
         logAnalytics('Error', 'gtag not found');
       }
@@ -60,39 +72,59 @@ function useDelayedLoad() {
   return shouldLoad;
 }
 
-export default function GoogleAnalytics() {
-  const shouldLoadGA = useDelayedLoad();
+export default function GoogleTrackingComponent() {
+  const shouldLoadTracking = useDelayedLoad();
+  const pathname = usePathname();
+  
+  // Track if we're on the contact page
+  const isContactPage = pathname === '/contact-us';
 
   useEffect(() => {
-    // Verify GA installation
+    // Verify tracking installation
     if (DEBUG_MODE) {
       setTimeout(() => {
         if (typeof window.gtag === 'function') {
-          logAnalytics('Status', 'GA installed and running');
+          logAnalytics('Status', 'Google tracking installed and running');
           // Test basic event
           window.gtag('event', 'test_event', {
             debug_mode: true,
             send_to: GA_MEASUREMENT_ID
           });
+          
+          // If on contact page, log additional info
+          if (isContactPage) {
+            logAnalytics('Contact Page', 'Contact page tracking active');
+          }
         } else {
-          logAnalytics('Error', 'GA not installed properly');
+          logAnalytics('Error', 'Google tracking not installed properly');
         }
       }, 2000);
     }
-  }, []);
+  }, [isContactPage]);
 
-  if (!shouldLoadGA) return null;
+  if (!shouldLoadTracking) return null;
 
   return (
     <>
+      {/* Google Analytics Script */}
       <Script
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
         onLoad={() => logAnalytics('Script loaded', 'GA base script ready')}
         onError={() => logAnalytics('Script error', 'GA base script failed to load')}
       />
+      
+      {/* Google Ads Script */}
       <Script
-        id="google-analytics"
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
+        onLoad={() => logAnalytics('Script loaded', 'Google Ads script ready')}
+        onError={() => logAnalytics('Script error', 'Google Ads script failed to load')}
+      />
+      
+      {/* Combined Configuration Script */}
+      <Script
+        id="google-tracking-config"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
@@ -100,20 +132,39 @@ export default function GoogleAnalytics() {
             function gtag(){
               dataLayer.push(arguments);
               if(${DEBUG_MODE}) {
-                console.log('[GA Debug] dataLayer push:', arguments);
+                console.log('[Tracking Debug] dataLayer push:', arguments);
               }
             }
             gtag('js', new Date());
+            
+            // Google Analytics configuration
             gtag('config', '${GA_MEASUREMENT_ID}', {
               page_path: window.location.pathname,
               send_page_view: true,
               debug_mode: ${DEBUG_MODE}
             });
+            
+            // Google Ads configuration
+            gtag('config', '${GOOGLE_ADS_ID}');
+            
+            // Define conversion tracking helper functions
+            window.trackPhoneCallConversion = function() {
+              gtag('event', 'conversion', {
+                'send_to': 'AW-16917143672/qxkRCPqN0qsaEPjA3II_'
+              });
+            };
+            
+            window.trackFormSubmissionConversion = function() {
+              gtag('event', 'conversion', {
+                'send_to': 'AW-16917143672/LaiLCKf31asaEPjA3II_'
+              });
+            };
           `,
         }}
-        onLoad={() => logAnalytics('Config loaded', 'GA configuration complete')}
-        onError={() => logAnalytics('Config error', 'GA configuration failed')}
+        onLoad={() => logAnalytics('Config loaded', 'Google tracking configuration complete')}
+        onError={() => logAnalytics('Config error', 'Google tracking configuration failed')}
       />
+      
       <Suspense fallback={null}>
         <GoogleAnalyticsTracking />
       </Suspense>
