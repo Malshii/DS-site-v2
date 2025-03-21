@@ -1,3 +1,4 @@
+"use client"
 import { useState, useEffect, Suspense, memo } from "react";
 import Script from "next/script";
 import { usePathname, useSearchParams } from "next/navigation";
