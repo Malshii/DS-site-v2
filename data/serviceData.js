@@ -26,7 +26,7 @@ export const serviceDetails = {
     image: "/assets/images/services/Mobile development.jpg",
   },
   "business-consulting": {
-    heading: "Business Analysis & Consulting",
+    heading: "Business Consulting",
     description: "Strategic Business Solutions",
     image: "/assets/images/services/Business Analyst.png",
   },

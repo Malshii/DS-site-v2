@@ -124,7 +124,7 @@ export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
       case "SEO/ Copywriting":
         return <SeoOverview />;
 
-      case "Business Analysis & Consulting":
+      case "Business Consulting":
         return (
           <>
             <ConsultingIntroductionSection />
