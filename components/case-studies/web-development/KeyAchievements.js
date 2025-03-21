@@ -1,42 +1,8 @@
 "use client";
 import React from "react";
-import CountUp from "react-countup";
 import { motion } from "framer-motion";
 
-const KeyAchievements = () => {
-  const achievements = [
-    {
-      title: "Custom Coded Modern Visual Design",
-      description:
-        "A sleek, professional look with consistent branding that highlighted GDC Consultant’s services and expertise.",
-      unit: "Satisfaction", // Example placeholder unit.
-    },
-    {
-      title: "Mobile Optimization",
-      description:
-        "A responsive design ensures seamless performance across all devices, improving mobile user experience.",
-      unit: "Responsiveness",
-    },
-    {
-      title: "Streamlined Navigation",
-      description:
-        "Improved navigation structure that made it easy for users to explore the site and access important content.",
-      unit: "Faster Navigation",
-    },
-    {
-      title: "SEO-Friendly Structure",
-      description:
-        "Optimised for search engines, helping GDC Consultant improve their online visibility and rank higher in relevant search results.",
-      unit: "Increase in Visibility",
-    },
-    {
-      title: "Lead Generation Focus",
-      description:
-        "Well-placed CTAs drove user engagement and helped convert visitors into leads, supporting business growth.",
-      unit: "Increase in Leads",
-    },
-  ];
-
+const KeyAchievements = ({ data }) => {
   // Animation variants for Framer Motion
   const containerVariants = {
     hidden: {},
@@ -79,7 +45,7 @@ const KeyAchievements = () => {
           transition={{ delay: 0.2 }}
           viewport={{ once: false, amount: 0.2 }}
         >
-          Discover the key features and elements that highlight the success of our website redesign for GDC Consultants.
+          {data.introduction}
         </motion.p>
 
         {/* Achievements */}
@@ -90,7 +56,7 @@ const KeyAchievements = () => {
           whileInView="visible"
           viewport={{ once: false, amount: 0.2 }}
         >
-          {achievements.map((achievement, index) => (
+          {data.items.map((achievement, index) => (
             <motion.div
               key={index}
               className="flex-1 p-6 text-center hover:shadow-lg transition duration-300"

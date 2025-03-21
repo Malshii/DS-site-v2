@@ -3,13 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-const GallerySection = () => {
-  const section = [
-    { src: "/assets/images/website-dev/gallery/1.webp", alt: "Web Overview 1" },
-    { src: "/assets/images/website-dev/gallery/2.webp", alt: "Web Overview 2" },
-    { src: "/assets/images/website-dev/gallery/3.webp", alt: "Web Overview 3" },
-  ];
-
+const GallerySection = ({ data }) => {
   // Animation variants
   const containerVariants = {
     hidden: {},
@@ -41,7 +35,7 @@ const GallerySection = () => {
           whileInView="visible"
           viewport={{ once: false, amount: 0.2 }}
         >
-          {/* Animated "SEARCH CAMPAIGN" */}
+          {/* Animated "SUCCESS STORY" */}
           {"SUCCESS".split("").map((letter, index) => (
             <motion.span
               key={`success-${index}`}
@@ -82,7 +76,7 @@ const GallerySection = () => {
           <span className="ml-2 text-customGray">OVERVIEW</span>
         </motion.h2>
 
-        {/* Masonry Grid for Section 1 */}
+        {/* Masonry Grid for Images */}
         <motion.div
           className="columns-1 sm:columns-2 md:columns-2 lg:columns-3 gap-4 space-y-4"
           variants={containerVariants}
@@ -90,7 +84,7 @@ const GallerySection = () => {
           whileInView="visible"
           viewport={{ once: false, amount: 0.2 }}
         >
-          {section.map((image, index) => (
+          {data.images.map((image, index) => (
             <motion.div
               key={index}
               className="overflow-hidden rounded-lg break-inside-avoid"
@@ -102,8 +96,8 @@ const GallerySection = () => {
               <Image
                 src={image.src}
                 alt={image.alt}
-                width={500} // Adjust the width based on your layout needs
-                height={300} // Adjust the height based on your layout needs
+                width={500}
+                height={300}
                 className="w-full h-auto object-cover transform hover:scale-105 transition duration-300"
               />
             </motion.div>

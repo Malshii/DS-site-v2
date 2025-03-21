@@ -6,82 +6,36 @@ import {
   FaDesktop,
   FaChartLine,
   FaComments,
-  FaServer, // Added FaServer for a placeholder for HostGator icon
+  FaServer,
+  FaEnvelope,
+  FaPalette,
+  FaMobile,
+  FaCompass,
+  FaImage,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { SiNextdotjs, SiHubspot, SiGithub } from "react-icons/si";
+import { SiNextdotjs, SiHubspot, SiGithub, SiNetlify } from "react-icons/si";
 
-const OurApproachSection = () => {
-  const technicalObjectives = [
-    {
-      icon: <SiNextdotjs size={40} className="text-customGray" />,
-      title: "Next.js Framework",
-      description:
-        "Leveraged Next.js for creating a fast, scalable, and SEO-friendly website with server-side rendering for improved performance and scalability.",
-      bgColor: "bg-customYellow",
-    },
-    {
-      icon: <SiHubspot size={40} className="text-customYellow" />,
-      title: "HubSpot Integration",
-      description:
-        "Integrated HubSpot to manage lead capture forms, chatbots, and blog content, supporting CRM integration and enhancing customer engagement.",
-      bgColor: "bg-white",
-    },
-    {
-      icon: <FaServer size={40} className="text-customGray" />, // Used FaServer as a placeholder for HostGator
-      title: "Reliable Hosting with HostGator",
-      description:
-        "Used HostGator as the hosting provider to ensure high uptime, secure hosting, and fast load times for all website visitors.",
-      bgColor: "bg-customYellow",
-    },
-    {
-      icon: <SiGithub size={40} className="text-customYellow" />,
-      title: "Version Control with GitHub",
-      description:
-        "Employed GitHub for version control and collaborative development to streamline code management and deployment processes.",
-      bgColor: "bg-white",
-    },
-  ];
+// Icon mapping for dynamic rendering
+const iconMap = {
+  FaUsers: FaUsers,
+  FaGlobe: FaGlobe,
+  FaDesktop: FaDesktop,
+  FaChartLine: FaChartLine,
+  FaComments: FaComments,
+  FaServer: FaServer,
+  FaEnvelope: FaEnvelope,
+  FaPalette: FaPalette,
+  FaMobile: FaMobile,
+  FaImage: FaImage,
+  FaCompass: FaCompass,
+  SiNextdotjs: SiNextdotjs,
+  SiHubspot: SiHubspot,
+  SiGithub: SiGithub,
+  SiNetlify: SiNetlify,
+};
 
-  // Updated key objectives for Design Overview based on the document
-  const designObjectives = [
-    {
-      icon: <FaUsers size={40} className="text-customGray" />,
-      title: "User-Centered Design",
-      description:
-        "Created a visually appealing website layout that highlights GDC&apos;s core services, expertise, and portfolio in a way that resonates with the target audience.",
-      bgColor: "bg-customYellow",
-    },
-    {
-      icon: <FaDesktop size={40} className="text-customYellow" />,
-      title: "Responsive Design",
-      description:
-        "Built a fully responsive website that ensures a consistent and seamless experience across desktops, tablets, and smartphones.",
-      bgColor: "bg-white",
-    },
-    {
-      icon: <FaGlobe size={40} className="text-customGray" />,
-      title: "SEO Optimization",
-      description:
-        "Implemented on-page SEO best practices including keyword optimization, meta tags, and image alt texts to boost search engine visibility.",
-      bgColor: "bg-customYellow",
-    },
-    {
-      icon: <FaChartLine size={40} className="text-customYellow" />,
-      title: "Enhanced Navigation",
-      description:
-        "Restructured navigation to make the website intuitive and user-friendly, allowing users to easily find the information they need.",
-      bgColor: "bg-white",
-    },
-    {
-      icon: <FaComments size={40} className="text-customGray" />,
-      title: "Call-to-Action Integration",
-      description:
-        "Strategically placed CTAs throughout the website to support lead generation by guiding users to make inquiries or contact the client.",
-      bgColor: "bg-customYellow",
-    },
-  ];
-
+const OurApproachSection = ({ data }) => {
   // Animation variants for Framer Motion
   const containerVariants = {
     hidden: {},
@@ -149,12 +103,7 @@ const OurApproachSection = () => {
           variants={textVariants}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          GDC Digital Solutions adopted a holistic approach to website design
-          and development, focusing on both aesthetics and functionality to
-          create a seamless user experience for GDC Consultants. Our goal was to
-          enhance the digital presence, improve engagement, and provide a
-          user-centered design that highlights GDC&apos;s core services and
-          expertise.
+          {data.introduction}
         </motion.p>
 
         {/* Technical Overview Grid */}
@@ -169,36 +118,48 @@ const OurApproachSection = () => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10"
           variants={containerVariants}
         >
-          {technicalObjectives.map((objective, index) => (
-            <motion.div
-              key={index}
-              className={`flex flex-col items-center p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ${objective.bgColor}`}
-              variants={itemVariants}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-            >
-              <div className="bg-white p-4 rounded-full mb-4">
-                {objective.icon}
-              </div>
-              <h3
-                className={`text-xl font-semibold mb-2 ${
-                  objective.bgColor === "bg-customYellow"
-                    ? "text-white"
-                    : "text-customGray"
-                }`}
+          {data.technicalObjectives.map((objective, index) => {
+            const IconComponent = iconMap[objective.icon];
+            return (
+              <motion.div
+                key={index}
+                className={`flex flex-col items-center p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ${objective.bgColor}`}
+                variants={itemVariants}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
               >
-                {objective.title}
-              </h3>
-              <p
-                className={`text-center ${
-                  objective.bgColor === "bg-customYellow"
-                    ? "text-white"
-                    : "text-customGray"
-                }`}
-              >
-                {objective.description}
-              </p>
-            </motion.div>
-          ))}
+                <div className="bg-white p-4 rounded-full mb-4">
+                  {IconComponent && (
+                    <IconComponent
+                      size={40}
+                      className={
+                        objective.bgColor === "bg-customYellow"
+                          ? "text-customGray"
+                          : "text-customYellow"
+                      }
+                    />
+                  )}
+                </div>
+                <h3
+                  className={`text-xl font-semibold mb-2 ${
+                    objective.bgColor === "bg-customYellow"
+                      ? "text-white"
+                      : "text-customGray"
+                  }`}
+                >
+                  {objective.title}
+                </h3>
+                <p
+                  className={`text-center ${
+                    objective.bgColor === "bg-customYellow"
+                      ? "text-white"
+                      : "text-customGray"
+                  }`}
+                >
+                  {objective.description}
+                </p>
+              </motion.div>
+            );
+          })}
         </motion.div>
 
         {/* Design Overview Grid */}
@@ -213,36 +174,48 @@ const OurApproachSection = () => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10"
           variants={containerVariants}
         >
-          {designObjectives.map((keyObj, index) => (
-            <motion.div
-              key={index}
-              className={`flex flex-col items-center p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ${keyObj.bgColor}`}
-              variants={itemVariants}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-            >
-              <div className="bg-white p-4 rounded-full mb-4">
-                {keyObj.icon}
-              </div>
-              <h3
-                className={`text-xl font-semibold mb-2 ${
-                  keyObj.bgColor === "bg-customYellow"
-                    ? "text-white"
-                    : "text-customGray"
-                }`}
+          {data.designObjectives.map((keyObj, index) => {
+            const IconComponent = iconMap[keyObj.icon];
+            return (
+              <motion.div
+                key={index}
+                className={`flex flex-col items-center p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ${keyObj.bgColor}`}
+                variants={itemVariants}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
               >
-                {keyObj.title}
-              </h3>
-              <p
-                className={`text-center ${
-                  keyObj.bgColor === "bg-customYellow"
-                    ? "text-white"
-                    : "text-customGray"
-                }`}
-              >
-                {keyObj.description}
-              </p>
-            </motion.div>
-          ))}
+                <div className="bg-white p-4 rounded-full mb-4">
+                  {IconComponent && (
+                    <IconComponent
+                      size={40}
+                      className={
+                        keyObj.bgColor === "bg-customYellow"
+                          ? "text-customGray"
+                          : "text-customYellow"
+                      }
+                    />
+                  )}
+                </div>
+                <h3
+                  className={`text-xl font-semibold mb-2 ${
+                    keyObj.bgColor === "bg-customYellow"
+                      ? "text-white"
+                      : "text-customGray"
+                  }`}
+                >
+                  {keyObj.title}
+                </h3>
+                <p
+                  className={`text-center ${
+                    keyObj.bgColor === "bg-customYellow"
+                      ? "text-white"
+                      : "text-customGray"
+                  }`}
+                >
+                  {keyObj.description}
+                </p>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </motion.div>
     </section>

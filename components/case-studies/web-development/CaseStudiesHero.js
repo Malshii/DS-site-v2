@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-const CaseStudiesHero = () => {
+const CaseStudiesHero = ({ data }) => {
   const leftContentVariants = {
     hidden: { opacity: 0, x: -50 },
     visible: {
@@ -25,8 +25,7 @@ const CaseStudiesHero = () => {
     visible: { opacity: 1, x: 0 },
   };
 
-  const title = "GDC Consultants Case Study";
-  const titleWords = title.split(" ");
+  const titleWords = data.title.split(" ");
 
   return (
     <section className="relative min-h-screen w-full flex items-center text-white overflow-hidden px-4 sm:px-8 md:px-12 lg:px-20 py-16 sm:py-20 md:py-24">
@@ -50,7 +49,7 @@ const CaseStudiesHero = () => {
           viewport={{ once: false, amount: 0.5 }}
         >
           <h5 className="text-xs sm:text-sm md:text-md uppercase tracking-widest font-semibold">
-            Driving Results for Engineering Excellence
+            {data.subtitle}
           </h5>
           <motion.h1
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight flex flex-wrap justify-center md:justify-start gap-x-2"
@@ -70,11 +69,7 @@ const CaseStudiesHero = () => {
             ))}
           </motion.h1>
           <p className="text-sm sm:text-base md:text-lg mt-4 leading-relaxed">
-            Discover how GDC Consultants, a leading engineering consultancy in
-            New Zealand, transformed their online presence with a modern,
-            responsive website. Leveraging advanced technologies like Next.js
-            and strategic SEO, GDC Consultants boosted their user engagement
-            and achieved significant digital growth.
+            {data.description}
           </p>
 
           {/* Buttons */}
@@ -84,7 +79,7 @@ const CaseStudiesHero = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Schedule a Consultation
+              {data.ctaText}
             </motion.button>
           </div>
         </motion.div>
@@ -104,8 +99,8 @@ const CaseStudiesHero = () => {
             transition={{ duration: 4, repeat: Infinity }}
           >
             <Image
-              src="/assets/images/website-dev/gdc-consultants.webp"
-              alt="Google Ads Success"
+              src={data.imageSrc}
+              alt={data.imageAlt}
               className="h-64 sm:h-80 md:h-96 w-auto object-contain"
               width={550}
               height={550}

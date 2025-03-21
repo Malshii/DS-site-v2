@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const ChallengesSection = () => {
+const ChallengesSection = ({ data }) => {
   // Animation variants for Framer Motion
   const containerVariants = {
     hidden: {},
@@ -60,12 +60,7 @@ const ChallengesSection = () => {
           variants={itemVariants}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          GDC Consultants approached GDC Digital Solutions to redesign their
-          website to better reflect their brand identity and provide a more
-          engaging, user-friendly experience. Their existing website was
-          outdated, lacked modern functionality, and did not effectively
-          communicate their services or expertise. Below are the key challenges
-          that needed to be addressed:
+          {data.introduction}
         </motion.p>
 
         {/* Key Challenges */}
@@ -76,32 +71,15 @@ const ChallengesSection = () => {
           whileInView="visible"
           viewport={{ once: false, amount: 0.2 }}
         >
-          <motion.li variants={itemVariants} transition={{ duration: 0.6 }}>
-            <span className="font-semibold">Outdated Design:</span> The existing
-            website design and user interface were outdated, failing to capture
-            the attention of visitors.
-          </motion.li>
-          <motion.li variants={itemVariants} transition={{ duration: 0.6 }}>
-            <span className="font-semibold">Poor Navigation:</span> Ineffective
-            site navigation made it difficult for users to find relevant
-            information quickly.
-          </motion.li>
-          <motion.li variants={itemVariants} transition={{ duration: 0.6 }}>
-            <span className="font-semibold">Lack of Mobile Responsiveness:</span>{" "}
-            The website did not provide an optimal user experience on mobile
-            devices, which impacted the overall user experience significantly.
-          </motion.li>
-          <motion.li variants={itemVariants} transition={{ duration: 0.6 }}>
-            <span className="font-semibold">Low Search Engine Visibility:</span>{" "}
-            Inadequate SEO implementation led to low search engine visibility,
-            making it challenging for potential clients to discover their
-            services.
-          </motion.li>
-          <motion.li variants={itemVariants} transition={{ duration: 0.6 }}>
-            <span className="font-semibold">Lack of Clear CTAs:</span> The need
-            for effective call-to-actions (CTAs) to drive lead generation was
-            not adequately addressed.
-          </motion.li>
+          {data.items.map((challenge, index) => (
+            <motion.li 
+              key={index} 
+              variants={itemVariants} 
+              transition={{ duration: 0.6 }}
+            >
+              <span className="font-semibold">{challenge.title}:</span> {challenge.description}
+            </motion.li>
+          ))}
         </motion.ul>
       </motion.div>
     </section>

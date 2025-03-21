@@ -8,43 +8,32 @@ import {
   FaCogs,
   FaClipboardList,
   FaGlobe,
+  FaHome,
+  FaTools,
+  FaHammer,
+  FaSink,
+  FaTree,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const ClientOverview = () => {
-  // Define services with icons and labels
-  const services = [
-    {
-      icon: <FaBuilding size={24} className="text-customYellow" />,
-      label: "Structural Engineering",
-    },
-    {
-      icon: <FaWater size={24} className="text-customYellow" />,
-      label: "3 Waters & Contamination",
-    },
-    {
-      icon: <FaCogs size={24} className="text-customYellow" />,
-      label: "Geotechnical Engineering",
-    },
-    {
-      icon: <FaBolt size={24} className="text-customYellow" />,
-      label: "Seismic Engineering",
-    },
-    {
-      icon: <FaWrench size={24} className="text-customYellow" />,
-      label: "Electrical Engineering",
-    },
-    {
-      icon: <FaClipboardList size={24} className="text-customYellow" />,
-      label: "Civil Engineering",
-    },
-    {
-      icon: <FaGlobe size={24} className="text-customYellow" />,
-      label: "R&D Solutions",
-    },
-  ];
+// Icon mapping for dynamic rendering
+const iconMap = {
+  FaBuilding: FaBuilding,
+  FaWrench: FaWrench,
+  FaWater: FaWater,
+  FaBolt: FaBolt,
+  FaCogs: FaCogs,
+  FaClipboardList: FaClipboardList,
+  FaGlobe: FaGlobe,
+  FaHome: FaHome,
+  FaTools: FaTools,
+  FaHammer: FaHammer,
+  FaSink: FaSink,
+  FaTree: FaTree,
+};
 
+const ClientOverview = ({ data }) => {
   // Animation variants for Framer Motion
   const containerVariants = {
     hidden: {},
@@ -75,23 +64,28 @@ const ClientOverview = () => {
         whileInView="visible"
         viewport={{ once: false, amount: 0.5 }}
       >
-        {services.map((service, index) => (
-          <motion.div
-            key={index}
-            className="flex flex-col items-center justify-center w-32 h-32 border-2 border-customYellow rounded-full shadow-md p-2 mx-auto"
-            variants={itemVariants}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-          >
-            <div className="flex items-center justify-center w-15 h-15">
-              {service.icon}
-            </div>
-            <div className="pb-6">
-              <p className="text-center font-semibold text-gray-800 text-sm mt-2">
-                {service.label}
-              </p>
-            </div>
-          </motion.div>
-        ))}
+        {data.services.map((service, index) => {
+          const IconComponent = iconMap[service.icon];
+          return (
+            <motion.div
+              key={index}
+              className="flex flex-col items-center justify-center w-32 h-32 border-2 border-customYellow rounded-full shadow-md p-2 mx-auto"
+              variants={itemVariants}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <div className="flex items-center justify-center w-15 h-15">
+                {IconComponent && (
+                  <IconComponent size={24} className="text-customYellow" />
+                )}
+              </div>
+              <div className="pb-6">
+                <p className="text-center font-semibold text-gray-800 text-sm mt-2">
+                  {service.label}
+                </p>
+              </div>
+            </motion.div>
+          );
+        })}
       </motion.div>
 
       {/* Right Side - Overview Details */}
@@ -107,31 +101,26 @@ const ClientOverview = () => {
           CLIENT OVERVIEW
         </h2>
         <p>
-          <span className="font-semibold">Company:</span> GDC Consultants Ltd
+          <span className="font-semibold">Company:</span> {data.companyName}
         </p>
         <p>
-          <span className="font-semibold">Industry:</span> Engineering
-          Consultancy
+          <span className="font-semibold">Industry:</span> {data.industry}
         </p>
         <p>
           <span className="font-semibold">Website:</span>{" "}
           <Link
-            href="https://www.gdcgroup.co.nz"
+            href={data.website}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 underline"
           >
-            www.gdcgroup.co.nz
+            {data.website.replace("https://", "")}
           </Link>
         </p>
-        <p className="text-gray-700 leading-relaxed">
-          GDC Consultants is a full-service engineering consultancy offering
-          various specialised services across New Zealand. With a need to boost
-          their online presence and generate high-quality leads, GDC Consultants
-          partnered with its in-house digital marketing team,
-          <span className="font-semibold"> GDC Digital Solutions</span>, to
-          manage Google Ads campaigns and drive inquiries.
-        </p>
+        <p
+          className="text-gray-700 leading-relaxed"
+          dangerouslySetInnerHTML={{ __html: data.description }}
+        />
       </motion.div>
     </section>
   );

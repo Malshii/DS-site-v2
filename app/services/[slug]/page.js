@@ -45,6 +45,7 @@ import FBClosingSection from "@/components/services/facebook-ads/ClosingSection"
 import LocalBusinessTargeting from "@/components/services/facebook-ads/LocalBusinessTargeting";
 import GoogleAdsCaseStudyCard from "@/components/case-studies/google-ads/GoogleAdsCaseStudyCard";
 import WebDevCaseStudyCard from "@/components/case-studies/web-development/WebDevCaseStudyCard";
+import CaseStudiesList from "@/components/case-studies/web-development/CaseStudiesList";
 
 export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
   const { slug } = params;
@@ -79,14 +80,15 @@ export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
             <WebDevelopmentBenefits />
             <CustomCodedWebsites />
             <ProcessFlow />
-            <WebDevCaseStudyCard
+            <CaseStudiesList />
+            {/* <WebDevCaseStudyCard
               heading={caseStudy?.heading}
               statistic={caseStudy?.statistic}
               description={caseStudy?.description}
               buttonLabel={caseStudy?.buttonLabel}
               imagePath={caseStudy?.imagePath}
               caseStudyPath={caseStudy?.caseStudyPath}
-            />
+            /> */}
             <Packages />
             <OnePageWebsite />
           </>
