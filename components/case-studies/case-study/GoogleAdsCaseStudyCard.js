@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-const CaseStudyCard = ({
+const GoogleAdsCaseStudyCard = ({
   heading,
   statistic,
   description,
@@ -80,4 +80,4 @@ const CaseStudyCard = ({
   );
 };
 
-export default CaseStudyCard;
+export default GoogleAdsCaseStudyCard;

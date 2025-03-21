@@ -1,5 +1,5 @@
 // pages/case-studies/web-development.js
-import WebsiteDevelopmentCaseStudy from '@/components/case-studies/WebsiteDevelopmentCaseStudy';
+import WebsiteDevelopmentCaseStudy from '@/components/case-studies/case-study/WebsiteDevelopmentCaseStudy';
 
 // Metadata Generation
 export async function generateMetadata() {
