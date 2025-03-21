@@ -31,7 +31,7 @@ const benefitsData = [
     icon: <FaStore className="mx-auto mb-4 text-6xl text-customYellow" />, // Business focus icon
     title: "Small Business & E-Commerce Focused",
     description:
-      "Whether you run a local business in Auckland or an online store in Wellington, we tailor strategies to suit your needs. Our specialized approach considers your unique business model and target market.",
+      "Whether you run a local business in Auckland or an online store in Wellington, we tailor strategies to suit your needs. Our specialised approach considers your unique business model and target market.",
   },
 ];
 

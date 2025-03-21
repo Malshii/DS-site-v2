@@ -2,12 +2,12 @@
 export const serviceDetails = {
   "google-ads": {
     heading: "Google Ads",
-    description: "Optimize your ads to reach the right audience.",
+    description: "Optimise your ads to reach the right audience.",
     image: "/assets/images/services/Google Ads.jpg",
   },
   "facebook-ads": {
     heading: "Facebook Ads",
-    description: "Optimize your ads to reach the right audience.",
+    description: "Optimise your ads to reach the right audience.",
     image: "/assets/images/services/Facebook Ads.jpg",
   },
   seo: {
@@ -48,7 +48,7 @@ export const serviceCaseStudies = {
     heading: "GDC CONSULTANTS",
     statistic: "Increase in Engagement",
     description:
-      "The newly redesigned website brought a modern, user-centered design that significantly improved navigation, mobile responsiveness, and lead generation capabilities. GDC Consultants now experience enhanced visibility and increase in user engagement thanks to clear calls-to-action and optimized user flow.",
+      "The newly redesigned website brought a modern, user-centered design that significantly improved navigation, mobile responsiveness, and lead generation capabilities. GDC Consultants now experience enhanced visibility and increase in user engagement thanks to clear calls-to-action and optimised user flow.",
     buttonLabel: "View Success Story",
     imagePath: "/assets/images/website-dev/gdc-consultants.webp",
     caseStudyPath: "/case-studies/web-development",

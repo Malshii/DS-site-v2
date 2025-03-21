@@ -21,7 +21,7 @@ const OnePageWebsite = () => {
           that each section of your one-page site tells a compelling story about
           your business, driving engagement and conversions. Ideal for startups,
           events, or product launches, our one-page websites are 100%
-          mobile-optimized and SEO-ready to help you effectively reach your
+          mobile-optimised and SEO-ready to help you effectively reach your
           audience.
         </p>
         <motion.a

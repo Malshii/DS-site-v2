@@ -126,7 +126,7 @@ const ClientOverview = () => {
         </p>
         <p className="text-gray-700 leading-relaxed">
           GDC Consultants is a full-service engineering consultancy offering
-          various specialized services across New Zealand. With a need to boost
+          various specialised services across New Zealand. With a need to boost
           their online presence and generate high-quality leads, GDC Consultants
           partnered with its in-house digital marketing team,
           <span className="font-semibold"> GDC Digital Solutions</span>, to

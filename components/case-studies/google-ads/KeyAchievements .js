@@ -10,7 +10,7 @@ const KeyAchievements = () => {
       unit: "%",
       title: "Increase in AdWords Traffic",
       description:
-        "Compared to previous months, AdWords traffic surged due to optimized keywords and better audience targeting.",
+        "Compared to previous months, AdWords traffic surged due to optimised keywords and better audience targeting.",
     },
     {
       value: 94.4,
@@ -38,7 +38,7 @@ const KeyAchievements = () => {
       unit: "%",
       title: "Increase in Conversions",
       description:
-        "Driven by a well-optimized combination of search and display ads, showing a strong return on investment.",
+        "Driven by a well-optimised combination of search and display ads, showing a strong return on investment.",
     },
   ];
 

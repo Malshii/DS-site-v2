@@ -51,7 +51,7 @@ export default function AgencyHeader() {
               <p className="text-gray-600">
                 At GDC Digital Solutions, we are dedicated to empowering
                 businesses through innovative digital strategies. Our team of
-                experts specializes in offering cutting-edge solutions that
+                experts specialises in offering cutting-edge solutions that
                 enhance communication, streamline operations, and drive growth.
                 With over a decade of industry experience and a global network
                 of partners, we are committed to delivering excellence at every

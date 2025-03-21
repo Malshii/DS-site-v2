@@ -17,10 +17,11 @@ export default function Packages() {
         "Choose from: WordPress, HTML/CSS",
       ],
       description:
-        "Ideal for small businesses, startups, or personal projects looking for a quick and professional online presence. This package offers a sleek, single-scroll website that captures essential information and is fully optimized for mobile.",
+        "Ideal for small businesses, startups, or personal projects looking for a quick and professional online presence. This package offers a sleek, single-scroll website that captures essential information and is fully optimised for mobile.",
       buttonColor: "bg-yellow-400 hover:bg-gray-400",
       lineColor: "bg-yellow-400", // Top line color for Starter
       icon: <FaLaptop className="w-12 h-12 text-customLightGray m-4" />,
+      buttonText: "From $300.00",
     },
     {
       title: "Starter",
@@ -36,6 +37,7 @@ export default function Packages() {
       buttonColor: "bg-customYellow hover:bg-customGray",
       lineColor: "bg-customYellow", // Top line color for Starter
       icon: <FaGlobe className="w-12 h-12 text-customLightGray m-4" />, // Globe icon
+      buttonText: "From $500.00",
     },
     {
       title: "Business",
@@ -51,6 +53,7 @@ export default function Packages() {
       buttonColor: "bg-customGray hover:bg-customLightYellow",
       lineColor: "bg-customGray", // Top line color for Business
       icon: <FaChartLine className="w-12 h-12 text-customLightGray m-4" />, // Chart icon
+      buttonText: "Contact us for pricing",
     },
     {
       title: "Custom",
@@ -67,6 +70,7 @@ export default function Packages() {
       buttonColor: "bg-customLightYellow hover:bg-customYellow",
       lineColor: "bg-customLightYellow", // Top line color for Custom
       icon: <FaCode className="w-12 h-12 text-customLightGray m-4" />, // Code icon
+      buttonText: "Contact us for pricing",
     },
   ];
 
@@ -83,7 +87,7 @@ export default function Packages() {
           <h2 className="text-3xl font-bold text-customGray">
             Find the{" "}
             <span className="text-customYellow">Website Development Plan</span>{" "}
-            that’s Right for You
+            that's Right for You
           </h2>
           <p className="text-gray-600 mt-4">
             Join the thousands of businesses who trust our website development
@@ -140,8 +144,9 @@ export default function Packages() {
               <div className="w-full p-6">
                 <Button
                   className={`w-full py-3 text-white font-bold rounded ${pkg.buttonColor}`}
+                  onClick={() => window.location.href = '/contact-us'}
                 >
-                  Contact us for pricing
+                  {pkg.buttonText}
                 </Button>
               </div>
             </motion.div>

@@ -14,7 +14,7 @@ const seoOverviewData = [
     icon: <FaCogs className="mx-auto mb-4 text-6xl text-customYellow" />, // A settings icon to symbolize on-page optimization
     title: "On-Page Optimization",
     description:
-      "Optimize site structure, content, and keywords for better rankings. We enhance your site’s performance to capture search engine attention effectively.",
+      "Optimise site structure, content, and keywords for better rankings. We enhance your site’s performance to capture search engine attention effectively.",
   },
   {
     icon: <FaChartLine className="mx-auto mb-4 text-6xl text-customYellow" />, // A chart icon for technical SEO improvements
@@ -32,7 +32,7 @@ const seoOverviewData = [
     icon: <FaUsers className="mx-auto mb-4 text-6xl text-customYellow" />, // A users icon to represent engagement
     title: "Customer-Centric Engagement",
     description:
-      "Ensure improved user experience and engagement with our optimized SEO tactics, leading to higher conversions and ROI.",
+      "Ensure improved user experience and engagement with our optimised SEO tactics, leading to higher conversions and ROI.",
   },
 ];
 

@@ -22,7 +22,7 @@ const CampaignStrategySection = () => {
   const strategyPoints = [
     {
       icon: <FaSearch className="text-5xl text-customYellow mb-4" />,
-      title: "Optimized Search and Display Ads",
+      title: "Optimised Search and Display Ads",
       description:
         "Focused on engineering-related keywords, utilizing a mix of broad and exact match keywords. Key negative keywords were added to prevent irrelevant clicks.",
     },
@@ -30,13 +30,13 @@ const CampaignStrategySection = () => {
       icon: <FaUsers className="text-5xl text-customYellow mb-4" />,
       title: "Targeted Audiences",
       description:
-        "Segmented audiences based on affinities and personalized behavior, such as project managers, architectural service seekers, and consulting services.",
+        "Segmented audiences based on affinities and personalised behavior, such as project managers, architectural service seekers, and consulting services.",
     },
     {
       icon: <FaAd className="text-5xl text-customYellow mb-4" />,
       title: "Improved Ad Extensions",
       description:
-        "Ad extensions were utilized to enhance the visibility of GDC’s contact information, special offers, and service highlights.",
+        "Ad extensions were utilised to enhance the visibility of GDC’s contact information, special offers, and service highlights.",
     },
     {
       icon: <FaDollarSign className="text-5xl text-customYellow mb-4" />,

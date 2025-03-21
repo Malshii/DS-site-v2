@@ -7,7 +7,7 @@ export default function CustomCodedWebsites() {
     "Tailored Uniquely to Your Needs",
     "Superior Security",
     "Enhanced Speed & Performance",
-    "Optimized SEO & Clean Code",
+    "Optimised SEO & Clean Code",
     "Scalability & Longevity",
     "Total Control & Ownership",
   ];

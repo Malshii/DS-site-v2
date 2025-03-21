@@ -16,7 +16,7 @@ export const webDevelopmentCaseStudies = {
       company: "GDC Consultants Ltd",
       industry: "Engineering Consultancy",
       website: "https://www.gdcgroup.co.nz",
-      description: "GDC Consultants is a full-service engineering consultancy offering various specialized services across New Zealand. With a need to boost their online presence and generate high-quality leads, GDC Consultants partnered with its in-house digital marketing team, GDC Digital Solutions, to manage Google Ads campaigns and drive inquiries.",
+      description: "GDC Consultants is a full-service engineering consultancy offering various specialised services across New Zealand. With a need to boost their online presence and generate high-quality leads, GDC Consultants partnered with its in-house digital marketing team, GDC Digital Solutions, to manage Google Ads campaigns and drive inquiries.",
       services: [
         { icon: "FaBuilding", label: "Structural Engineering" },
         { icon: "FaWater", label: "3 Waters & Contamination" },
@@ -109,7 +109,7 @@ export const webDevelopmentCaseStudies = {
       },
       {
         title: "SEO-Friendly Structure",
-        description: "Optimized for search engines, helping GDC Consultant improve their online visibility and rank higher in relevant search results."
+        description: "Optimised for search engines, helping GDC Consultant improve their online visibility and rank higher in relevant search results."
       },
       {
         title: "Lead Generation Focus",
@@ -166,7 +166,7 @@ export const webDevelopmentCaseStudies = {
         {
           icon: "SiNextdotjs",
           title: "Next.js Framework",
-          description: "Utilized this React-based framework to develop a fast, scalable, and SEO-friendly website, providing an efficient development environment.",
+          description: "Utilised this React-based framework to develop a fast, scalable, and SEO-friendly website, providing an efficient development environment.",
           bgColor: "bg-customYellow"
         },
         {
@@ -178,13 +178,13 @@ export const webDevelopmentCaseStudies = {
         {
           icon: "SiGithub",
           title: "GitHub Integration",
-          description: "Used for version control and collaborative development, facilitating organized code management and smooth deployment processes.",
+          description: "Used for version control and collaborative development, facilitating organised code management and smooth deployment processes.",
           bgColor: "bg-customYellow"
         },
         {
           icon: "FaMobile",
           title: "Responsive Design",
-          description: "Optimized for seamless viewing across devices, including desktops, tablets, and smartphones to provide a consistent user experience.",
+          description: "Optimised for seamless viewing across devices, including desktops, tablets, and smartphones to provide a consistent user experience.",
           bgColor: "bg-white"
         }
       ],

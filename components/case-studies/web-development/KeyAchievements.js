@@ -26,7 +26,7 @@ const KeyAchievements = () => {
     {
       title: "SEO-Friendly Structure",
       description:
-        "Optimized for search engines, helping GDC Consultant improve their online visibility and rank higher in relevant search results.",
+        "Optimised for search engines, helping GDC Consultant improve their online visibility and rank higher in relevant search results.",
       unit: "Increase in Visibility",
     },
     {

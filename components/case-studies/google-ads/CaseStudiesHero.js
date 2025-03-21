@@ -73,7 +73,7 @@ const CaseStudiesHero = ({ isServicesOpen }) => {
           <p className="text-sm sm:text-base md:text-lg mt-4 leading-relaxed">
             Discover how GDC Consultants, a leading engineering consultancy in
             New Zealand, leveraged Google Ads to boost their online presence,
-            attract high-quality leads, and optimize advertising costs.
+            attract high-quality leads, and optimise advertising costs.
           </p>
 
           {/* Buttons */}

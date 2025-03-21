@@ -64,7 +64,7 @@ const ChallengesSection = () => {
           <span className="font-semibold">GDC Consultants Ltd</span> faced
           challenges with underperformance in certain ad groups and audience
           segments. Previous campaigns were not performing well and not properly
-          optimized in terms of keywords and audiences. The engineering and
+          optimised in terms of keywords and audiences. The engineering and
           consultancy services industry is highly competitive, so optimizing the
           targeting and ad copy was crucial to ensuring GDC Consultant&apos;s
           ads appeared in front of the right prospects at the right time.

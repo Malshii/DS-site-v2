@@ -13,7 +13,7 @@ import { useInView } from 'react-intersection-observer';
 const benefitsData = [
   {
     icon: <FaBullseye className="mx-auto mb-4 text-6xl text-customYellow" />, // A target icon to represent the goal-oriented strategy
-    title: "Customized Strategy for Your Success",
+    title: "Customised Strategy for Your Success",
     description:
       "We begin by deeply understanding your business goals, target audience, and industry. This allows us to tailor a Google Ads strategy that aligns perfectly with your objectives, whether it's driving traffic, generating leads, or increasing brand visibility.",
   },
@@ -29,7 +29,7 @@ const benefitsData = [
     ), // A handshake icon to signify building connections with customers
     title: "High-Performing Ad Campaigns",
     description:
-      "Our experienced team creates compelling ad copy and designs that capture attention and drive conversions. We emphasize your unique value proposition, ensuring your ads stand out and attract clicks.",
+      "Our experienced team creates compelling ad copy and designs that capture attention and drive conversions. We emphasise your unique value proposition, ensuring your ads stand out and attract clicks.",
   },
   {
     icon: <FaSyncAlt className="mx-auto mb-4 text-6xl text-customYellow" />, // A sync icon to represent continuous optimization and improvement

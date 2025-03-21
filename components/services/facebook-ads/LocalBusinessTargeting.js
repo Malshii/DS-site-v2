@@ -246,7 +246,7 @@ const LocalBusinessTargeting = () => {
                         </div>
                         <div>
                           <h5 className="font-medium">Lower Acquisition Costs</h5>
-                          <p className="text-sm text-gray-600">Industry-optimized campaigns for better ROI</p>
+                          <p className="text-sm text-gray-600">Industry-optimised campaigns for better ROI</p>
                         </div>
                       </div>
                     </div>

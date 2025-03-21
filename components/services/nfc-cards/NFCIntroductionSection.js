@@ -56,7 +56,7 @@ const NFCIntroductionSection = () => {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            NFC cards utilize cutting-edge technology to enable quick,
+            NFC cards utilise cutting-edge technology to enable quick,
             contactless communication between devices. They are ideal for a
             variety of applications, including contactless payments, event
             ticketing, digital business cards, and more. With the rise of NFC

@@ -29,7 +29,7 @@ const ObjectivesSection = () => {
     },
     {
       icon: <FaBullseye size={40} className="text-customGray" />,
-      title: "Optimize Cost Efficiency",
+      title: "Optimise Cost Efficiency",
       description:
         "Lower the average cost per click (CPC) and cost per acquisition (CPA).",
       bgColor: "bg-customYellow",

@@ -32,7 +32,7 @@ const benefitsData = [
     icon: <FaExchangeAlt className="mx-auto mb-4 text-6xl text-customYellow" />,
     title: "Versatility",
     description:
-      "From enhancing customer service to offering new digital experiences, NFC cards can be customized to meet a wide range of needs and applications.",
+      "From enhancing customer service to offering new digital experiences, NFC cards can be customised to meet a wide range of needs and applications.",
   },
 ];
 
