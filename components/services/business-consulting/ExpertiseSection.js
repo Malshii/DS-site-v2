@@ -7,6 +7,7 @@ import {
   ClipboardDocumentCheckIcon,
   RocketLaunchIcon,
 } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 export default function ExpertiseSection() {
   // Array of expertise items with icons and descriptions
