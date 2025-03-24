@@ -38,7 +38,7 @@ const benefitsData = [
     icon: <FaSyncAlt className="mx-auto mb-4 text-6xl text-customYellow" />,
     title: "Seamless Integration",
     description:
-      "Connect your app with existing business systems and third-party services to streamline operations and create unified workflows across your organization.",
+      "Connect your app with existing business systems and third-party services to streamline operations and create unified workflows across your organisation.",
   },
 ];
 

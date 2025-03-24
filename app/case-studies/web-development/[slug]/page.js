@@ -72,7 +72,7 @@ export async function generateMetadata({ params }) {
         headline: title,
         description,
         publisher: {
-          '@type': 'Organization',
+          '@type': 'Organisation',
           name: 'GDC Digital Solutions',
           url: siteUrl,
         },
@@ -86,7 +86,7 @@ export async function generateMetadata({ params }) {
           '@type': 'Service',
           name: 'Web Development',
           provider: {
-            '@type': 'Organization',
+            '@type': 'Organisation',
             name: 'GDC Digital Solutions',
           },
         },

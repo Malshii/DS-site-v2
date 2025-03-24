@@ -46,7 +46,7 @@ export const generateMetadata = async () => {
     "@type": "Article",
     "headline": "Google Ads Case Studies | Proven Campaign Success",
     "publisher": {
-      "@type": "Organization",
+      "@type": "Organisation",
       "name": "GDC Digital Solutions",
       "url": "https://gdcdigital.net"
     },
@@ -56,7 +56,7 @@ export const generateMetadata = async () => {
     },
     "description": "Explore GDC Digital Solutions' Google Ads case studies. See how we drive ROI, boost visibility, and deliver targeted campaigns for businesses in New Zealand.",
     "author": {
-      "@type": "Organization",
+      "@type": "Organisation",
       "name": "GDC Digital Solutions"
     },
     "image": "https://gdcdigital.net/assets/images/google-ads-case-study.jpg",

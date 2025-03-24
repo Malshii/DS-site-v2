@@ -61,7 +61,7 @@ export default function GoogleAdsProcessFlow() {
     },
     {
       icon: <FaTools className="text-customYellow text-4xl mb-4" />,
-      title: "Optimization",
+      title: "Optimisation",
       description:
         "Refining bids, targeting, and ad elements based on performance data, such as adjusting for high-converting keywords and improving ad relevance.",
     },

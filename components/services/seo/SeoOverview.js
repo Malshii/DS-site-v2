@@ -12,7 +12,7 @@ const seoOverviewData = [
   },
   {
     icon: <FaCogs className="mx-auto mb-4 text-6xl text-customYellow" />, // A settings icon to symbolize on-page optimization
-    title: "On-Page Optimization",
+    title: "On-Page Optimisation",
     description:
       "Optimise site structure, content, and keywords for better rankings. We enhance your site’s performance to capture search engine attention effectively.",
   },
@@ -20,7 +20,7 @@ const seoOverviewData = [
     icon: <FaChartLine className="mx-auto mb-4 text-6xl text-customYellow" />, // A chart icon for technical SEO improvements
     title: "Technical SEO",
     description:
-      "Improve website performance, speed, and mobile optimization to provide a seamless user experience across devices.",
+      "Improve website performance, speed, and mobile optimisation to provide a seamless user experience across devices.",
   },
   {
     icon: <FaLink className="mx-auto mb-4 text-6xl text-customYellow" />, // A link icon for off-page SEO strategies

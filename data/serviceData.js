@@ -103,15 +103,15 @@ export const serviceSEOData = {
     description:
       "Boost your business with GDC Digital Solutions' expert Google Ads services. Drive traffic, generate leads, and increase ROI with targeted campaigns in New Zealand.",
     keywords:
-      "Google Ads management, PPC advertising, paid search marketing, Google Ads agency NZ, ROI optimization, lead generation, targeted advertising",
+      "Google Ads management, PPC advertising, paid search marketing, Google Ads agency NZ, ROI optimisation, lead generation, targeted advertising",
     canonical: "https://gdcdigital.net/services/google-ads",
   },
   seo: {
     title: "SEO Services New Zealand | Boost Website Traffic & Rankings",
     description:
-      "Boost your website's ranking with GDC Digital Solutions. We offer expert SEO services, including keyword optimization, on-page SEO, and link building for higher traffic.",
+      "Boost your website's ranking with GDC Digital Solutions. We offer expert SEO services, including keyword optimisation, on-page SEO, and link building for higher traffic.",
     keywords:
-      "SEO services NZ, search engine optimization, keyword optimization, link building, on-page SEO, website rankings, organic traffic",
+      "SEO services NZ, search engine optimisation, keyword optimisation, link building, on-page SEO, website rankings, organic traffic",
     canonical: "https://gdcdigital.net/services/seo",
   },
   "nfc-cards": {

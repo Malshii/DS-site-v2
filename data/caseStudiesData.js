@@ -130,9 +130,9 @@ export const caseStudiesData = {
         },
         {
           icon: "FaGlobe",
-          title: "SEO Optimization",
+          title: "SEO Optimisation",
           description:
-            "Implemented on-page SEO best practices including keyword optimization, meta tags, and image alt texts to boost search engine visibility.",
+            "Implemented on-page SEO best practices including keyword optimisation, meta tags, and image alt texts to boost search engine visibility.",
           bgColor: "bg-customYellow",
         },
         {
@@ -177,7 +177,7 @@ export const caseStudiesData = {
             "A sleek, professional look with consistent branding that highlighted GDC Consultant's services and expertise.",
         },
         {
-          title: "Mobile Optimization",
+          title: "Mobile Optimisation",
           description:
             "A responsive design ensures seamless performance across all devices, improving mobile user experience.",
         },

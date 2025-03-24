@@ -153,7 +153,7 @@ export default function ServicePage({ params, isServicesOpen, isAboutOpen }) {
     "@type": "Service",
     name: service.heading,
     provider: {
-      "@type": "Organization",
+      "@type": "Organisation",
       name: "GDC Digital Solutions",
       url: "https://gdcdigital.net",
     },

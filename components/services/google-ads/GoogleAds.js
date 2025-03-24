@@ -33,7 +33,7 @@ const benefitsData = [
   },
   {
     icon: <FaSyncAlt className="mx-auto mb-4 text-6xl text-customYellow" />, // A sync icon to represent continuous optimization and improvement
-    title: "Data-Driven Optimization",
+    title: "Data-Driven Optimisation",
     description:
       "We use real-time analytics and continuous A/B testing to monitor and improve campaign performance. By making data-driven adjustments, we ensure your campaigns consistently deliver better results.",
   },
