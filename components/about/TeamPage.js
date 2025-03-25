@@ -13,7 +13,14 @@ const teamMembers = [
     name: "Danyon Fernando",
     position: "Business Analyst",
     qualifications:
-      "Bachelor of Arts with Honours (Criminology) - Victoria University of Wellington",
+      "Bachelor of Arts with Honours - Victoria University of Wellington",
+    certifications: [
+      {
+        name: "AgilePM® Foundation",
+        issuer: "APMG International",
+        date: "Sep 2021",
+      },
+    ],
   },
   {
     image: "/assets/images/team/Vazin-Shareef.webp",
@@ -89,18 +96,33 @@ const TeamPage = () => {
                 {/* Overlay that appears on hover (lime green with name/position) */}
                 <div
                   className={`absolute bottom-0 left-0 w-full transition-all duration-300 ease-in-out
-                    ${
-                      activeIndex === index
-                        ? "bg-customYellow h-26"
-                        : "bg-transparent h-0"
-                    }`}
+    ${activeIndex === index ? "bg-customYellow h-auto" : "bg-transparent h-0"}`}
                 >
                   <div className="p-4 text-center">
                     <h3 className="text-xl font-semibold text-black">
                       {member.name}
                     </h3>
-                    <h6 className="text-black mb-4">{member.position}</h6>
-                    <p className="text-black">{member.qualifications}</p>
+                    <h6 className="text-black mb-2">{member.position}</h6>
+                    <p className="text-black text-sm mb-2">
+                      {member.qualifications}
+                    </p>
+
+                    {/* Certification section */}
+                    {member.certifications &&
+                      member.certifications.length > 0 && (
+                        <div className="mt-3 border-t border-black pt-2">
+                          <h4 className="font-medium text-black mb-1">
+                            Licenses & Certifications
+                          </h4>
+                          {member.certifications.map((cert, i) => (
+                            <div key={i} className="text-sm mb-1">
+                              <div className="font-medium">{cert.name}</div>
+                              <div>{cert.issuer}</div>
+                              <div className="text-xs">Issued {cert.date}</div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                   </div>
                 </div>
               </div>

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 // Check icon component with outlined design
 const CheckIcon = ({ className }) => (
@@ -45,11 +46,18 @@ const ServiceCard = ({ title, items, iconSrc }) => {
 
       <ul className="space-y-3 sm:space-y-4">
         {items.map((item, index) => (
-          <li key={index} className="flex items-start">
-            <CheckIcon
-              className={isHovered ? "text-amber-400" : "text-amber-400"}
-            />
-            <span className="text-xs sm:text-sm">{item}</span>
+          <li key={index}>
+            <Link 
+              href={item.link} 
+              className="flex items-start hover:opacity-80 transition-opacity group"
+            >
+              <CheckIcon
+                className={isHovered ? "text-amber-400" : "text-amber-400"}
+              />
+              <span className={`text-xs sm:text-sm group-hover:underline ${isHovered ? "text-white" : "text-gray-800"}`}>
+                {item.text}
+              </span>
+            </Link>
           </li>
         ))}
       </ul>
@@ -64,17 +72,25 @@ const ServicesSection = () => {
   const serviceCards = [
     {
       title: "Digital Marketing",
-      items: ["Google & Facebook Ads", "SEO / Copywriting"],
+      items: [
+        { text: "Google & Facebook Ads", link: "/services/google-ads" },
+        { text: "SEO / Copywriting", link: "/services/seo" }
+      ],
       iconSrc: "/assets/images/icons/2.png",
     },
     {
       title: "Consulting & Strategy",
-      items: ["Business Strategy & Consulting"],
+      items: [
+        { text: "Business Strategy & Consulting", link: "/services/business-consulting" }
+      ],
       iconSrc: "/assets/images/icons/3.png",
     },
     {
       title: "Web & App Development",
-      items: ["Website Development", "App Development"],
+      items: [
+        { text: "Website Development", link: "/services/development" },
+        { text: "App Development", link: "/services/app-development" }
+      ],
       iconSrc: "/assets/images/icons/4.png",
     },
   ];
