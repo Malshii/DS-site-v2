@@ -152,12 +152,35 @@ export default function GoogleTrackingComponent() {
               gtag('event', 'conversion', {
                 'send_to': 'AW-16917143672/qxkRCPqN0qsaEPjA3II_'
               });
+              if(${DEBUG_MODE}) {
+                console.log('[Tracking Debug] Phone Call Conversion Tracked');
+              }
             };
             
             window.trackFormSubmissionConversion = function() {
               gtag('event', 'conversion', {
                 'send_to': 'AW-16917143672/LaiLCKf31asaEPjA3II_'
               });
+              if(${DEBUG_MODE}) {
+                console.log('[Tracking Debug] Form Submission Conversion Tracked');
+              }
+            };
+            
+            // Add the specific call tracking function from the snippet
+            window.gtag_report_conversion = function(url) {
+              var callback = function () {
+                if (typeof(url) != 'undefined') {
+                  window.location = url;
+                }
+              };
+              gtag('event', 'conversion', {
+                'send_to': 'AW-16917143672/kgmdCO7J_bEaEPjA3II_',
+                'event_callback': callback
+              });
+              if(${DEBUG_MODE}) {
+                console.log('[Tracking Debug] Click-to-Call Conversion Tracked', url);
+              }
+              return false;
             };
           `,
         }}

@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaEnvelope, FaMapMarkedAlt, FaPhoneAlt } from "react-icons/fa";
+import TrackedPhoneLink from "./TrackedPhoneLink";
 
 export default function Footer() {
   return (
@@ -44,12 +45,12 @@ export default function Footer() {
                   <div className="text-customYellow mr-3 flex-shrink-0">
                     <FaPhoneAlt className="text-lg sm:text-xl" />
                   </div>
-                  <Link
-                    href="tel:0212463988"
+                  <TrackedPhoneLink
+                    phoneNumber="0212463988"
                     className="hover:text-customYellow transition-colors text-sm sm:text-base"
                   >
                     021 246 3988
-                  </Link>
+                  </TrackedPhoneLink>
                 </li>
                 <li className="flex items-center">
                   <div className="text-customYellow mr-3 flex-shrink-0">

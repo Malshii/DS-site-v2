@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
+import TrackedPhoneLink from '@/components/TrackedPhoneLink';
 
 export default function ClosingSection() {
   const [ref, inView] = useInView({
@@ -59,14 +60,17 @@ export default function ClosingSection() {
                 </a>
                 <div className="flex justify-center mt-6">
                   <span className="text-sm text-gray-400">Or call us: </span>
-                  <a href="tel:0212463988" className="text-sm text-customYellow ml-2 hover:underline">021 246 3988</a>
+                  <TrackedPhoneLink 
+                    phoneNumber="0212463988"
+                    className="text-sm text-customYellow ml-2 hover:underline"
+                  >
+                    021 246 3988
+                  </TrackedPhoneLink>
                 </div>
               </div>
             </motion.div>
           </div>
         </div>
-        
-        
       </div>
     </section>
   );
