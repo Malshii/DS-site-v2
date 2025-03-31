@@ -21,7 +21,7 @@ export default function Packages() {
       buttonColor: "bg-yellow-400 hover:bg-gray-400",
       lineColor: "bg-yellow-400", // Top line color for Starter
       icon: <FaLaptop className="w-12 h-12 text-customLightGray m-4" />,
-      buttonText: "From $300.00",
+      buttonText: "From NZD $300.00",
     },
     {
       title: "Starter",
@@ -37,7 +37,7 @@ export default function Packages() {
       buttonColor: "bg-customYellow hover:bg-customGray",
       lineColor: "bg-customYellow", // Top line color for Starter
       icon: <FaGlobe className="w-12 h-12 text-customLightGray m-4" />, // Globe icon
-      buttonText: "From $500.00",
+      buttonText: "From NZD $500.00",
     },
     {
       title: "Business",
